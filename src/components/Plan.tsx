@@ -122,8 +122,9 @@ export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimat
         <div className="kicker">План с расстановкой · {opt.name}</div>
         <h2 id="plan-h">План с расстановкой — после правок брата</h2>
         <p className="lead">
-          Детская — в бывшей гостиной, кухня-гостиная ≈ 23.6 м² после сноса стены кухня–прихожая, зона зала в прихожей: диван спиной к стене
-          санузлов, ТВ на торцевой стене на дистанции ≈ 2.3 м. Расположение помещений — по схеме дизайн-концепции; пол и мебель — в цветах опции.
+          Зал — в бывшей гостиной 12.2 м² (сейчас зал, потом может стать детской), кухня и зал разделены стеной с широким проёмом. ТВ — и в зале
+          (напротив дивана, дистанция ≈ 2.3 м), и в кухне у обеденной зоны. Кухня-гостиная ≈ 23.6 м² после сноса стены кухня–прихожая. Расположение
+          помещений — по схеме дизайн-концепции; пол и мебель — в цветах опции.
         </p>
         <figure className="figure plan" style={{ margin: 0 }}>
           <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="План квартиры 55 м² с расстановкой мебели">
@@ -153,28 +154,14 @@ export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimat
                 <line key={`eh${y}`} x1={px(6.3)} y1={py(y)} x2={px(9.5)} y2={py(y)} />
               ))}
             </g>
-            {/* акцентная торцевая стена за ТВ */}
-            <rect x={px(9.42)} y={py(3.7)} width={0.08 * S} height={2.4 * S} fill={t.accent} />
-
-            {/* --- зона зала: ковёр, диван спиной к стене санузлов, ТВ на торцевой стене --- */}
-            <Box x={7.4} y={3.8} w={1.6} h={2.3} fill={t.accent} opacity={0.35} stroke="none" rx={3} />
-            <text x={px(8.2)} y={py(6.02)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
-              ковёр 160×230
-            </text>
-            <Box x={6.35} y={3.9} w={0.9} h={2.2} fill={t.textile} label="диван" sub="220×90" fs={9} color="#fff" rx={5} />
-            <rect x={px(6.35)} y={py(3.9)} width={0.2 * S} height={2.2 * S} fill="rgba(0,0,0,0.12)" rx={4} />
-            <Box x={7.6} y={4.75} w={0.8} h={0.5} fill={wood} label="столик" fs={7} rx={4} />
-            <rect x={px(9.32)} y={py(4.3)} width={0.1 * S} height={1.2 * S} fill={INK} rx={1} />
-            <text x={px(9.28)} y={py(4.12)} textAnchor="end" fontSize={8} fontWeight={700} fill={INK}>
-              {TV_SIZE[opt.key]}
-            </text>
-            <text x={px(9.28)} y={py(4.25)} textAnchor="end" fontSize={7} fill={INK} opacity={0.75}>
-              на кронштейне
-            </text>
-            <line x1={px(7.27)} y1={py(4.45)} x2={px(9.3)} y2={py(4.45)} stroke={INK} strokeWidth={1} markerEnd="url(#arr)" markerStart="url(#arrS)" />
-            <text x={px(8.3)} y={py(4.62)} textAnchor="middle" fontSize={8} fontWeight={700} fill={INK}>
-              ≈ 2.3 м
-            </text>
+            {/* --- обеденная зона в открытой части (кухня + прихожая = кухня-гостиная) --- */}
+            <Box x={7.3} y={4.3} w={1.2} h={0.8} fill={wood} label="стол 120×80" fs={8} color="#fff" rx={3} />
+            {[7.45, 7.95].map((x) => (
+              <rect key={`t${x}`} x={px(x)} y={py(3.95)} width={0.35 * S} height={0.3 * S} fill={wood} opacity={0.6} rx={3} />
+            ))}
+            {[7.45, 7.95].map((x) => (
+              <rect key={`b${x}`} x={px(x)} y={py(5.15)} width={0.35 * S} height={0.3 * S} fill={wood} opacity={0.6} rx={3} />
+            ))}
 
             {/* --- кухня --- */}
             <Box x={6.6} y={0.05} w={2.9} h={0.6} fill={t.facade} rx={2} />
@@ -188,21 +175,36 @@ export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimat
             <Box x={8.9} y={2.35} w={0.6} h={0.7} fill="#f4f4f2" label="холод." fs={7} rx={2} />
             <Box x={8.4} y={0.12} w={0.6} h={0.46} fill="#2b2b2b" label="индукция" fs={6} color="#fff" rx={2} />
             <Box x={7.35} y={0.12} w={0.5} h={0.46} fill="#d8d8d4" label="мойка" fs={6} rx={6} />
-            <Box x={6.5} y={2.55} w={1.2} h={0.8} fill={wood} label="стол 120×80" fs={8} color="#fff" rx={3} />
-            {[6.65, 7.15].map((x) => (
-              <rect key={x} x={px(x)} y={py(2.2)} width={0.35 * S} height={0.3 * S} fill={wood} opacity={0.6} rx={3} />
-            ))}
-            {[6.65, 7.15].map((x) => (
-              <rect key={`b${x}`} x={px(x)} y={py(3.4)} width={0.35 * S} height={0.28 * S} fill={wood} opacity={0.6} rx={3} />
-            ))}
+            {/* ТВ кухни — на стене со стороны кухни, видно от гарнитура и обеденной зоны */}
+            <rect x={px(6.33)} y={py(2.7)} width={0.1 * S} height={0.75 * S} fill={INK} rx={1} />
+            <text x={px(6.5)} y={py(2.95)} fontSize={7} fontWeight={700} fill={INK}>
+              ТВ 32–43"
+            </text>
+            <text x={px(6.5)} y={py(3.08)} fontSize={6} fill={INK} opacity={0.75}>
+              кухни
+            </text>
 
-            {/* --- детская --- */}
-            <Box x={3.1} y={1.4} w={0.8} h={1.9} fill={t.accent} label="кровать" sub="80×130→190" fs={8} color="#fff" rx={4} />
-            <rect x={px(3.1)} y={py(3.1)} width={0.8 * S} height={0.2 * S} fill="rgba(0,0,0,0.15)" rx={3} />
-            <Box x={4.3} y={0.08} w={1.2} h={0.6} fill={wood} label="стол 120×60" fs={8} color="#fff" rx={3} />
-            <rect x={px(4.75)} y={py(0.78)} width={0.4 * S} height={0.4 * S} fill={wood} opacity={0.6} rx={6} />
-            <Box x={5.7} y={1.7} w={0.6} h={1.6} fill={t.facade} label="шкаф" sub="160×60" fs={8} rx={2} />
-            <Box x={5.75} y={0.1} w={0.5} h={1.4} fill={t.facade} label="полки" sub="50×140" fs={7} rx={2} />
+            {/* --- зал (бывшая гостиная): диван у стены спальни, ТВ на стене кухни, дистанция ≈ 2.3 м --- */}
+            <rect x={px(6.22)} y={py(0.05)} width={0.08 * S} height={3.6 * S} fill={t.accent} />
+            <Box x={4.1} y={0.75} w={1.6} h={2.3} fill={t.accent} opacity={0.35} stroke="none" rx={3} />
+            <text x={px(4.9)} y={py(2.98)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
+              ковёр 160×230
+            </text>
+            <Box x={3.05} y={0.8} w={0.9} h={2.2} fill={t.textile} label="диван" sub="220×90" fs={9} color="#fff" rx={5} />
+            <rect x={px(3.05)} y={py(0.8)} width={0.2 * S} height={2.2 * S} fill="rgba(0,0,0,0.12)" rx={4} />
+            <Box x={4.5} y={1.65} w={0.8} h={0.5} fill={wood} label="столик" fs={7} rx={4} />
+            <rect x={px(6.12)} y={py(1.3)} width={0.1 * S} height={1.2 * S} fill={INK} rx={1} />
+            <text x={px(6.08)} y={py(1.22)} textAnchor="end" fontSize={8} fontWeight={700} fill={INK}>
+              {TV_SIZE[opt.key]}
+            </text>
+            <line x1={px(3.97)} y1={py(1.45)} x2={px(6.1)} y2={py(1.45)} stroke={INK} strokeWidth={1} markerEnd="url(#arr)" markerStart="url(#arrS)" />
+            <text x={px(5.05)} y={py(1.38)} textAnchor="middle" fontSize={8} fontWeight={700} fill={INK}>
+              ≈ 2.3 м
+            </text>
+            <Box x={5.6} y={0.1} w={0.6} h={0.9} fill={t.facade} label="стеллаж" fs={7} rx={2} />
+            <text x={px(4.65)} y={py(3.4)} textAnchor="middle" fontSize={6.5} fill={INK} opacity={0.8}>
+              потом — детская: кровать 80×130→190, стол 120×60 у окна, шкаф 160×60
+            </text>
 
             {/* --- спальня и лоджия --- */}
             <Box x={0.5} y={2.75} w={1.6} h={2.0} fill={t.textile} label="кровать" sub="160×200" fs={9} color="#fff" rx={5} />
@@ -298,9 +300,9 @@ export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimat
             <text x={px(1.5)} y={py(0.83)} textAnchor="middle" fontSize={8} fontWeight={700} fill={INK}>
               Лоджия 2.7 м²
             </text>
-            <RoomLabel x={4.8} y={2.05} name="Детская" area="12.2 м²" sub2="бывш. гостиная" fs={11} />
+            <RoomLabel x={4.9} y={0.4} name="Зал" area="12.2 м² · бывш. гостиная" sub2="сейчас зал, потом может стать детской" fs={11} />
             <RoomLabel x={7.5} y={1.4} name="Кухня" area="11.8 м²" />
-            <RoomLabel x={8.15} y={5.45} name="Зона зала" area="≈ 7–8 м² в прихожей" fs={10} />
+            <RoomLabel x={8.3} y={5.75} name="Обеденная зона" area="прихожая + кухня ≈ 23.6 м²" fs={9} />
             <text x={px(4.65)} y={py(4.3)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
               прихожая 11.8 м² — проход к спальне,
             </text>
@@ -335,8 +337,8 @@ export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimat
             </defs>
           </svg>
           <figcaption>
-            Масштаб условный: 1 м = 60 px, размеры мебели — из планировочного решения, площади — по плану и листу «Планировка» сметы. ТВ на торцевой
-            стене зоны зала со стороны входа, чтобы диван стоял спиной к стене санузлов (в схеме концепции ТВ нарисован на противоположном торце).
+            Масштаб условный: 1 м = 60 px, размеры мебели — из планировочного решения, площади — по плану и листу «Планировка» сметы. По уточнению
+            владельца: бывшая гостиная сейчас — зал (диван и ТВ), кухня и зал разделены, второй ТВ — в кухне; «зона зала в прихожей» из концепции не делается.
           </figcaption>
         </figure>
         <div className="legend" aria-hidden="true">
@@ -348,7 +350,7 @@ export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimat
         <div className="rooms-list">
           {LAYOUT.rooms.map((r) => (
             <div className="r" key={r.key}>
-              <b>{r.areaText ?? r.area} м²</b>
+              <b>{r.area} м²</b>
               <div>
                 <span className="nm">{r.name}</span> — <span className="tx">{r.text}</span>
               </div>
@@ -366,6 +368,9 @@ export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimat
                 </li>
               ))}
             </ol>
+            <p className="small muted" style={{ margin: '8px 0 0' }}>
+              {LAYOUT.oral}
+            </p>
           </div>
           <div className="card">
             <h3>Не меняем</h3>

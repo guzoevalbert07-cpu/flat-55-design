@@ -206,19 +206,19 @@ function Kitchen({ k, t }: { k: OptionKey; t: T }) {
   );
 }
 
-/* ------------------------------ ЗОНА ЗАЛА ------------------------------ */
+/* ---------------------------------- ЗАЛ ---------------------------------- */
 function Living({ k, t }: { k: OptionKey; t: T }) {
   const tvW = k === 'eco' ? 1.1 : k === 'std' ? 1.23 : 1.45;
   const tvH = tvW * 0.5625;
-  const tvX = 1.15 - tvW / 2;
+  const tvX = 1.85 - tvW / 2;
   const tvY = 1.55 - tvH / 2;
   return (
-    <Frame w={2.4} k={k} t={t} walls={[{ w: 2.4, fill: t.accent, title: k === 'prem' ? 'торцевая стена с ТВ · 2.4 м (микроцемент / панели)' : 'торцевая стена с ТВ · 2.4 м (акцентные обои)' }]} track={false}>
+    <Frame w={3.7} k={k} t={t} walls={[{ w: 3.7, fill: t.accent, title: k === 'prem' ? 'стена с ТВ напротив дивана · 3.7 м (микроцемент / панели)' : 'стена с ТВ напротив дивана · 3.7 м (акцентные обои)' }]} track={false}>
       {/* ниша с подсветкой (Премиум) */}
       {k === 'prem' && <Rect x={tvX - 0.04} y={tvY - 0.2} w={tvW + 0.08} h={tvH + 0.72} fill="rgba(255,241,191,0.35)" stroke="rgba(0,0,0,0.25)" rx={3} />}
       {/* ТВ */}
       <Rect x={tvX} y={tvY} w={tvW} h={tvH} fill="#111" stroke="#333" rx={2} />
-      <Label x={tvX + tvW / 2} y={tvY + tvH / 2 + 0.03} text={k === 'eco' ? 'ТВ 50"' : k === 'std' ? 'ТВ 55"' : 'ТВ 65" OLED'} fs={9} color="#fff" bold />
+      <Label x={1.85} y={tvY + tvH / 2 + 0.03} text={k === 'eco' ? 'ТВ 50"' : k === 'std' ? 'ТВ 55"' : 'ТВ 65" OLED'} fs={9} color="#fff" bold />
       {/* тумба / панель / консоль */}
       {k === 'eco' && (
         <g>
@@ -226,43 +226,49 @@ function Living({ k, t }: { k: OptionKey; t: T }) {
           {[0.33, 0.66].map((p) => (
             <line key={p} x1={X(tvX - 0.1 + (tvW + 0.2) * p)} y1={Y(2.25)} x2={X(tvX - 0.1 + (tvW + 0.2) * p)} y2={Y(H)} stroke="rgba(0,0,0,0.3)" />
           ))}
-          <Label x={1.15} y={2.5} text="стеллаж Hoff" fs={7} />
+          <Label x={1.85} y={2.5} text="стеллаж Hoff" fs={7} />
         </g>
       )}
       {k === 'std' && (
         <g>
           <Rect x={tvX - 0.25} y={2.2} w={tvW + 0.5} h={0.4} fill={t.facade} />
-          <line x1={X(1.15)} y1={Y(2.2)} x2={X(1.15)} y2={Y(2.6)} stroke="rgba(0,0,0,0.3)" />
-          <Label x={1.15} y={2.45} text="ТВ-панель с закрытым хранением" fs={7} />
+          <line x1={X(1.85)} y1={Y(2.2)} x2={X(1.85)} y2={Y(2.6)} stroke="rgba(0,0,0,0.3)" />
+          <Label x={1.85} y={2.45} text="ТВ-панель с закрытым хранением" fs={7} />
         </g>
       )}
       {k === 'prem' && (
         <g>
           <Rect x={tvX - 0.15} y={2.25} w={tvW + 0.3} h={0.3} fill={t.facade2} />
           <Rect x={tvX - 0.15} y={2.55} w={tvW + 0.3} h={0.03} fill="rgba(255,241,191,0.9)" stroke="none" />
-          <Label x={1.15} y={2.45} text="консоль на заказ, орех" fs={7} color="#fff" />
+          <Label x={1.85} y={2.45} text="консоль на заказ, орех" fs={7} color="#fff" />
         </g>
       )}
+      {/* стеллаж у окна (слева) */}
+      <Rect x={0.15} y={0.06} w={0.6} h={H - 0.06} fill={k === 'eco' ? '#fff' : t.facade} />
+      {[0.7, 1.35, 2.0].map((y) => (
+        <line key={y} x1={X(0.15)} y1={Y(y)} x2={X(0.75)} y2={Y(y)} stroke="rgba(0,0,0,0.3)" />
+      ))}
+      <Label x={0.45} y={0.45} text="стеллаж" fs={7} />
       {/* торшер / бра */}
       {k !== 'prem' ? (
         <g>
-          <line x1={X(2.3)} y1={Y(1.1)} x2={X(2.3)} y2={Y(H)} stroke={t.hardware} strokeWidth={2} />
-          <path d={`M ${X(2.2)} ${Y(1.1)} L ${X(2.4)} ${Y(1.1)} L ${X(2.36)} ${Y(0.9)} L ${X(2.24)} ${Y(0.9)} Z`} fill="#f3ecd9" stroke={t.hardware} />
+          <line x1={X(3.3)} y1={Y(1.1)} x2={X(3.3)} y2={Y(H)} stroke={t.hardware} strokeWidth={2} />
+          <path d={`M ${X(3.2)} ${Y(1.1)} L ${X(3.4)} ${Y(1.1)} L ${X(3.36)} ${Y(0.9)} L ${X(3.24)} ${Y(0.9)} Z`} fill="#f3ecd9" stroke={t.hardware} />
         </g>
       ) : (
         <g>
-          <line x1={X(2.3)} y1={Y(1.05)} x2={X(2.3)} y2={Y(H)} stroke={t.hardware} strokeWidth={2} />
-          <circle cx={X(2.3)} cy={Y(0.95)} r={9} fill="#fff1bf" stroke={t.hardware} />
+          <line x1={X(3.3)} y1={Y(1.05)} x2={X(3.3)} y2={Y(H)} stroke={t.hardware} strokeWidth={2} />
+          <circle cx={X(3.3)} cy={Y(0.95)} r={9} fill="#fff1bf" stroke={t.hardware} />
         </g>
       )}
-      <Label x={2.3} y={0.8} text="торшер" fs={6} />
-      {/* диван спиной к зрителю (виден со спины) и ковёр */}
-      <rect x={X(0.1)} y={Y(2.62)} width={2.2 * S} height={22} fill={t.accent} opacity={0.55} rx={3} />
-      <Rect x={0.15} y={1.95} w={2.1} h={0.75} fill={t.textile} stroke="rgba(0,0,0,0.35)" rx={8} op={0.95} />
-      <Rect x={0.15} y={1.95} w={2.1} h={0.12} fill="rgba(0,0,0,0.15)" stroke="none" rx={6} />
-      <Label x={1.2} y={2.4} text={k === 'eco' ? 'диван 220 см, рогожка' : k === 'std' ? 'диван 220 см, велюр горчица' : 'модульный диван, лён'} fs={8} color="#fff" bold />
-      <Label x={1.2} y={2.55} text="дистанция до ТВ ≈ 2.3 м" fs={7} color="#fff" />
-      <Dim x1={0} x2={2.4} y={H + 0.18} text="2.4 м" />
+      <Label x={3.3} y={0.8} text="торшер" fs={6} />
+      {/* диван спиной к зрителю и ковёр */}
+      <rect x={X(0.75)} y={Y(2.62)} width={2.2 * S} height={22} fill={t.accent} opacity={0.55} rx={3} />
+      <Rect x={0.8} y={1.95} w={2.1} h={0.75} fill={t.textile} stroke="rgba(0,0,0,0.35)" rx={8} op={0.95} />
+      <Rect x={0.8} y={1.95} w={2.1} h={0.12} fill="rgba(0,0,0,0.15)" stroke="none" rx={6} />
+      <Label x={1.85} y={2.4} text={k === 'eco' ? 'диван 220 см, рогожка' : k === 'std' ? 'диван 220 см, велюр горчица' : 'модульный диван, лён'} fs={8} color="#fff" bold />
+      <Label x={1.85} y={2.55} text="дистанция до ТВ ≈ 2.3 м" fs={7} color="#fff" />
+      <Dim x1={0} x2={3.7} y={H + 0.18} text="3.7 м" />
     </Frame>
   );
 }
@@ -455,11 +461,11 @@ export default function Elevations({ opt }: { opt: Option }) {
   const k = opt.key;
   const t = opt.tokens;
   const items: { key: string; title: string; desc: string; el: React.ReactNode; wide?: boolean }[] = [
-    { key: 'kitchen', title: 'Кухня 11.8 м² — Г-образный гарнитур 2.9 + 2.4 м', desc: opt.rooms.kitchen, el: <Kitchen k={k} t={t} />, wide: true },
-    { key: 'living', title: 'Зона зала ≈ 7–8 м² — торцевая стена с ТВ', desc: opt.rooms.living, el: <Living k={k} t={t} /> },
+    { key: 'kitchen', title: 'Кухня 11.8 м² — Г-образный гарнитур 2.9 + 2.4 м (+ ТВ 32–43" на стене у обеденной зоны)', desc: opt.rooms.kitchen, el: <Kitchen k={k} t={t} />, wide: true },
+    { key: 'living', title: 'Зал 12.2 м² (бывшая гостиная) — стена с ТВ напротив дивана', desc: opt.rooms.living, el: <Living k={k} t={t} /> },
     { key: 'bedroom', title: 'Спальня 11.7 м² — стена изголовья', desc: opt.rooms.bedroom, el: <Bedroom k={k} t={t} /> },
     { key: 'bath', title: 'Душевая 2.8 м² — подиум и раковина', desc: opt.rooms.bath, el: <Bath k={k} t={t} /> },
-    { key: 'kids', title: 'Детская 12.2 м² — стена кровати и стена окна', desc: opt.rooms.kids, el: <Kids k={k} t={t} />, wide: true },
+    { key: 'kids', title: 'Зал 12.2 м² — вариант «потом детская»: стена кровати и стена окна', desc: `На вырост, когда зал станет детской: ${opt.rooms.kids}`, el: <Kids k={k} t={t} />, wide: true },
   ];
   return (
     <section className="section" id="rooms" aria-labelledby="rooms-h">
