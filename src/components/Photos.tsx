@@ -11,6 +11,7 @@ export type Photo = {
   authorUrl: string;
   source: string;
   sourceUrl: string;
+  license?: string;
   query: string;
 };
 
@@ -33,6 +34,7 @@ export default function Photos({ opt }: { opt: Option }) {
                   {p.author}
                 </a>{' '}
                 · {p.source}
+                {p.license ? ` · ${p.license}` : ''}
               </figcaption>
             </figure>
           ))}

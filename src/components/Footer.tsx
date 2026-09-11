@@ -4,8 +4,8 @@ import type { Estimate } from '../types';
 export default function Footer({ estimate }: { estimate: Estimate }) {
   const d = new Date(estimate.meta.generatedAt);
   const date = d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
-  const credits = (photos as { author: string; authorUrl: string; source: string; sourceUrl: string }[]).filter(
-    (p, i, a) => a.findIndex((x) => x.author === p.author) === i,
+  const credits = (photos as { author: string; authorUrl: string; source: string; sourceUrl: string; license?: string; licenseUrl?: string }[]).filter(
+    (p, i, a) => a.findIndex((x) => x.sourceUrl === p.sourceUrl) === i,
   );
   return (
     <footer>
@@ -23,10 +23,10 @@ export default function Footer({ estimate }: { estimate: Estimate }) {
         </p>
         {credits.length > 0 ? (
           <div>
-            <b>Фото:</b>
+            <b>Фото (бесплатные, с открытой лицензией; это референсы стиля, не проект этой квартиры):</b>
             <ul>
               {credits.map((c) => (
-                <li key={c.author}>
+                <li key={c.sourceUrl}>
                   <a href={c.authorUrl} target="_blank" rel="noopener">
                     {c.author}
                   </a>{' '}
@@ -34,12 +34,24 @@ export default function Footer({ estimate }: { estimate: Estimate }) {
                   <a href={c.sourceUrl} target="_blank" rel="noopener">
                     {c.source}
                   </a>
+                  {c.license ? (
+                    <>
+                      {' · '}
+                      {c.licenseUrl ? (
+                        <a href={c.licenseUrl} target="_blank" rel="noopener">
+                          {c.license}
+                        </a>
+                      ) : (
+                        c.license
+                      )}
+                    </>
+                  ) : null}
                 </li>
               ))}
             </ul>
           </div>
         ) : (
-          <p className="muted small">Фотореференсы появятся после подключения ключа Unsplash или Pexels (см. README).</p>
+          <p className="muted small">Фотореференсы: `npm run photos` (см. README).</p>
         )}
         <p className="muted small">План и развёртки — схематичные, масштаб условный, размеры по плану БТИ и правкам брата. Рабочие чертежи делаются после выбора опции.</p>
       </div>

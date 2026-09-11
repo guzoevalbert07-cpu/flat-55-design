@@ -11,25 +11,40 @@ import Budget from './components/Budget';
 import Shopping from './components/Shopping';
 import WorkOrder from './components/WorkOrder';
 import Footer from './components/Footer';
+import Mix, { LETTER, majority, mixSections, parseMix } from './components/Mix';
 
-function readHash(): OptionKey {
-  const h = window.location.hash.replace('#', '') as OptionKey;
-  return OPTION_KEYS.includes(h) ? h : 'std';
+const SECTION_COUNT = mixSections(estimate).length;
+
+function readHash(): { key: OptionKey; mix: OptionKey[] | null } {
+  const h = window.location.hash;
+  const mix = parseMix(h, SECTION_COUNT);
+  if (mix) return { key: majority(mix), mix };
+  const k = h.replace('#', '') as OptionKey;
+  return { key: OPTION_KEYS.includes(k) ? k : 'std', mix: null };
 }
 
 export default function App() {
-  const [key, setKey] = useState<OptionKey>(() => (typeof window === 'undefined' ? 'std' : readHash()));
+  const [state, setState] = useState<{ key: OptionKey; mix: OptionKey[] | null }>(() => (typeof window === 'undefined' ? { key: 'std', mix: null } : readHash()));
+  const key = state.key;
 
   useEffect(() => {
-    const onHash = () => setKey(readHash());
+    const onHash = () => setState(readHash());
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
   const select = useCallback((k: OptionKey) => {
-    setKey(k);
+    setState({ key: k, mix: null });
     if (window.location.hash !== `#${k}`) history.replaceState(null, '', `#${k}`);
   }, []);
+
+  const setMix = useCallback((m: OptionKey[] | null) => {
+    if (!m) return select('std');
+    const uniform = m.every((x) => x === m[0]);
+    if (uniform) return select(m[0]);
+    setState({ key: majority(m), mix: m });
+    history.replaceState(null, '', `#mix=${m.map((x) => LETTER[x]).join('')}`);
+  }, [select]);
 
   const opt = OPTIONS[key];
   const t = opt.tokens;
@@ -55,6 +70,7 @@ export default function App() {
         <Elevations opt={opt} />
         <Photos opt={opt} />
         <Budget opt={opt} estimate={estimate} />
+        <Mix estimate={estimate} current={key} mix={state.mix} onMix={setMix} />
         <Shopping opt={opt} estimate={estimate} />
         <WorkOrder estimate={estimate} />
       </main>

@@ -221,3 +221,22 @@ footer ul { padding-left: 1.1em; margin: 0.4em 0; }
 .avito { border-top: 1px dashed var(--line); padding-top: 8px; margin-top: 4px; font-size: 0.85rem; }
 .card, .shop-item, .offer > * { min-width: 0; overflow-wrap: anywhere; }
 @media (min-width: 640px) { .shop-list { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- Конструктор ---------- */
+.mix-presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.mix-presets button { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 7px 12px; font: inherit; font-size: 0.85rem; font-weight: 700; cursor: pointer; min-height: 36px; }
+.mix-presets button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.mix-total { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: var(--ink); color: #fff; border-color: var(--ink); }
+.mix-total .l { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; opacity: 0.8; }
+.mix-total .v { font-size: clamp(1.5rem, 6vw, 2.1rem); font-weight: 800; letter-spacing: -0.01em; }
+.mix-total .s { font-size: 0.82rem; opacity: 0.85; margin-top: 2px; }
+.mix-total .muted { color: #fff; opacity: 0.7; }
+.btn-share { border: 0; background: var(--accent); color: #fff; border-radius: 10px; padding: 10px 14px; font: inherit; font-weight: 800; cursor: pointer; min-height: 42px; }
+.mix-grid { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 12px; }
+@media (min-width: 900px) { .mix-grid { grid-template-columns: 1fr 1fr; } }
+.mix-rows { display: grid; gap: 8px; }
+.mix-row { display: grid; gap: 6px; padding: 8px 0; border-top: 1px solid var(--line); }
+.mix-name { font-weight: 700; font-size: 0.92rem; }
+.mix-seg { max-width: none; }
+.mix-seg button { padding: 6px 4px; font-size: 0.82rem; min-height: 40px; }
+.mix-seg button .p { font-size: 0.7rem; }

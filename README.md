@@ -43,14 +43,21 @@
 `python3 scripts/bench_summary.py <копия> <копия2> <папка> <оригинал.xlsx>` → `python3 scripts/xlsx_graft.py <оригинал> <копия2> <мастер.xlsx> "Ссылки_по_позициям" "Бенчмарк_итоги"`.
 Графт нужен потому, что `openpyxl.save()` теряет рассчитанные значения формул, диаграмму и calcChain — мастер-файл сохраняется только через graft.
 
-## Фотореференсы (секция скрыта, пока нет ключа)
+## Фотореференсы
 
-Секция «Фотореференсы» появляется, когда `src/data/photos.json` заполнен. Для этого:
+Секция «Фотореференсы» показывает 4 бесплатных фото с открытой лицензией на опцию (CC0 / CC BY / CC BY-SA / Public domain) —
+референсы стиля, не проект этой квартиры. Источники без ключа: Openverse (api.openverse.org) и Wikimedia Commons; атрибуция и лицензия — в
+подписи и в футере.
 
-1. Скопируйте `.env.example` → `.env`, впишите `UNSPLASH_ACCESS_KEY` (или `PEXELS_API_KEY`).
-2. `npm run photos` — скрипт скачает 4 бесплатных стоковых фото на опцию в `public/photos/` и запишет атрибуцию в `photos.json`
-   (атрибуция автоматически попадает в футер).
-3. `npm run build` → `npm run deploy`.
+Пересобрать без ключа: `python3 scripts/fetch_photos_open.py candidates` (контакт-листы кандидатов в `$PHOTO_SCRATCH`), отобрать id,
+`python3 scripts/fetch_photos_open.py finalize picks.json` → `public/photos/*.jpg` + `src/data/photos.json`. Если появится ключ Unsplash/Pexels —
+`npm run photos` (`scripts/fetch-photos.ts`) сделает то же автоматически.
+
+## Конструктор
+
+Секция «Свой вариант» — по каждому из разделов сметы выбирается Эконом / Стандарт / Премиум, итог пересчитывается из сумм позиций
+(`1_Ремонт`, `2_Заезд`) с резервом из листа «Параметры». Собранный вариант живёт в адресе: `#mix=PSSSSSSSSSSSSS` (буква на раздел,
+E/S/P, в порядке разделов сметы) — кнопка «Ссылка на этот вариант» копирует его. `#eco` / `#std` / `#prem` — готовые наборы.
 
 ## Превью в мессенджерах
 
@@ -62,7 +69,7 @@
 | Команда | Что делает |
 |---|---|
 | `npm run data` | Excel → `src/data/estimate.json` |
-| `npm run photos` | Стоковые фото по ключу из `.env` |
+| `npm run photos` | Стоковые фото по ключу Unsplash/Pexels; без ключа — `scripts/fetch_photos_open.py` |
 | `npm run og` | Картинка для превью ссылки |
 | `npm run dev` | Dev-сервер |
 | `npm run build` | Сборка в `dist/` |
@@ -78,7 +85,7 @@ input/                исходники (смета, концепция, ТЗ, 
 _spec/                требования, критерии приёмки, глоссарий из ТЗ
 scripts/              xlsx-to-json.ts · fetch-photos.ts · og_image.py · bench_to_xlsx.py · bench_summary.py · xlsx_graft.py
 src/data/             estimate.json (из Excel) · options.ts (токены опций) · photos.json
-src/components/       Hero · OptionBar · Concept · Plan · Elevations · Photos · Budget · Shopping · WorkOrder · Footer
+src/components/       Hero · OptionBar · Concept · Plan · Elevations · Photos · Budget · Mix (конструктор) · Shopping · WorkOrder · Footer
 deploy/               github-actions-deploy.yml — опциональный workflow (см. выше)
 scripts/deploy.sh     публикация в gh-pages
 ```
