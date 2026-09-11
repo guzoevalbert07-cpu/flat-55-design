@@ -1,0 +1,72 @@
+# Дизайн квартиры 55 м² — 3 опции (Саратов)
+
+Одностраничный сайт-презентация дизайна 2-комнатной квартиры в трёх опциях — Эконом / Стандарт / Премиум:
+палитра и материалы, план с расстановкой, развёртки пяти комнат, бюджет из сметы, ссылки «что купить», порядок работ.
+
+**Сайт:** https://guzoevalbert07-cpu.github.io/flat-55-design/ (`#eco` · `#std` · `#prem` открывают нужную опцию)
+
+## Откуда данные
+
+| Файл в `input/` | Что это | Куда идёт |
+|---|---|---|
+| `Смета_55м2_Саратов_3_опции.xlsx` | Смета: `Параметры`, `1_Ремонт`, `2_Заезд`, `3_Саммари`, `Планировка`, `Закупка_ссылки`, `Работы_подрядчики`, `Видео_и_порядок` | `scripts/xlsx-to-json.ts` → `src/data/estimate.json` — единственный источник цифр на сайте |
+| `Дизайн-концепция_55м2_3_опции.docx` | Планировочное решение, три опции, детализация по комнатам | Тексты в `src/data/options.ts`, схема планировки → `input/plan.png` |
+| `ТЗ_для_Claude_Code_сайт_дизайна.md` | Техническое задание | `_spec/` — требования, критерии приёмки, глоссарий |
+
+Цифры на сайте не вбиты руками: любое число бюджета — из JSON, JSON — из Excel.
+
+## Как обновить цены
+
+1. Замените `input/Смета_55м2_Саратов_3_опции.xlsx` новой версией (имя может быть любым `Смета_*.xlsx`).
+   Файл должен быть **сохранён в Excel или LibreOffice** — скрипт читает рассчитанные значения формул.
+2. `npm run data` — пересобрать `src/data/estimate.json` (в консоли выведутся три «Итого»).
+3. `npm run build` — проверить сборку локально (`npm run preview` → http://127.0.0.1:4173/flat-55-design/).
+4. `npm run deploy` — скрипт `scripts/deploy.sh` сам выполнит `npm run data` + `npm run build` и опубликует `dist/`
+   в ветку `gh-pages`, откуда раздаётся GitHub Pages. Через 1–2 минуты сайт обновится.
+5. `git add -A && git commit -m "цены: <дата>" && git push` — сохранить новый Excel и JSON в `main`.
+
+Вариант с GitHub Actions (сборка на сервере при каждом push в `main`) лежит в `deploy/github-actions-deploy.yml`:
+чтобы включить, положите файл в `.github/workflows/deploy.yml` и в настройках Pages выберите источник «GitHub Actions».
+Для push файла workflow токену `gh` нужна область `workflow` (`gh auth refresh -s workflow`).
+
+## Фотореференсы (секция скрыта, пока нет ключа)
+
+Секция «Фотореференсы» появляется, когда `src/data/photos.json` заполнен. Для этого:
+
+1. Скопируйте `.env.example` → `.env`, впишите `UNSPLASH_ACCESS_KEY` (или `PEXELS_API_KEY`).
+2. `npm run photos` — скрипт скачает 4 бесплатных стоковых фото на опцию в `public/photos/` и запишет атрибуцию в `photos.json`
+   (атрибуция автоматически попадает в футер).
+3. `npm run build` → `npm run deploy`.
+
+## Превью в мессенджерах
+
+`public/og.png` (1200×630) — снимок опции Стандарт с сайта. Перегенерировать: `npm run preview` в одном терминале,
+`npm run og` в другом (нужен Python + Playwright).
+
+## Команды
+
+| Команда | Что делает |
+|---|---|
+| `npm run data` | Excel → `src/data/estimate.json` |
+| `npm run photos` | Стоковые фото по ключу из `.env` |
+| `npm run og` | Картинка для превью ссылки |
+| `npm run dev` | Dev-сервер |
+| `npm run build` | Сборка в `dist/` |
+| `npm run preview` | Локальный просмотр сборки на 127.0.0.1:4173 |
+| `npm run deploy` | Excel → JSON → сборка → публикация `dist/` в ветку `gh-pages` |
+
+Повторный деплой без изменений: просто `npm run deploy` ещё раз.
+
+## Структура
+
+```
+input/                исходники (смета, концепция, ТЗ, план)
+_spec/                требования, критерии приёмки, глоссарий из ТЗ
+scripts/              xlsx-to-json.ts · fetch-photos.ts · og_image.py
+src/data/             estimate.json (из Excel) · options.ts (токены опций) · photos.json
+src/components/       Hero · OptionBar · Concept · Plan · Elevations · Photos · Budget · Shopping · WorkOrder · Footer
+deploy/               github-actions-deploy.yml — опциональный workflow (см. выше)
+scripts/deploy.sh     публикация в gh-pages
+```
+
+Стек: Vite + React + TypeScript, шрифт Manrope (self-hosted, `@fontsource-variable/manrope`), без UI-библиотек.
