@@ -1,5 +1,5 @@
 import type { Option } from '../data/options';
-import { pick, rub } from '../lib/format';
+import { baseArea, pick, reservePct, rub } from '../lib/format';
 import type { Estimate } from '../types';
 
 function sumLabel(label: string) {
@@ -13,6 +13,9 @@ function sumLabel(label: string) {
 export default function Budget({ opt, estimate }: { opt: Option; estimate: Estimate }) {
   const k = opt.key;
   const tb = estimate.totalsByBlock;
+  const reserve = reservePct(estimate.params);
+  const area = baseArea(estimate.params);
+  const realNote = estimate.summaryNotes.find((s) => s.startsWith('РЕАЛ (сборка)'));
   const summaryRows = estimate.summary.filter((r) => /^(1\.|2\.)/.test(r.label));
   const repairSections = estimate.repair.totals.filter((t) => /^\d\.\s/.test(t.label));
   const repairTail = estimate.repair.totals.filter((t) => /^(ВСЕГО БЕЗ РЕЗЕРВА|Резерв|ИТОГО С РЕЗЕРВОМ)/.test(t.label));
@@ -40,7 +43,7 @@ export default function Budget({ opt, estimate }: { opt: Option; estimate: Estim
               <td className="num">
                 {it.qty ?? '—'} {it.unit}
               </td>
-              <td className="num">{sum === 0 ? <span className="muted">не берём</span> : rub(sum)}</td>
+              <td className="num">{sum === 0 ? <span className="muted">{it.note || 'не берём'}</span> : rub(sum)}</td>
             </tr>
           );
         })}
@@ -54,8 +57,8 @@ export default function Budget({ opt, estimate }: { opt: Option; estimate: Estim
         <div className="kicker">Бюджет · {opt.name} (столбец {opt.excelCol} в смете)</div>
         <h2 id="budget-h">Сколько нужно денег</h2>
         <p className="lead">
-          Цифры — из листа «3_Саммари» сметы, с резервом 10 % на непредвиденное. Ремонт — это материалы и работы до чистовой квартиры; заезд —
-          кухня, мебель, техника и их сборка.
+          Цифры — из листа «3_Саммари» сметы, с резервом {reserve} на непредвиденное; цены — ориентир по каталогам, итог показан как в
+          смете. Ремонт — это материалы и работы до чистовой квартиры; заезд — кухня, мебель, техника и их сборка.
         </p>
 
         <div className="kpi">
@@ -72,7 +75,9 @@ export default function Budget({ opt, estimate }: { opt: Option; estimate: Estim
           <div className="card total">
             <div className="l">Итого</div>
             <div className="v">{rub(pick(tb.grand, k))}</div>
-            <div className="s">ремонт + заезд, с резервом · {rub(pick(tb.perM2, k))} на 1 м²</div>
+            <div className="s">
+              ремонт + заезд, с резервом {reserve} · {rub(pick(tb.perM2, k))} на 1 м²{area ? ` (база ${area} м² с лоджией)` : ''}
+            </div>
           </div>
         </div>
 
@@ -107,8 +112,7 @@ export default function Budget({ opt, estimate }: { opt: Option; estimate: Estim
             </table>
           </div>
           <p className="small muted" style={{ marginTop: 8 }}>
-            В смете есть ещё столбец «РЕАЛ (сборка)» — реалистичная сборка: ремонт по Стандарту, кухня и часть мебели по Эконому, техника по
-            Стандарту — {rub(tb.grand.real)}.
+            Столбец «РЕАЛ (сборка)» в смете — {rub(tb.grand.real)}. {realNote ?? ''}
           </p>
         </div>
 

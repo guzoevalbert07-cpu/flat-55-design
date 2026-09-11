@@ -32,13 +32,12 @@ export default function Shopping({ opt, estimate }: { opt: Option; estimate: Est
       .map((it) => {
         const price = k === 'eco' ? it.priceMin : k === 'std' ? it.priceMid : it.priceMax;
         const note = it.note || '';
-        const hasOptions = /(МИН|СРЕД|МАКС)\s*[:—]/.test(note);
-        const m = note.match(new RegExp(`${opt.excelCol}[:—]\\s*([^·]+)`));
-        const model = m ? m[1].trim() : hasOptions ? 'в этой опции — см. смету' : 'модель подобрать в каталоге по ссылке';
+        const m = note.match(new RegExp(`(?:^|·\\s*|\\s)(?:[А-Я/]*\\/)?${opt.excelCol}(?:\\/[А-Я]+)?\\s*[:—]\\s*([^·]+?)(?=\\.\\s+[А-ЯA-Z]|\\s*·|$)`));
+        const model = m ? m[1].trim().replace(/\.$/, '') : 'модель подобрать в каталоге по ссылке';
         return {
           position: it.item,
           model,
-          note: hasOptions ? undefined : note || undefined,
+          note: !m && note ? note : undefined,
           store: storeName(it.link!),
           url: it.link!,
           price: price == null ? 'уточнить' : price === 0 ? 'в этой опции не берём' : `≈ ${rub(price)}${it.qty && it.qty > 1 ? ` × ${it.qty}` : ''}`,

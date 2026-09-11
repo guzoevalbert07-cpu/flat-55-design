@@ -22,3 +22,15 @@ export const pick = (t: Total, k: OptionKey) => t[COL[k]];
 
 /** Excel-столбец (МИН/СРЕД/МАКС) ↔ опция сайта. */
 export const EXCEL_TO_KEY: Record<string, OptionKey> = { МИН: 'eco', СРЕД: 'std', МАКС: 'prem' };
+
+/** Резерв на непредвиденное из листа Параметры (0.1 → «10 %»). */
+export function reservePct(params: { name: string; value: number | string }[]): string {
+  const p = params.find((x) => x.name.startsWith('Резерв на непредвиденное'));
+  const v = typeof p?.value === 'number' ? p.value : 0.1;
+  return `${Math.round(v * 100)} %`;
+}
+/** Общая площадь для расчёта «на 1 м²» (лист Параметры, B4). */
+export function baseArea(params: { name: string; value: number | string }[]): number | null {
+  const p = params.find((x) => x.name.startsWith('Общая площадь квартиры'));
+  return typeof p?.value === 'number' ? p.value : null;
+}

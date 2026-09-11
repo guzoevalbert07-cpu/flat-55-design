@@ -1,5 +1,5 @@
 import { LAYOUT, OPTIONS, OPTION_KEYS, type OptionKey } from '../data/options';
-import { pick, rubK } from '../lib/format';
+import { pick, reservePct, rubK } from '../lib/format';
 import type { Estimate } from '../types';
 
 type Props = { current: OptionKey; onSelect: (k: OptionKey) => void; estimate: Estimate };
@@ -37,7 +37,7 @@ export default function Hero({ current, onSelect, estimate }: Props) {
                 </span>
                 <span className="style">{o.style}</span>
                 <span className="price">
-                  {rubK(pick(grand, k))} <small>ремонт + заезд, с резервом 10 %</small>
+                  ≈ {rubK(pick(grand, k))} <small>ремонт + заезд, с резервом {reservePct(estimate.params)} · ориентир</small>
                 </span>
               </button>
             );

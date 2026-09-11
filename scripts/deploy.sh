@@ -3,6 +3,10 @@
 # Запуск: npm run deploy   (нужен git-доступ к origin; gh auth login достаточно)
 set -euo pipefail
 cd "$(dirname "$0")/.."
+if ! command -v npm >/dev/null 2>&1; then
+  for d in "$HOME"/.nvm/versions/node/*/bin; do [ -d "$d" ] && PATH="$d:$PATH"; done
+  export PATH
+fi
 REPO_URL="$(git remote get-url origin)"
 npm run data
 npm run build
