@@ -3,7 +3,7 @@ import renders from '../data/renders.json';
 import photos from '../data/photos.json';
 import { useLightbox } from './Lightbox';
 
-type Render = { option: Option['key']; view: string; order: number; title: string; src: string; width: number; height: number; kind: 'kontext' | 'schnell'; frame: string | null };
+type Render = { option: Option['key']; view: string; order: number; title: string; src: string; width: number; height: number; kind: 'kontext' | 'schnell'; frame: string | null; shared?: boolean };
 type Photo = { option: Option['key']; src: string; width: number; height: number; alt: string; author: string; authorUrl: string; source: string; sourceUrl: string; license?: string };
 
 const NOW = [
@@ -29,8 +29,9 @@ export default function Renders({ opt }: { opt: Option }) {
           {list.length >= 15
             ? `${list.length} видов по планировочному решению и материалам опции. `
             : `Пока ${list.length} ${list.length === 1 ? 'вид' : 'вида'} — полный набор из 16 видов на опцию (вход, коридор, с/у, душевая, кухня, зал, спальня, лоджия, детали) догружается. `}
-          Вход, коридор и санузлы нарисованы по отделке из видео: тот же керамогранит у входа, ониксовая плитка, ниша и подиум душа, колонка за люком;
-          остальные комнаты — по размерам плана. Нажмите на картинку, чтобы открыть крупно. Это иллюстрации замысла, сгенерированные нейросетью, а не
+          Вход, коридор, с/у и душевая одинаковы во всех опциях: плитка там уже уложена (кадры «как сейчас» ниже), поэтому показана одна картина по
+          отделке из видео — керамогранит у входа, ониксовая плитка, ниша и подиум душа, колонка за люком; сантехника и фурнитура — по смете выбранной опции.
+          Остальные комнаты — по размерам плана. Нажмите на картинку, чтобы открыть крупно. Это иллюстрации замысла, сгенерированные нейросетью, а не
           рабочие чертежи: реальные модели мебели и техники — по смете и ссылкам ниже.
         </p>
         <div className="renders">
@@ -50,7 +51,7 @@ export default function Renders({ opt }: { opt: Option }) {
               />
               <figcaption>
                 <b>{r.title}</b>
-                {r.kind === 'kontext' && <span className="pill" style={{ marginLeft: 6 }}>по отделке из видео</span>}
+                {r.shared && <span className="pill" style={{ marginLeft: 6 }}>одинаково для всех опций — плитка уже уложена</span>}
               </figcaption>
             </figure>
           ))}

@@ -106,7 +106,11 @@ def save(opt, key, i, title, kind, frame, prompt, seed, tmp, model):
     with lock:
         current = json.load(open(manifest_path)) if manifest_path.exists() else []
         merged = {(m["option"], m["view"]): m for m in current}
-        merged[(opt, key)] = entry
+        if opt == "shared":  # общий вид — по записи на каждую опцию, один файл
+            for o in ("eco", "std", "prem"):
+                merged[(o, key)] = dict(entry, option=o, shared=True)
+        else:
+            merged[(opt, key)] = entry
         manifest = sorted(merged.values(), key=lambda m: (["eco", "std", "prem"].index(m["option"]), m["order"]))
         json.dump(manifest, open(manifest_path, "w"), ensure_ascii=False, indent=1)
     return out, im.size
@@ -119,10 +123,19 @@ for opt in ("eco", "std", "prem"):
     for i, (key, title, kind, frame, tmpl) in enumerate(VIEWS_DEF, 1):
         if VIEWS and key not in VIEWS:
             continue
+        if kind == "kontext":  # виды по видео общие для всех опций — ниже, один раз
+            continue
         out = OUT / f"{opt}-{key}.jpg"
         if out.exists() and not FORCE:
             continue
         jobs.append((opt, key, i, title, kind, frame, tmpl))
+for i, (key, title, kind, frame, tmpl) in enumerate(VIEWS_DEF, 1):
+    if kind != "kontext" or (VIEWS and key not in VIEWS):
+        continue
+    out = OUT / f"shared-{key}.jpg"
+    if out.exists() and not FORCE:
+        continue
+    jobs.append(("shared", key, i, title, kind, frame, tmpl))
 print(f"заданий: {len(jobs)}, параллельно {PAR}")
 
 

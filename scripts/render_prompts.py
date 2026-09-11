@@ -122,13 +122,16 @@ VIDEO_VIEWS = {
                    "A wall-hung {vanity} 60 cm wide with a white basin, a backlit round mirror above it, an electric heated towel rail, a small extractor grille, "
                    "the corner of the tiled shower tray visible on the side, warm light, white stretch ceiling.",
 }
-VIDEO_METAL = {"eco": "black matte", "std": "black matte", "prem": "satin brass"}
+VIDEO_METAL = {"eco": "black matte", "std": "black matte", "prem": "satin brass", "shared": "black matte"}
+# общий набор для всех опций (плитка уже уложена — по указанию заказчика виды по видео одинаковы): нейтральная комплектация
+VIDEO_HALL["shared"] = VIDEO_HALL["std"]
+SHARED_DETAILS = {"wc": OPT_DETAILS["std"]["wc"], "shower": OPT_DETAILS["std"]["shower"], "vanity": OPT_DETAILS["std"]["vanity"]}
 VIDEO_SUFFIX = " Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text."
 
 
 def build_video_prompt(opt, key):
     """Промпт для видов по видео — описание отделки, без ссылки на исходный кадр."""
-    d = dict(OPT_DETAILS[opt])
+    d = dict(SHARED_DETAILS if opt == "shared" else OPT_DETAILS[opt])
     d["hall"] = VIDEO_HALL[opt]
     d["metal"] = VIDEO_METAL[opt]
     return VIDEO_VIEWS[key].format(**d) + VIDEO_SUFFIX
