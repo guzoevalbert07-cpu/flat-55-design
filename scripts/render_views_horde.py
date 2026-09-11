@@ -15,7 +15,7 @@ from pathlib import Path
 import urllib.request
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from render_prompts import VIEWS_DEF, KONTEXT_PREFIX, SUFFIX, build_prompt  # noqa: E402
+from render_prompts import VIEWS_DEF, build_prompt, build_video_prompt  # noqa: E402
 from PIL import Image  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -67,14 +67,11 @@ def img_b64(path, max_side=1024):
 
 
 def generate(prompt, kind, frame, seed):
-    if kind == "kontext" and frame:
-        src, (w, h) = img_b64(frame)
-        payload = {"prompt": f"{prompt} ### {NEG}", "params": {"width": w, "height": h, "steps": 8, "cfg_scale": 1.5, "sampler_name": "k_euler", "n": 1,
-                   "denoising_strength": 0.62, "seed": str(seed)}, "models": [T2I_MODEL], "source_image": src, "source_processing": "img2img",
-                   "nsfw": True, "censor_nsfw": False, "r2": True, "shared": False, "slow_workers": True, "trusted_workers": False}
-    else:
-        payload = {"prompt": f"{prompt} ### {NEG}", "params": {"width": 1024, "height": 768, "steps": 6, "cfg_scale": 1.5, "sampler_name": "k_euler", "n": 1, "seed": str(seed)},
-                   "models": [T2I_MODEL], "nsfw": True, "censor_nsfw": False, "r2": True, "shared": False, "slow_workers": True, "trusted_workers": False}
+    # kind == "kontext": описание существующей отделки (плитка, ниша, подиум) в промпте, портретный кадр как в видео
+    portrait = kind == "kontext" and frame not in ("f_002.jpg",)
+    w, h = (768, 1024) if portrait else (1024, 768)
+    payload = {"prompt": f"{prompt} ### {NEG}", "params": {"width": w, "height": h, "steps": 6, "cfg_scale": 1.5, "sampler_name": "k_euler", "n": 1, "seed": str(seed)},
+               "models": [T2I_MODEL], "nsfw": True, "censor_nsfw": False, "r2": True, "shared": False, "slow_workers": True, "trusted_workers": False}
     r = curl_json("POST", "/generate/async", payload)
     if "id" not in r:
         raise RuntimeError(f"submit: {r}")
@@ -135,18 +132,17 @@ def worker(q):
             if not q:
                 return
             opt, key, i, title, kind, frame, tmpl = q.pop(0)
-        prompt = build_prompt(opt, key, kind, tmpl)
-        if kind == "kontext":  # для img2img нужна описательная формулировка, а не инструкция «отредактируй фото»
-            prompt = "Photorealistic interior photograph of the same small room from the same camera angle after the renovation is finished: " + prompt.replace(KONTEXT_PREFIX, "") + SUFFIX
-        seed = 100 + i
+        # виды по видео — описание отделки (build_video_prompt), остальные — по плану (build_prompt)
+        prompt = build_video_prompt(opt, key) if kind == "kontext" else build_prompt(opt, key, kind, tmpl)
+        seed = 100 + i + (900 if key == "corridor" else 0)  # seed 102 для коридора стабильно давал мусорный текст на стене
         t = time.time()
         for attempt in range(5):
             try:
-                p_try = prompt if attempt == 0 else prompt.replace("Photorealistic interior photograph", "Architectural photo of an apartment interior").replace("Detail of a room corner in an apartment", "Empty freshly renovated room")
-                url, model, wname = generate(p_try, kind, FRAMES / frame if frame else None, seed + attempt)
+                p_try = prompt if attempt == 0 else prompt.replace("Photorealistic interior photograph", "Architectural photo of an apartment interior").replace("Detail of a room corner in an apartment", "Empty freshly renovated room").replace("Empty, unoccupied", "Vacant, freshly finished")
+                url, model, wname = generate(p_try, kind, FRAMES / frame if frame else None, seed + 500 * attempt)
                 tmp = OUT / f".tmp-{opt}-{key}.webp"
                 fetch(url, tmp)
-                out, size = save(opt, key, i, title, kind, frame, prompt, seed + attempt, tmp, model)
+                out, size = save(opt, key, i, title, kind, frame, prompt, seed + 500 * attempt, tmp, model)
                 tmp.unlink(missing_ok=True)
                 print(f"✅ {opt}/{key} {size} {time.time() - t:.0f}s [{model} @ {wname}]", flush=True)
                 break

@@ -97,3 +97,38 @@ def build_prompt(opt, key, kind, tmpl):
     d["style"] = KONTEXT_STYLE[opt] if kind == "kontext" else STYLE[opt][1]
     body = tmpl.format(**d)
     return (KONTEXT_PREFIX + body) if kind == "kontext" else (body + SUFFIX)
+
+# Виды по видео (вход, коридор, с/у, душевая, ванная) — на AI Horde рисуются text-to-image ПО ОПИСАНИЮ отделки с кадров:
+# чисто описательные фразы (не «отредактируй фото»), комната пустая — иначе FLUX дорисовывает людей и текст.
+VIDEO_HALL = {
+    "eco": "walls in plain warm white wallpaper, white flat laminated doors with black matte handles, white matte stretch ceiling with small round spot lights",
+    "std": "walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light",
+    "prem": "walls in sandy beige designer wallpaper, invisible-frame doors painted like the walls with satin brass handles, fabric stretch ceiling with recessed light lines",
+}
+VIDEO_VIEWS = {
+    "entrance": "Empty, unoccupied entrance hall of a small newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. "
+                "On the left the entrance door, next to it a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench. {hall}. "
+                "Straight ahead a wide double-door opening into a bright living room.",
+    "corridor": "Empty, unoccupied narrow corridor of a small newly renovated apartment, nobody inside, plain smooth walls. "
+                "Floor of beige marble-look porcelain tiles. On the left a door to a toilet room, its reveal lined with the same marble-look tile; further along a door to the bedroom; "
+                "at the end a door to the shower room. {hall}.",
+    "wc": "Empty, unoccupied tiny toilet room 2.1 m2 in a newly renovated apartment, nobody inside. Walls fully clad in glossy beige onyx-look marble tiles, floor in the same tile. "
+          "{wc} against the back wall, a small 45 cm white washbasin with a slim {metal} faucet on the right wall, a hygienic hand shower next to the toilet, "
+          "a flush tiled access hatch on the left wall, a {metal} toilet paper holder, a small mirror, warm ceiling light, white stretch ceiling.",
+    "shower": "Empty, unoccupied small shower room 2.8 m2 in a newly renovated apartment, nobody inside. Walls in glossy beige onyx-look marble tiles, "
+              "a raised tiled shower tray in the corner, a dark wood-look niche with three shelves built into the wall next to the shower, {shower}, "
+              "a rain shower head on a riser with a hand shower, a white heated towel rail on the right wall, warm light, white stretch ceiling.",
+    "bath_vanity": "Empty, unoccupied small shower room in a newly renovated apartment, nobody inside, walls in glossy beige onyx-look marble tiles. "
+                   "A wall-hung {vanity} 60 cm wide with a white basin, a backlit round mirror above it, an electric heated towel rail, a small extractor grille, "
+                   "the corner of the tiled shower tray visible on the side, warm light, white stretch ceiling.",
+}
+VIDEO_METAL = {"eco": "black matte", "std": "black matte", "prem": "satin brass"}
+VIDEO_SUFFIX = " Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text."
+
+
+def build_video_prompt(opt, key):
+    """Промпт для видов по видео — описание отделки, без ссылки на исходный кадр."""
+    d = dict(OPT_DETAILS[opt])
+    d["hall"] = VIDEO_HALL[opt]
+    d["metal"] = VIDEO_METAL[opt]
+    return VIDEO_VIEWS[key].format(**d) + VIDEO_SUFFIX
