@@ -39,7 +39,7 @@ export default function Concept({ opt }: { opt: Option }) {
         </div>
 
         <div className="card" style={{ marginTop: 12 }}>
-          <h3>Спецификация опции</h3>
+          <h3>Дизайн-токены опции</h3>
           <ul className="spec-list">
             {opt.spec.map((s) => (
               <li key={s.label}>

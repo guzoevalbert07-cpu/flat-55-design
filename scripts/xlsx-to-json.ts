@@ -180,6 +180,24 @@ const shopping = sheet('Закупка_ссылки')
     url: s(r[5]),
   }));
 
+/* ---------- Ссылки_по_позициям (бенчмарк, необязательный лист) ---------- */
+type LinkRow = {
+  sheet: string; n: number; item: string; option: string; model: string; price: number | null; smetaPrice: number | null;
+  deviationPct: number | null; store: string; city: string; url: string; evidence: string; checkedAt: string; status: string; comment: string;
+};
+const links: LinkRow[] = [];
+if (wb.Sheets['Ссылки_по_позициям']) {
+  for (const r of sheet('Ссылки_по_позициям')) {
+    if ((s(r[0]) === '1_Ремонт' || s(r[0]) === '2_Заезд') && n(r[1]) != null && s(r[12]).startsWith('http')) {
+      links.push({
+        sheet: s(r[0]), n: n(r[1])!, item: s(r[3]), option: s(r[5]), model: s(r[6]), price: n(r[7]), smetaPrice: n(r[8]),
+        deviationPct: n(r[9]), store: s(r[10]), city: s(r[11]), url: s(r[12]), evidence: s(r[13]),
+        checkedAt: r[14] instanceof Date ? (r[14] as Date).toISOString().slice(0, 10) : s(r[14]), status: s(r[15]), comment: s(r[16]),
+      });
+    }
+  }
+}
+
 /* ---------- Работы_подрядчики ---------- */
 const contractors = sheet('Работы_подрядчики')
   .filter((r) => s(r[0]) && s(r[0]) !== 'Вид работ' && s(r[3]).startsWith('http'))
@@ -208,6 +226,7 @@ const out = {
   layout,
   layoutNotes,
   shopping,
+  links,
   contractors,
   workOrder,
   ceilingPrep,
@@ -219,5 +238,5 @@ writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
 
 const g = totalsByBlock.grand;
 console.log(`✅ ${file} → src/data/estimate.json`);
-console.log(`   Ремонт: ${repair.items.length} позиций, Заезд: ${movein.items.length}, Закупка: ${shopping.length} ссылок`);
+console.log(`   Ремонт: ${repair.items.length} позиций, Заезд: ${movein.items.length}, Закупка: ${shopping.length} ссылок, Ссылки_по_позициям: ${links.length}`);
 console.log(`   ИТОГО с резервом: МИН ${g.min} · СРЕД ${g.mid} · МАКС ${g.max} · РЕАЛ ${g.real}`);

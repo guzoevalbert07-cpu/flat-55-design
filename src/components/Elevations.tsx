@@ -117,7 +117,7 @@ function Frame({ w, walls, k, t, children, track = true }: { w: number; walls: {
         <line x1={X(w) + 6} y1={Y(H)} x2={X(w) + 14} y2={Y(H)} />
       </g>
       <text x={X(w) + 12} y={Y(H / 2)} fontSize={8} fill={INK} transform={`rotate(90 ${X(w) + 12} ${Y(H / 2)})`} textAnchor="middle">
-        h 2.7 м
+        h ≈ 2.7 м (уточнить)
       </text>
     </svg>
   );
@@ -210,14 +210,10 @@ function Kitchen({ k, t }: { k: OptionKey; t: T }) {
 function Living({ k, t }: { k: OptionKey; t: T }) {
   const tvW = k === 'eco' ? 1.1 : k === 'std' ? 1.23 : 1.45;
   const tvH = tvW * 0.5625;
-  const tvX = 0.98 + (1.42 - tvW) / 2;
+  const tvX = 1.15 - tvW / 2;
   const tvY = 1.55 - tvH / 2;
   return (
-    <Frame w={2.4} k={k} t={t} walls={[{ w: 2.4, fill: t.accent, title: 'торцевая стена с ТВ · 2.4 м (акцентные обои)' }]} track={false}>
-      {/* дверь спальни */}
-      <Rect x={0.12} y={0.6} w={0.8} h={2.1} fill={k === 'eco' ? '#ffffff' : k === 'std' ? '#e6d9c3' : t.walls} stroke="rgba(0,0,0,0.5)" rx={1} />
-      <rect x={X(0.8)} y={Y(1.65)} width={4} height={14} fill={t.hardware} rx={1} />
-      <Label x={0.52} y={0.5} text="дверь спальни" fs={7} />
+    <Frame w={2.4} k={k} t={t} walls={[{ w: 2.4, fill: t.accent, title: k === 'prem' ? 'торцевая стена с ТВ · 2.4 м (микроцемент / панели)' : 'торцевая стена с ТВ · 2.4 м (акцентные обои)' }]} track={false}>
       {/* ниша с подсветкой (Премиум) */}
       {k === 'prem' && <Rect x={tvX - 0.04} y={tvY - 0.2} w={tvW + 0.08} h={tvH + 0.72} fill="rgba(255,241,191,0.35)" stroke="rgba(0,0,0,0.25)" rx={3} />}
       {/* ТВ */}
@@ -230,21 +226,21 @@ function Living({ k, t }: { k: OptionKey; t: T }) {
           {[0.33, 0.66].map((p) => (
             <line key={p} x1={X(tvX - 0.1 + (tvW + 0.2) * p)} y1={Y(2.25)} x2={X(tvX - 0.1 + (tvW + 0.2) * p)} y2={Y(H)} stroke="rgba(0,0,0,0.3)" />
           ))}
-          <Label x={1.6} y={2.5} text="стеллаж Hoff" fs={7} />
+          <Label x={1.15} y={2.5} text="стеллаж Hoff" fs={7} />
         </g>
       )}
       {k === 'std' && (
         <g>
           <Rect x={tvX - 0.25} y={2.2} w={tvW + 0.5} h={0.4} fill={t.facade} />
-          <line x1={X(1.6)} y1={Y(2.2)} x2={X(1.6)} y2={Y(2.6)} stroke="rgba(0,0,0,0.3)" />
-          <Label x={1.6} y={2.45} text="ТВ-панель с закрытым хранением" fs={7} />
+          <line x1={X(1.15)} y1={Y(2.2)} x2={X(1.15)} y2={Y(2.6)} stroke="rgba(0,0,0,0.3)" />
+          <Label x={1.15} y={2.45} text="ТВ-панель с закрытым хранением" fs={7} />
         </g>
       )}
       {k === 'prem' && (
         <g>
           <Rect x={tvX - 0.15} y={2.25} w={tvW + 0.3} h={0.3} fill={t.facade2} />
           <Rect x={tvX - 0.15} y={2.55} w={tvW + 0.3} h={0.03} fill="rgba(255,241,191,0.9)" stroke="none" />
-          <Label x={1.6} y={2.45} text="консоль на заказ, орех" fs={7} color="#fff" />
+          <Label x={1.15} y={2.45} text="консоль на заказ, орех" fs={7} color="#fff" />
         </g>
       )}
       {/* торшер / бра */}
@@ -321,14 +317,14 @@ function Bedroom({ k, t }: { k: OptionKey; t: T }) {
 
 /* ------------------------------- ДЕТСКАЯ ------------------------------- */
 function Kids({ k, t }: { k: OptionKey; t: T }) {
-  const accentFill = k === 'eco' ? t.accent : k === 'std' ? t.accent : '#3b3b3b';
+  const accentFill = k === 'eco' ? t.walls : k === 'std' ? t.accent : '#3b3b3b';
   return (
     <Frame
       w={7.0}
       k={k}
       t={t}
       walls={[
-        { w: 3.7, fill: accentFill, title: k === 'prem' ? 'стена кровати · 3.7 м · магнитно-маркерная' : k === 'std' ? 'стена кровати · 3.7 м · рейки, краска «шалфей»' : 'стена кровати · 3.7 м · краска, акцент' },
+        { w: 3.7, fill: accentFill, title: k === 'prem' ? 'стена кровати · 3.7 м · магнитно-маркерная' : k === 'std' ? 'стена кровати · 3.7 м · рейки, краска «шалфей»' : 'стена кровати · 3.7 м · светлые обои (акцент краской — не в смете Эконом)' },
         { w: 3.3, fill: t.walls, title: 'стена окна · 3.3 м' },
       ]}
     >
@@ -471,8 +467,8 @@ export default function Elevations({ opt }: { opt: Option }) {
         <div className="kicker">Развёртки комнат · {opt.name}</div>
         <h2 id="rooms-h">Пять комнат в цветах опции</h2>
         <p className="lead">
-          Схематичные развёртки стен: пропорции по размерам планировочного решения, высота потолка 2.7 м. Цвета — стены, пол, фасады, текстиль и
-          фурнитура выбранной опции.
+          Схематичные развёртки стен: пропорции по размерам планировочного решения; высота потолка принята 2.7 м — по плану не видна, уточнить
+          замером. Цвета — стены, пол, фасады, текстиль и фурнитура выбранной опции.
         </p>
         <div className="elev-grid">
           {items.map((it) => (
