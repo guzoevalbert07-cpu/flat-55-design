@@ -1,6 +1,7 @@
 import type { Option } from '../data/options';
 import { LAYOUT } from '../data/options';
 import type { Estimate } from '../types';
+import { OpenLarge, useLightbox } from './Lightbox';
 
 /**
  * План с расстановкой (ТЗ §4.3). Расположение помещений — по схеме планировки из дизайн-концепции
@@ -108,14 +109,229 @@ function RoomLabel({ x, y, name, area, sub2, fs = 12 }: { x: number; y: number; 
 
 const TV_SIZE: Record<Option['key'], string> = { eco: 'ТВ 50"', std: 'ТВ 55"', prem: 'ТВ 65"' };
 
-export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimate }) {
+export function PlanSvg({ opt }: { opt: Option }) {
   const t = opt.tokens;
   const floor = t.floor;
   const wood = t.wood;
   const W = px(9.5) + 22;
   const H = py(7.4) + 22;
   const facade2Text = t.facade2 === '#4a4a4a' || t.facade2 === '#6b4a34' ? '#fff' : INK;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="План квартиры 55 м² с расстановкой мебели">
+      <title>План квартиры с расстановкой мебели — опция {opt.name}</title>
+      {/* --- полы помещений --- */}
+      <rect x={px(0)} y={py(0)} width={3.0 * S} height={0.9 * S} fill="#eef2e6" />
+      <rect x={px(0)} y={py(0.9)} width={3.0 * S} height={3.9 * S} fill={floor} opacity={0.55} />
+      <rect x={px(3.0)} y={py(0)} width={3.3 * S} height={3.7 * S} fill={floor} opacity={0.55} />
+      <rect x={px(6.3)} y={py(0)} width={3.2 * S} height={3.7 * S} fill={floor} opacity={0.55} />
+      <rect x={px(6.3)} y={py(3.7)} width={3.2 * S} height={2.4 * S} fill={floor} opacity={0.55} />
+      <rect x={px(3.0)} y={py(3.7)} width={3.3 * S} height={1.3 * S} fill={TILE} />
+      <rect x={px(6.3)} y={py(6.1)} width={3.2 * S} height={1.3 * S} fill={TILE} />
+      <rect x={px(3.0)} y={py(5.0)} width={1.9 * S} height={1.6 * S} fill={TILE} />
+      <rect x={px(4.9)} y={py(5.0)} width={1.4 * S} height={1.6 * S} fill={TILE} />
+      {/* керамогранит у входа и в проходе — сетка */}
+      <g stroke="rgba(0,0,0,0.08)" strokeWidth={1}>
+        {[3.3, 3.6, 3.9, 4.2, 4.5, 4.8, 5.1, 5.4, 5.7, 6.0].map((x) => (
+          <line key={`c${x}`} x1={px(x)} y1={py(3.7)} x2={px(x)} y2={py(5.0)} />
+        ))}
+        {[4.0, 4.3, 4.6, 4.9].map((y) => (
+          <line key={`ch${y}`} x1={px(3.0)} y1={py(y)} x2={px(6.3)} y2={py(y)} />
+        ))}
+        {[6.6, 6.9, 7.2, 7.5, 7.8, 8.1, 8.4, 8.7, 9.0, 9.3].map((x) => (
+          <line key={`e${x}`} x1={px(x)} y1={py(6.1)} x2={px(x)} y2={py(7.4)} />
+        ))}
+        {[6.4, 6.7, 7.0, 7.3].map((y) => (
+          <line key={`eh${y}`} x1={px(6.3)} y1={py(y)} x2={px(9.5)} y2={py(y)} />
+        ))}
+      </g>
+      {/* --- обеденная зона в открытой части (кухня + прихожая = кухня-гостиная) --- */}
+      <Box x={7.3} y={4.3} w={1.2} h={0.8} fill={wood} label="стол 120×80" fs={8} color="#fff" rx={3} />
+      {[7.45, 7.95].map((x) => (
+        <rect key={`t${x}`} x={px(x)} y={py(3.95)} width={0.35 * S} height={0.3 * S} fill={wood} opacity={0.6} rx={3} />
+      ))}
+      {[7.45, 7.95].map((x) => (
+        <rect key={`b${x}`} x={px(x)} y={py(5.15)} width={0.35 * S} height={0.3 * S} fill={wood} opacity={0.6} rx={3} />
+      ))}
 
+      {/* --- кухня --- */}
+      <Box x={6.6} y={0.05} w={2.9} h={0.6} fill={t.facade} rx={2} />
+      <text x={px(6.66)} y={py(0.31)} fontSize={7} fontWeight={700} fill={INK}>
+        гарнитур
+      </text>
+      <text x={px(6.66)} y={py(0.31) + 9} fontSize={7} fontWeight={700} fill={INK}>
+        2.9 м
+      </text>
+      <Box x={8.9} y={0.65} w={0.6} h={1.7} fill={t.facade2} label="2.4 м" fs={8} color={facade2Text} rx={2} />
+      <Box x={8.9} y={2.35} w={0.6} h={0.7} fill="#f4f4f2" label="холод." fs={7} rx={2} />
+      <Box x={8.4} y={0.12} w={0.6} h={0.46} fill="#2b2b2b" label="индукция" fs={6} color="#fff" rx={2} />
+      <Box x={7.35} y={0.12} w={0.5} h={0.46} fill="#d8d8d4" label="мойка" fs={6} rx={6} />
+      {/* ТВ кухни — на стене со стороны кухни, видно от гарнитура и обеденной зоны */}
+      <rect x={px(6.33)} y={py(2.7)} width={0.1 * S} height={0.75 * S} fill={INK} rx={1} />
+      <text x={px(6.5)} y={py(2.95)} fontSize={7} fontWeight={700} fill={INK}>
+        ТВ 32–43"
+      </text>
+      <text x={px(6.5)} y={py(3.08)} fontSize={6} fill={INK} opacity={0.75}>
+        кухни
+      </text>
+
+      {/* --- зал (бывшая гостиная): диван у стены спальни, ТВ на стене кухни, дистанция ≈ 2.3 м --- */}
+      <rect x={px(6.22)} y={py(0.05)} width={0.08 * S} height={3.6 * S} fill={t.accent} />
+      <Box x={4.1} y={0.75} w={1.6} h={2.3} fill={t.accent} opacity={0.35} stroke="none" rx={3} />
+      <text x={px(4.9)} y={py(2.98)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
+        ковёр 160×230
+      </text>
+      <Box x={3.05} y={0.8} w={0.9} h={2.2} fill={t.textile} label="диван" sub="220×90" fs={9} color="#fff" rx={5} />
+      <rect x={px(3.05)} y={py(0.8)} width={0.2 * S} height={2.2 * S} fill="rgba(0,0,0,0.12)" rx={4} />
+      <Box x={4.5} y={1.65} w={0.8} h={0.5} fill={wood} label="столик" fs={7} rx={4} />
+      <rect x={px(6.12)} y={py(1.3)} width={0.1 * S} height={1.2 * S} fill={INK} rx={1} />
+      <text x={px(6.08)} y={py(1.22)} textAnchor="end" fontSize={8} fontWeight={700} fill={INK}>
+        {TV_SIZE[opt.key]}
+      </text>
+      <line x1={px(3.97)} y1={py(1.45)} x2={px(6.1)} y2={py(1.45)} stroke={INK} strokeWidth={1} markerEnd="url(#arr)" markerStart="url(#arrS)" />
+      <text x={px(5.05)} y={py(1.38)} textAnchor="middle" fontSize={8} fontWeight={700} fill={INK}>
+        ≈ 2.3 м
+      </text>
+      <Box x={5.6} y={0.1} w={0.6} h={0.9} fill={t.facade} label="стеллаж" fs={7} rx={2} />
+      <text x={px(4.65)} y={py(3.4)} textAnchor="middle" fontSize={6.5} fill={INK} opacity={0.8}>
+        потом — детская: кровать 80×130→190, стол 120×60 у окна, шкаф 160×60
+      </text>
+
+      {/* --- спальня и лоджия --- */}
+      <Box x={0.5} y={2.75} w={1.6} h={2.0} fill={t.textile} label="кровать" sub="160×200" fs={9} color="#fff" rx={5} />
+      <rect x={px(0.5)} y={py(4.55)} width={1.6 * S} height={0.2 * S} fill="rgba(0,0,0,0.18)" rx={3} />
+      <Box x={0.05} y={4.3} w={0.42} h={0.42} fill={wood} label="тумба" fs={6} color="#fff" rx={3} />
+      <Box x={2.15} y={4.3} w={0.42} h={0.42} fill={wood} label="тумба" fs={6} color="#fff" rx={3} />
+      <Box x={2.4} y={1.0} w={0.6} h={2.0} fill={t.facade} label="шкаф" sub="200×60" fs={8} rx={2} />
+      <Box x={0.1} y={0.15} w={1.2} h={0.5} fill={wood} label="стол-кабинет" fs={7} color="#fff" rx={3} />
+      <Box x={1.5} y={0.15} w={1.4} h={0.35} fill={t.facade} label="полки / хранение" fs={7} rx={2} />
+
+      {/* --- прихожая у входа --- */}
+      <Box x={6.9} y={6.95} w={1.9} h={0.45} fill={t.facade} label="шкаф 190×45" fs={7} rx={2} />
+      <Box x={6.35} y={6.2} w={0.35} h={0.9} fill={wood} fs={6} color="#fff" rx={2} />
+      <text x={px(6.75)} y={py(6.55)} fontSize={6} fill={INK} opacity={0.8}>
+        обувница
+      </text>
+      <text x={px(6.75)} y={py(6.65)} fontSize={6} fill={INK} opacity={0.8}>
+        90×35
+      </text>
+      <rect x={px(7.0)} y={py(6.9)} width={0.9 * S} height={0.05 * S} fill={GLASS} />
+      <text x={px(7.45)} y={py(6.85)} textAnchor="middle" fontSize={6} fill={INK} opacity={0.75}>
+        зеркало
+      </text>
+
+      {/* --- душевая --- */}
+      <Box x={3.05} y={5.65} w={0.9} h={0.9} fill="#dbe9f3" label="подиум" sub="90×90" fs={7} rx={2} />
+      <line x1={px(3.95)} y1={py(5.65)} x2={px(3.95)} y2={py(6.55)} stroke={GLASS} strokeWidth={3} />
+      <line x1={px(3.4)} y1={py(5.65)} x2={px(3.95)} y2={py(5.65)} stroke={GLASS} strokeWidth={3} />
+      <Box x={4.25} y={6.1} w={0.6} h={0.42} fill="#f4f4f2" rx={2} />
+      <text x={px(4.28)} y={py(6.36)} fontSize={6} fontWeight={700} fill={INK}>
+        тумба 60
+      </text>
+      <circle cx={px(4.72)} cy={py(6.31)} r={5} fill="#fff" stroke="rgba(0,0,0,0.35)" />
+
+      {/* --- с/у --- */}
+      <Box x={5.8} y={5.9} w={0.45} h={0.65} fill="#f4f4f2" label="унитаз" fs={6} rx={6} />
+      <Box x={4.95} y={6.2} w={0.45} h={0.36} fill="#f4f4f2" label="раков." fs={6} rx={4} />
+      <Box x={5.5} y={6.46} w={0.5} h={0.14} fill="#cfd4d8" rx={1} />
+      <text x={px(5.75)} y={py(6.42)} textAnchor="middle" fontSize={6} fill={INK} opacity={0.75}>
+        колонка
+      </text>
+
+      {/* --- стены --- */}
+      <path
+        d={`M ${px(0)} ${py(0)} H ${px(9.5)} V ${py(7.4)} H ${px(6.3)} V ${py(6.6)} H ${px(3.0)} V ${py(4.8)} H ${px(0)} Z`}
+        fill="none"
+        stroke={INK}
+        strokeWidth={7}
+        strokeLinejoin="miter"
+      />
+      <Wall x1={0} y1={0.9} x2={3.0} y2={0.9} />
+      <Wall x1={3.0} y1={0} x2={3.0} y2={4.8} />
+      <Wall x1={6.3} y1={0} x2={6.3} y2={3.7} />
+      <Wall x1={3.0} y1={3.7} x2={6.3} y2={3.7} />
+      <Wall x1={3.0} y1={5.0} x2={6.3} y2={5.0} />
+      <Wall x1={4.9} y1={5.0} x2={4.9} y2={6.6} />
+      <Wall x1={6.3} y1={5.0} x2={6.3} y2={6.6} />
+      {/* снесённая стена кухня–прихожая */}
+      <line x1={px(6.3)} y1={py(3.7)} x2={px(9.5)} y2={py(3.7)} stroke={REMOVED} strokeWidth={4} strokeDasharray="9 6" />
+      <text x={px(7.9)} y={py(3.62)} textAnchor="middle" fontSize={8} fontWeight={700} fill={REMOVED}>
+        стена снесена → единое пространство ≈ 23.6 м²
+      </text>
+
+      {/* --- окна --- */}
+      <Window x1={0.6} y1={0} x2={2.4} y2={0} />
+      <Window x1={0.5} y1={0.9} x2={2.5} y2={0.9} />
+      <Window x1={3.9} y1={0} x2={5.4} y2={0} />
+      <Window x1={7.2} y1={0} x2={8.6} y2={0} />
+
+      {/* --- двери и проёмы --- */}
+      <Door x={3.0} y={3.8} w={0.8} vertical dir="r" />
+      {/* широкий проём в детскую 1.4 м — двустворчатая дверь */}
+      <line x1={px(4.2)} y1={py(3.7)} x2={px(5.6)} y2={py(3.7)} stroke="#fff" strokeWidth={7} />
+      <line x1={px(4.2)} y1={py(3.7)} x2={px(4.2)} y2={py(3.0)} stroke={INK} strokeWidth={2} />
+      <line x1={px(5.6)} y1={py(3.7)} x2={px(5.6)} y2={py(3.0)} stroke={INK} strokeWidth={2} />
+      <path d={`M ${px(4.2)} ${py(3.0)} A ${0.7 * S} ${0.7 * S} 0 0 1 ${px(4.9)} ${py(3.7)}`} fill="none" stroke={INK} strokeWidth={1} strokeDasharray="2 2" />
+      <path d={`M ${px(5.6)} ${py(3.0)} A ${0.7 * S} ${0.7 * S} 0 0 0 ${px(4.9)} ${py(3.7)}`} fill="none" stroke={INK} strokeWidth={1} strokeDasharray="2 2" />
+      <text x={px(4.9)} y={py(3.9)} textAnchor="middle" fontSize={7} fontWeight={700} fill={INK}>
+        проём 1.4 м
+      </text>
+      <Door x={3.55} y={5.0} w={0.8} vertical={false} dir="d" />
+      <Door x={5.05} y={5.0} w={0.7} vertical={false} dir="d" />
+      {/* входная дверь (стоит, не трогаем) */}
+      <line x1={px(9.5)} y1={py(6.45)} x2={px(9.5)} y2={py(7.3)} stroke="#fff" strokeWidth={7} />
+      <line x1={px(9.5)} y1={py(6.45)} x2={px(9.5)} y2={py(7.3)} stroke="#2f7d4f" strokeWidth={5} />
+      <path d={`M ${px(9.5)} ${py(7.3)} A ${0.85 * S} ${0.85 * S} 0 0 1 ${px(8.65)} ${py(6.45)}`} fill="none" stroke="#2f7d4f" strokeWidth={1} strokeDasharray="2 2" />
+      <text x={px(9.1)} y={py(7.25)} textAnchor="middle" fontSize={8} fontWeight={800} fill="#2f7d4f">
+        ВХОД
+      </text>
+
+      {/* --- подписи помещений --- */}
+      <RoomLabel x={1.5} y={1.55} name="Спальня" area="11.7 м²" />
+      <text x={px(1.5)} y={py(0.83)} textAnchor="middle" fontSize={8} fontWeight={700} fill={INK}>
+        Лоджия 2.7 м²
+      </text>
+      <RoomLabel x={4.9} y={0.4} name="Зал" area="12.2 м² · бывш. гостиная" sub2="сейчас зал, потом может стать детской" fs={11} />
+      <RoomLabel x={7.5} y={1.4} name="Кухня" area="11.8 м²" />
+      <RoomLabel x={8.3} y={5.75} name="Обеденная зона" area="прихожая + кухня ≈ 23.6 м²" fs={9} />
+      <text x={px(4.65)} y={py(4.3)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
+        прихожая 11.8 м² — проход к спальне,
+      </text>
+      <text x={px(4.65)} y={py(4.45)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
+        детской и санузлам (керамогранит)
+      </text>
+      <RoomLabel x={4.45} y={5.35} name="Душевая" area="2.8 м²" fs={8} />
+      <RoomLabel x={5.9} y={5.4} name="С/у" area="2.1 м²" fs={8} />
+      <text x={px(7.9)} y={py(6.4)} fontSize={7} fill={INK} opacity={0.8}>
+        прихожая у входа ≈ 4 м²
+      </text>
+      <text x={px(4.65)} y={py(0) - 8} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
+        окно
+      </text>
+      <text x={px(7.9)} y={py(0) - 8} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
+        окно
+      </text>
+      <text x={px(1.5)} y={py(0) - 8} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
+        окно лоджии
+      </text>
+      <text x={px(1.5)} y={py(0.9) + 13} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
+        окно / выход на лоджию
+      </text>
+
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill={INK} />
+        </marker>
+        <marker id="arrS" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 10 0 L 0 5 L 10 10 z" fill={INK} />
+        </marker>
+      </defs>
+    </svg>
+  );
+}
+
+export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimate }) {
+  const { open } = useLightbox();
+  const title = `План с расстановкой — ${opt.name}`;
   return (
     <section className="section" id="plan" aria-labelledby="plan-h">
       <div className="wrap">
@@ -127,215 +343,10 @@ export default function Plan({ opt, estimate }: { opt: Option; estimate: Estimat
           помещений — по схеме дизайн-концепции; пол и мебель — в цветах опции.
         </p>
         <figure className="figure plan" style={{ margin: 0 }}>
-          <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="План квартиры 55 м² с расстановкой мебели">
-            <title>План квартиры с расстановкой мебели — опция {opt.name}</title>
-            {/* --- полы помещений --- */}
-            <rect x={px(0)} y={py(0)} width={3.0 * S} height={0.9 * S} fill="#eef2e6" />
-            <rect x={px(0)} y={py(0.9)} width={3.0 * S} height={3.9 * S} fill={floor} opacity={0.55} />
-            <rect x={px(3.0)} y={py(0)} width={3.3 * S} height={3.7 * S} fill={floor} opacity={0.55} />
-            <rect x={px(6.3)} y={py(0)} width={3.2 * S} height={3.7 * S} fill={floor} opacity={0.55} />
-            <rect x={px(6.3)} y={py(3.7)} width={3.2 * S} height={2.4 * S} fill={floor} opacity={0.55} />
-            <rect x={px(3.0)} y={py(3.7)} width={3.3 * S} height={1.3 * S} fill={TILE} />
-            <rect x={px(6.3)} y={py(6.1)} width={3.2 * S} height={1.3 * S} fill={TILE} />
-            <rect x={px(3.0)} y={py(5.0)} width={1.9 * S} height={1.6 * S} fill={TILE} />
-            <rect x={px(4.9)} y={py(5.0)} width={1.4 * S} height={1.6 * S} fill={TILE} />
-            {/* керамогранит у входа и в проходе — сетка */}
-            <g stroke="rgba(0,0,0,0.08)" strokeWidth={1}>
-              {[3.3, 3.6, 3.9, 4.2, 4.5, 4.8, 5.1, 5.4, 5.7, 6.0].map((x) => (
-                <line key={`c${x}`} x1={px(x)} y1={py(3.7)} x2={px(x)} y2={py(5.0)} />
-              ))}
-              {[4.0, 4.3, 4.6, 4.9].map((y) => (
-                <line key={`ch${y}`} x1={px(3.0)} y1={py(y)} x2={px(6.3)} y2={py(y)} />
-              ))}
-              {[6.6, 6.9, 7.2, 7.5, 7.8, 8.1, 8.4, 8.7, 9.0, 9.3].map((x) => (
-                <line key={`e${x}`} x1={px(x)} y1={py(6.1)} x2={px(x)} y2={py(7.4)} />
-              ))}
-              {[6.4, 6.7, 7.0, 7.3].map((y) => (
-                <line key={`eh${y}`} x1={px(6.3)} y1={py(y)} x2={px(9.5)} y2={py(y)} />
-              ))}
-            </g>
-            {/* --- обеденная зона в открытой части (кухня + прихожая = кухня-гостиная) --- */}
-            <Box x={7.3} y={4.3} w={1.2} h={0.8} fill={wood} label="стол 120×80" fs={8} color="#fff" rx={3} />
-            {[7.45, 7.95].map((x) => (
-              <rect key={`t${x}`} x={px(x)} y={py(3.95)} width={0.35 * S} height={0.3 * S} fill={wood} opacity={0.6} rx={3} />
-            ))}
-            {[7.45, 7.95].map((x) => (
-              <rect key={`b${x}`} x={px(x)} y={py(5.15)} width={0.35 * S} height={0.3 * S} fill={wood} opacity={0.6} rx={3} />
-            ))}
-
-            {/* --- кухня --- */}
-            <Box x={6.6} y={0.05} w={2.9} h={0.6} fill={t.facade} rx={2} />
-            <text x={px(6.66)} y={py(0.31)} fontSize={7} fontWeight={700} fill={INK}>
-              гарнитур
-            </text>
-            <text x={px(6.66)} y={py(0.31) + 9} fontSize={7} fontWeight={700} fill={INK}>
-              2.9 м
-            </text>
-            <Box x={8.9} y={0.65} w={0.6} h={1.7} fill={t.facade2} label="2.4 м" fs={8} color={facade2Text} rx={2} />
-            <Box x={8.9} y={2.35} w={0.6} h={0.7} fill="#f4f4f2" label="холод." fs={7} rx={2} />
-            <Box x={8.4} y={0.12} w={0.6} h={0.46} fill="#2b2b2b" label="индукция" fs={6} color="#fff" rx={2} />
-            <Box x={7.35} y={0.12} w={0.5} h={0.46} fill="#d8d8d4" label="мойка" fs={6} rx={6} />
-            {/* ТВ кухни — на стене со стороны кухни, видно от гарнитура и обеденной зоны */}
-            <rect x={px(6.33)} y={py(2.7)} width={0.1 * S} height={0.75 * S} fill={INK} rx={1} />
-            <text x={px(6.5)} y={py(2.95)} fontSize={7} fontWeight={700} fill={INK}>
-              ТВ 32–43"
-            </text>
-            <text x={px(6.5)} y={py(3.08)} fontSize={6} fill={INK} opacity={0.75}>
-              кухни
-            </text>
-
-            {/* --- зал (бывшая гостиная): диван у стены спальни, ТВ на стене кухни, дистанция ≈ 2.3 м --- */}
-            <rect x={px(6.22)} y={py(0.05)} width={0.08 * S} height={3.6 * S} fill={t.accent} />
-            <Box x={4.1} y={0.75} w={1.6} h={2.3} fill={t.accent} opacity={0.35} stroke="none" rx={3} />
-            <text x={px(4.9)} y={py(2.98)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
-              ковёр 160×230
-            </text>
-            <Box x={3.05} y={0.8} w={0.9} h={2.2} fill={t.textile} label="диван" sub="220×90" fs={9} color="#fff" rx={5} />
-            <rect x={px(3.05)} y={py(0.8)} width={0.2 * S} height={2.2 * S} fill="rgba(0,0,0,0.12)" rx={4} />
-            <Box x={4.5} y={1.65} w={0.8} h={0.5} fill={wood} label="столик" fs={7} rx={4} />
-            <rect x={px(6.12)} y={py(1.3)} width={0.1 * S} height={1.2 * S} fill={INK} rx={1} />
-            <text x={px(6.08)} y={py(1.22)} textAnchor="end" fontSize={8} fontWeight={700} fill={INK}>
-              {TV_SIZE[opt.key]}
-            </text>
-            <line x1={px(3.97)} y1={py(1.45)} x2={px(6.1)} y2={py(1.45)} stroke={INK} strokeWidth={1} markerEnd="url(#arr)" markerStart="url(#arrS)" />
-            <text x={px(5.05)} y={py(1.38)} textAnchor="middle" fontSize={8} fontWeight={700} fill={INK}>
-              ≈ 2.3 м
-            </text>
-            <Box x={5.6} y={0.1} w={0.6} h={0.9} fill={t.facade} label="стеллаж" fs={7} rx={2} />
-            <text x={px(4.65)} y={py(3.4)} textAnchor="middle" fontSize={6.5} fill={INK} opacity={0.8}>
-              потом — детская: кровать 80×130→190, стол 120×60 у окна, шкаф 160×60
-            </text>
-
-            {/* --- спальня и лоджия --- */}
-            <Box x={0.5} y={2.75} w={1.6} h={2.0} fill={t.textile} label="кровать" sub="160×200" fs={9} color="#fff" rx={5} />
-            <rect x={px(0.5)} y={py(4.55)} width={1.6 * S} height={0.2 * S} fill="rgba(0,0,0,0.18)" rx={3} />
-            <Box x={0.05} y={4.3} w={0.42} h={0.42} fill={wood} label="тумба" fs={6} color="#fff" rx={3} />
-            <Box x={2.15} y={4.3} w={0.42} h={0.42} fill={wood} label="тумба" fs={6} color="#fff" rx={3} />
-            <Box x={2.4} y={1.0} w={0.6} h={2.0} fill={t.facade} label="шкаф" sub="200×60" fs={8} rx={2} />
-            <Box x={0.1} y={0.15} w={1.2} h={0.5} fill={wood} label="стол-кабинет" fs={7} color="#fff" rx={3} />
-            <Box x={1.5} y={0.15} w={1.4} h={0.35} fill={t.facade} label="полки / хранение" fs={7} rx={2} />
-
-            {/* --- прихожая у входа --- */}
-            <Box x={6.9} y={6.95} w={1.9} h={0.45} fill={t.facade} label="шкаф 190×45" fs={7} rx={2} />
-            <Box x={6.35} y={6.2} w={0.35} h={0.9} fill={wood} fs={6} color="#fff" rx={2} />
-            <text x={px(6.75)} y={py(6.55)} fontSize={6} fill={INK} opacity={0.8}>
-              обувница
-            </text>
-            <text x={px(6.75)} y={py(6.65)} fontSize={6} fill={INK} opacity={0.8}>
-              90×35
-            </text>
-            <rect x={px(7.0)} y={py(6.9)} width={0.9 * S} height={0.05 * S} fill={GLASS} />
-            <text x={px(7.45)} y={py(6.85)} textAnchor="middle" fontSize={6} fill={INK} opacity={0.75}>
-              зеркало
-            </text>
-
-            {/* --- душевая --- */}
-            <Box x={3.05} y={5.65} w={0.9} h={0.9} fill="#dbe9f3" label="подиум" sub="90×90" fs={7} rx={2} />
-            <line x1={px(3.95)} y1={py(5.65)} x2={px(3.95)} y2={py(6.55)} stroke={GLASS} strokeWidth={3} />
-            <line x1={px(3.4)} y1={py(5.65)} x2={px(3.95)} y2={py(5.65)} stroke={GLASS} strokeWidth={3} />
-            <Box x={4.25} y={6.1} w={0.6} h={0.42} fill="#f4f4f2" rx={2} />
-            <text x={px(4.28)} y={py(6.36)} fontSize={6} fontWeight={700} fill={INK}>
-              тумба 60
-            </text>
-            <circle cx={px(4.72)} cy={py(6.31)} r={5} fill="#fff" stroke="rgba(0,0,0,0.35)" />
-
-            {/* --- с/у --- */}
-            <Box x={5.8} y={5.9} w={0.45} h={0.65} fill="#f4f4f2" label="унитаз" fs={6} rx={6} />
-            <Box x={4.95} y={6.2} w={0.45} h={0.36} fill="#f4f4f2" label="раков." fs={6} rx={4} />
-            <Box x={5.5} y={6.46} w={0.5} h={0.14} fill="#cfd4d8" rx={1} />
-            <text x={px(5.75)} y={py(6.42)} textAnchor="middle" fontSize={6} fill={INK} opacity={0.75}>
-              колонка
-            </text>
-
-            {/* --- стены --- */}
-            <path
-              d={`M ${px(0)} ${py(0)} H ${px(9.5)} V ${py(7.4)} H ${px(6.3)} V ${py(6.6)} H ${px(3.0)} V ${py(4.8)} H ${px(0)} Z`}
-              fill="none"
-              stroke={INK}
-              strokeWidth={7}
-              strokeLinejoin="miter"
-            />
-            <Wall x1={0} y1={0.9} x2={3.0} y2={0.9} />
-            <Wall x1={3.0} y1={0} x2={3.0} y2={4.8} />
-            <Wall x1={6.3} y1={0} x2={6.3} y2={3.7} />
-            <Wall x1={3.0} y1={3.7} x2={6.3} y2={3.7} />
-            <Wall x1={3.0} y1={5.0} x2={6.3} y2={5.0} />
-            <Wall x1={4.9} y1={5.0} x2={4.9} y2={6.6} />
-            <Wall x1={6.3} y1={5.0} x2={6.3} y2={6.6} />
-            {/* снесённая стена кухня–прихожая */}
-            <line x1={px(6.3)} y1={py(3.7)} x2={px(9.5)} y2={py(3.7)} stroke={REMOVED} strokeWidth={4} strokeDasharray="9 6" />
-            <text x={px(7.9)} y={py(3.62)} textAnchor="middle" fontSize={8} fontWeight={700} fill={REMOVED}>
-              стена снесена → единое пространство ≈ 23.6 м²
-            </text>
-
-            {/* --- окна --- */}
-            <Window x1={0.6} y1={0} x2={2.4} y2={0} />
-            <Window x1={0.5} y1={0.9} x2={2.5} y2={0.9} />
-            <Window x1={3.9} y1={0} x2={5.4} y2={0} />
-            <Window x1={7.2} y1={0} x2={8.6} y2={0} />
-
-            {/* --- двери и проёмы --- */}
-            <Door x={3.0} y={3.8} w={0.8} vertical dir="r" />
-            {/* широкий проём в детскую 1.4 м — двустворчатая дверь */}
-            <line x1={px(4.2)} y1={py(3.7)} x2={px(5.6)} y2={py(3.7)} stroke="#fff" strokeWidth={7} />
-            <line x1={px(4.2)} y1={py(3.7)} x2={px(4.2)} y2={py(3.0)} stroke={INK} strokeWidth={2} />
-            <line x1={px(5.6)} y1={py(3.7)} x2={px(5.6)} y2={py(3.0)} stroke={INK} strokeWidth={2} />
-            <path d={`M ${px(4.2)} ${py(3.0)} A ${0.7 * S} ${0.7 * S} 0 0 1 ${px(4.9)} ${py(3.7)}`} fill="none" stroke={INK} strokeWidth={1} strokeDasharray="2 2" />
-            <path d={`M ${px(5.6)} ${py(3.0)} A ${0.7 * S} ${0.7 * S} 0 0 0 ${px(4.9)} ${py(3.7)}`} fill="none" stroke={INK} strokeWidth={1} strokeDasharray="2 2" />
-            <text x={px(4.9)} y={py(3.9)} textAnchor="middle" fontSize={7} fontWeight={700} fill={INK}>
-              проём 1.4 м
-            </text>
-            <Door x={3.55} y={5.0} w={0.8} vertical={false} dir="d" />
-            <Door x={5.05} y={5.0} w={0.7} vertical={false} dir="d" />
-            {/* входная дверь (стоит, не трогаем) */}
-            <line x1={px(9.5)} y1={py(6.45)} x2={px(9.5)} y2={py(7.3)} stroke="#fff" strokeWidth={7} />
-            <line x1={px(9.5)} y1={py(6.45)} x2={px(9.5)} y2={py(7.3)} stroke="#2f7d4f" strokeWidth={5} />
-            <path d={`M ${px(9.5)} ${py(7.3)} A ${0.85 * S} ${0.85 * S} 0 0 1 ${px(8.65)} ${py(6.45)}`} fill="none" stroke="#2f7d4f" strokeWidth={1} strokeDasharray="2 2" />
-            <text x={px(9.1)} y={py(7.25)} textAnchor="middle" fontSize={8} fontWeight={800} fill="#2f7d4f">
-              ВХОД
-            </text>
-
-            {/* --- подписи помещений --- */}
-            <RoomLabel x={1.5} y={1.55} name="Спальня" area="11.7 м²" />
-            <text x={px(1.5)} y={py(0.83)} textAnchor="middle" fontSize={8} fontWeight={700} fill={INK}>
-              Лоджия 2.7 м²
-            </text>
-            <RoomLabel x={4.9} y={0.4} name="Зал" area="12.2 м² · бывш. гостиная" sub2="сейчас зал, потом может стать детской" fs={11} />
-            <RoomLabel x={7.5} y={1.4} name="Кухня" area="11.8 м²" />
-            <RoomLabel x={8.3} y={5.75} name="Обеденная зона" area="прихожая + кухня ≈ 23.6 м²" fs={9} />
-            <text x={px(4.65)} y={py(4.3)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
-              прихожая 11.8 м² — проход к спальне,
-            </text>
-            <text x={px(4.65)} y={py(4.45)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.8}>
-              детской и санузлам (керамогранит)
-            </text>
-            <RoomLabel x={4.45} y={5.35} name="Душевая" area="2.8 м²" fs={8} />
-            <RoomLabel x={5.9} y={5.4} name="С/у" area="2.1 м²" fs={8} />
-            <text x={px(7.9)} y={py(6.4)} fontSize={7} fill={INK} opacity={0.8}>
-              прихожая у входа ≈ 4 м²
-            </text>
-            <text x={px(4.65)} y={py(0) - 8} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
-              окно
-            </text>
-            <text x={px(7.9)} y={py(0) - 8} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
-              окно
-            </text>
-            <text x={px(1.5)} y={py(0) - 8} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
-              окно лоджии
-            </text>
-            <text x={px(1.5)} y={py(0.9) + 13} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
-              окно / выход на лоджию
-            </text>
-
-            <defs>
-              <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill={INK} />
-              </marker>
-              <marker id="arrS" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 10 0 L 0 5 L 10 10 z" fill={INK} />
-              </marker>
-            </defs>
-          </svg>
+          <div onClick={() => open({ title, node: <PlanSvg opt={opt} />, base: 1100 })} role="button" tabIndex={0} aria-label="Открыть план крупно" onKeyDown={(e) => e.key === 'Enter' && open({ title, node: <PlanSvg opt={opt} />, base: 1100 })}>
+            <PlanSvg opt={opt} />
+          </div>
+          <OpenLarge title={title} node={<PlanSvg opt={opt} />} base={1100} label="Открыть план крупно" />
           <figcaption>
             Масштаб условный: 1 м = 60 px, размеры мебели — из планировочного решения, площади — по плану и листу «Планировка» сметы. По уточнению
             владельца: бывшая гостиная сейчас — зал (диван и ТВ), кухня и зал разделены, второй ТВ — в кухне; «зона зала в прихожей» из концепции не делается.

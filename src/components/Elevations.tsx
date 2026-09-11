@@ -1,4 +1,5 @@
 import type { Option, OptionKey } from '../data/options';
+import { OpenLarge, useLightbox } from './Lightbox';
 
 /**
  * Развёртки комнат (ТЗ §4.4): кухня, зона зала, спальня, детская, душевая.
@@ -460,6 +461,7 @@ function Bath({ k, t }: { k: OptionKey; t: T }) {
 export default function Elevations({ opt }: { opt: Option }) {
   const k = opt.key;
   const t = opt.tokens;
+  const { open } = useLightbox();
   const items: { key: string; title: string; desc: string; el: React.ReactNode; wide?: boolean }[] = [
     { key: 'kitchen', title: 'Кухня 11.8 м² — Г-образный гарнитур 2.9 + 2.4 м (+ ТВ 32–43" на стене у обеденной зоны)', desc: opt.rooms.kitchen, el: <Kitchen k={k} t={t} />, wide: true },
     { key: 'living', title: 'Зал 12.2 м² (бывшая гостиная) — стена с ТВ напротив дивана', desc: opt.rooms.living, el: <Living k={k} t={t} /> },
@@ -481,7 +483,10 @@ export default function Elevations({ opt }: { opt: Option }) {
             <figure className={it.wide ? 'figure wide' : 'figure'} key={it.key} style={{ margin: 0 }}>
               <h3>{it.title}</h3>
               <p className="desc">{it.desc}</p>
-              {it.el}
+              <div onClick={() => open({ title: `${it.title} — ${opt.name}`, node: it.el, base: it.wide ? 1400 : 1000 })} role="button" tabIndex={0} aria-label={`Открыть крупно: ${it.title}`} onKeyDown={(e) => e.key === 'Enter' && open({ title: `${it.title} — ${opt.name}`, node: it.el, base: it.wide ? 1400 : 1000 })}>
+                {it.el}
+              </div>
+              <OpenLarge title={`${it.title} — ${opt.name}`} node={it.el} base={it.wide ? 1400 : 1000} />
             </figure>
           ))}
         </div>

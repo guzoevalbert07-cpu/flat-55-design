@@ -240,3 +240,27 @@ footer ul { padding-left: 1.1em; margin: 0.4em 0; }
 .mix-seg { max-width: none; }
 .mix-seg button { padding: 6px 4px; font-size: 0.82rem; min-height: 40px; }
 .mix-seg button .p { font-size: 0.7rem; }
+
+/* ---------- Просмотр на весь экран ---------- */
+.lb { position: fixed; inset: 0; z-index: 100; background: #14140f; color: #fff; display: flex; flex-direction: column; }
+.lb-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #1d1d1b; border-bottom: 1px solid #333; }
+.lb-title { flex: 1; font-weight: 700; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lb-ctl { display: flex; gap: 4px; }
+.lb-ctl button, .lb-close { background: #2c2c29; color: #fff; border: 1px solid #444; border-radius: 8px; min-width: 40px; min-height: 40px; font: inherit; font-weight: 800; font-size: 1rem; cursor: pointer; padding: 0 10px; }
+.lb-close { background: #fff; color: #1d1d1b; border-color: #fff; }
+.lb-body { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; padding: 8px; }
+.lb-content { min-width: 100%; }
+.lb-content .figure, .lb-content figure { background: #fff; border-radius: 10px; padding: 8px; margin: 0; }
+.lb-content svg { width: 100%; height: auto; display: block; }
+.lb-content img { width: 100%; height: auto; display: block; border-radius: 8px; }
+.lb-hint { font-size: 0.75rem; color: #bdbdb5; padding: 6px 10px 10px; text-align: center; }
+.open-large { display: inline-flex; align-items: center; gap: 6px; margin: 6px 6px 2px; border: 1px solid var(--ink); background: var(--card); color: var(--ink); border-radius: 999px; padding: 7px 12px; font: inherit; font-weight: 700; font-size: 0.85rem; cursor: pointer; min-height: 36px; }
+.figure .open-large { margin-top: 8px; }
+.figure svg, .photos img { cursor: zoom-in; }
+
+/* Фото крупнее: на телефоне в одну колонку, дальше — в две */
+.photos { grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 640px) { .photos { grid-template-columns: 1fr 1fr; } }
+.photos img { border-radius: 12px; }
+.photos figure { margin: 0; }
+.photos .cap { font-size: 0.8rem; }

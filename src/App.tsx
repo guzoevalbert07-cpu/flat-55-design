@@ -12,6 +12,7 @@ import Shopping from './components/Shopping';
 import WorkOrder from './components/WorkOrder';
 import Footer from './components/Footer';
 import Mix, { LETTER, majority, mixSections, parseMix } from './components/Mix';
+import { LightboxProvider } from './components/Lightbox';
 
 const SECTION_COUNT = mixSections(estimate).length;
 
@@ -61,6 +62,7 @@ export default function App() {
   } as React.CSSProperties;
 
   return (
+    <LightboxProvider>
     <div data-option={key} style={style}>
       <Hero current={key} onSelect={select} estimate={estimate} />
       <OptionBar current={key} onSelect={select} estimate={estimate} />
@@ -76,5 +78,6 @@ export default function App() {
       </main>
       <Footer estimate={estimate} />
     </div>
+    </LightboxProvider>
   );
 }
