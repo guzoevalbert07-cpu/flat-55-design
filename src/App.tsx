@@ -68,9 +68,9 @@ export default function App() {
       <OptionBar current={key} onSelect={select} estimate={estimate} />
       <main>
         <Concept opt={opt} />
+        <Renders opt={opt} />
         <Plan opt={opt} estimate={estimate} />
         <Elevations opt={opt} />
-        <Renders opt={opt} />
         <Budget opt={opt} estimate={estimate} />
         <Mix estimate={estimate} current={key} mix={state.mix} onMix={setMix} />
         <Shopping opt={opt} estimate={estimate} />
