@@ -182,17 +182,17 @@ const shopping = sheet('Закупка_ссылки')
 
 /* ---------- Ссылки_по_позициям (бенчмарк, необязательный лист) ---------- */
 type LinkRow = {
-  sheet: string; n: number; item: string; option: string; model: string; price: number | null; smetaPrice: number | null;
+  sheet: string; n: number; item: string; priceUnit: string; option: string; model: string; price: number | null; smetaPrice: number | null;
   deviationPct: number | null; store: string; city: string; url: string; evidence: string; checkedAt: string; status: string; comment: string;
 };
 const links: LinkRow[] = [];
 if (wb.Sheets['Ссылки_по_позициям']) {
   for (const r of sheet('Ссылки_по_позициям')) {
-    if ((s(r[0]) === '1_Ремонт' || s(r[0]) === '2_Заезд') && n(r[1]) != null && s(r[12]).startsWith('http')) {
+    if ((s(r[0]) === '1_Ремонт' || s(r[0]) === '2_Заезд') && n(r[1]) != null && s(r[13]).startsWith('http')) {
       links.push({
-        sheet: s(r[0]), n: n(r[1])!, item: s(r[3]), option: s(r[5]), model: s(r[6]), price: n(r[7]), smetaPrice: n(r[8]),
-        deviationPct: n(r[9]), store: s(r[10]), city: s(r[11]), url: s(r[12]), evidence: s(r[13]),
-        checkedAt: r[14] instanceof Date ? (r[14] as Date).toISOString().slice(0, 10) : s(r[14]), status: s(r[15]), comment: s(r[16]),
+        sheet: s(r[0]), n: n(r[1])!, item: s(r[3]), priceUnit: s(r[5]), option: s(r[6]), model: s(r[7]), price: n(r[8]), smetaPrice: n(r[9]),
+        deviationPct: n(r[10]), store: s(r[11]), city: s(r[12]), url: s(r[13]), evidence: s(r[14]),
+        checkedAt: r[15] instanceof Date ? (r[15] as Date).toISOString().slice(0, 10) : s(r[15]), status: s(r[16]), comment: s(r[17]),
       });
     }
   }

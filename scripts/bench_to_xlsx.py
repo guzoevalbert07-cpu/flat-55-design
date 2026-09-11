@@ -6,6 +6,7 @@
 """
 import glob
 import json
+import re
 import sys
 from datetime import date
 
@@ -49,7 +50,8 @@ for f in sorted(glob.glob(f"{BENCH_DIR}/b[0-9]_*.json")):
         if key in seen:
             continue
         seen.add(key)
-        name = _re.sub(r"\s*\([^)]*\)", "", it["item"]).split(":")[0].strip()
+        name = _re.split(r"[,:—(]| - ", it["item"])[0].strip()
+        name = _re.sub(r"^(Установка|Монтаж|Подключение|Сборка и установка|Сборка|Навес|Поклейка|Укладка)\s+", "", name) if False else name
         works = it["section"].startswith("7.") or it["section"] == "Работы"
         q = quote(f"{name}" if not works else f"{name} Саратов")
         url = f"https://www.avito.ru/saratov/predlozheniya_uslug?q={q}" if works else f"https://www.avito.ru/saratov?q={q}"
@@ -62,6 +64,90 @@ for f in sorted(glob.glob(f"{BENCH_DIR}/b[0-9]_*.json")):
             "comment": "Через Авито можно посмотреть предложения по Саратову и оптимизировать стоимость: откройте поиск по ссылке, сравните с ценой в смете и с вариантами магазинов выше. Автоматически цены с Авито снять нельзя (доступ по IP ограничен) — смотреть вручную.",
         })
 print(f"добавлено ссылок Авито: {len(seen)}; всего строк: {len(rows)}")
+
+# ---------- проверка ссылок (кэш в linkcheck.json; 401/403/429 = антибот, не «мертво») ----------
+import concurrent.futures
+import os
+import urllib.request
+from urllib.parse import urlparse
+
+LC_PATH = os.path.join(BENCH_DIR, "linkcheck.json")
+linkcheck = json.load(open(LC_PATH, encoding="utf-8")) if os.path.exists(LC_PATH) else {}
+
+
+def http_status(url):
+    """HTTP-код через curl (urllib в этой среде не проходит TLS); 0 = сеть/таймаут = «не проверено»."""
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["curl", "-s", "-o", "/dev/null", "-L", "--max-time", "20", "-w", "%{http_code}",
+             "-A", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/128.0 Safari/537.36",
+             "-H", "Accept-Language: ru-RU,ru;q=0.9", url],
+            capture_output=True, text=True, timeout=30,
+        ).stdout.strip()
+        return int(out) if out.isdigit() else 0
+    except Exception:  # noqa: BLE001
+        return 0
+
+
+todo_urls = sorted({r["url"] for r in rows if str(r.get("url", "")).startswith("http") and not is_avito(r) and r["url"] not in linkcheck})
+if todo_urls:
+    print(f"проверяю ссылки: {len(todo_urls)}")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=12) as ex:
+        for u, code in zip(todo_urls, ex.map(http_status, todo_urls)):
+            linkcheck[u] = code
+    json.dump(linkcheck, open(LC_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+
+FEDERAL = {"hoff.ru", "citilink.ru", "askona.ru", "mnogomebeli.com", "lemanapro.ru", "stolplit.ru", "ozon.ru", "wildberries.ru", "dns-shop.ru",
+           "mvideo.ru", "eldorado.ru", "lazurit.com", "shatura.com", "santehnika-online.ru", "vseinstrumenti.ru", "petrovich.ru", "maxidom.ru",
+           "yandex.ru", "market.yandex.ru", "sbermegamarket.ru", "megamarket.ru", "kuppersberg.ru", "weissgauff.ru", "krona.ru", "bosch-home.ru",
+           "haier-rus.ru", "lg.com", "samsung.com", "marya.ru", "jungstore.ru", "elektro-tovars.ru", "cershop.ru", "profi.ru", "youdo.com"}
+CITY_SUB = {"samara": "Самара", "tver": "Тверь", "klin": "Клин", "moscow": "Москва", "msk": "Москва", "spb": "Санкт-Петербург", "penza": "Пенза",
+            "volgograd": "Волгоград", "kazan": "Казань", "nn": "Нижний Новгород", "ufa": "Уфа", "voronezh": "Воронеж", "krasnodar": "Краснодар", "engels": "Энгельс"}
+
+
+def city_of(url, agent_city):
+    try:
+        host = urlparse(url).hostname or ""
+    except Exception:  # noqa: BLE001
+        return agent_city
+    host = host.lower().removeprefix("www.")
+    parts = host.split(".")
+    if host.startswith("saratov.") or host.endswith("64.ru") or "saratov" in host:
+        return "Саратов"
+    if len(parts) >= 3 and parts[0] in CITY_SUB:
+        return f"цена другого города ({CITY_SUB[parts[0]]})"
+    root = ".".join(parts[-2:])
+    if root in FEDERAL or host in FEDERAL:
+        return "федеральная цена, город не выбран"
+    if agent_city and agent_city.startswith("доставка"):
+        return "доставка в Саратов"
+    return agent_city or ""
+
+
+HEDGE = re.compile(r"не подтвержд|401|403|Москв|сниппет|заголовк|архив|нет в наличии|снят|допущен|только полотно|без монтаж|без работ|без клея|часть комплект|за часть|включает раковин|расч[её]т|перерасч|состав", re.I)
+PROMO = re.compile(r"скидк|акци|клубн|распродаж|промо", re.I)
+
+
+def grade(r):
+    """(status, note) — «ок» только для цены со страницы/прайса без оговорок; сниппет и оговорки — «по сниппету»; иначе «уточнить»."""
+    price = num(r.get("price"))
+    ev = (r.get("evidence") or "").strip()
+    comment = r.get("comment") or ""
+    url = r.get("url") or ""
+    code = linkcheck.get(url)
+    if price is None:
+        return "уточнить", comment
+    if code in (404, 410):
+        return "уточнить", f"ссылка не открылась ({code}) — искать по названию модели. " + comment
+    if r.get("_unit_mismatch"):
+        return "уточнить", "единица цены не совпадает со сметой — сравнивать нельзя. " + comment
+    if ev in ("страница", "прайс-лист") and not HEDGE.search(comment):
+        return ("ок", ("цена по акции/скидке: " + comment) if PROMO.search(comment) else comment)
+    if ev in ("страница", "прайс-лист", "сниппет"):
+        return "по сниппету", comment
+    return "уточнить", comment
+
 
 def num(v):
     if isinstance(v, (int, float)):
@@ -82,25 +168,25 @@ if SHEET in wb.sheetnames:
     del wb[SHEET]
 ws = wb.create_sheet(SHEET)
 
-ok = sum(1 for r in rows if r.get("status") == "ок")
-todo = len(rows) - ok
+ok = todo = 0  # считается после градации, см. ниже
 ws["A1"] = "ССЫЛКИ И БЕНЧМАРК ЦЕН ПО САРАТОВУ — НА КАЖДУЮ ПОЗИЦИЮ СМЕТЫ (МИН / СРЕД / МАКС)"
 ws["A1"].font = Font(bold=True, size=13)
 ws["A2"] = (
     f"Проверка {date.today():%d.%m.%Y}: цены и ссылки собраны из каталогов магазинов Саратова и площадок с доставкой в Саратов. "
     "«Цена найдена» — то, что реально показано на странице/в поисковой выдаче на дату проверки; «Цена в смете» — из листов 1_Ремонт / 2_Заезд (не менялась). "
-    "Отклонение > ±30 % выделено. Статус «уточнить» = подтверждённой цены нет, дана ссылка в каталог. Перед оплатой сверяйте цену на сайте. "
+    "СТАТУСЫ: «ок» — цена со страницы магазина или прайс-листа без оговорок (только для них считается «Отклонение»); «по сниппету» — цена из поисковой выдачи "
+    "или с оговоркой (401 у саратовского сайта, цена другого города, часть комплекта, акция) — ориентир, не сравнение; «уточнить» — цены нет, ссылка мертва или единица не совпадает. "
+    "Отклонение > ±30 % выделено. «Город / база цены»: «Саратов» — саратовская страница; «федеральная цена, город не выбран» — Hoff/Ситилинк/Аскона и т. п. без выбора Саратова. Перед оплатой сверяйте цену на сайте. "
     "АВИТО: на каждую позицию есть строка «Авито Саратов» (опция ВСЕ) с готовым поиском — через Авито можно посмотреть предложения магазинов и частников по Саратову "
     "и оптимизировать стоимость относительно сметы; цены с Авито снимаются вручную (автоматическая проверка недоступна)."
 )
 ws["A2"].alignment = Alignment(wrap_text=True, vertical="top")
-ws.merge_cells("A2:Q2")
+ws.merge_cells("A2:R2")
 ws.row_dimensions[2].height = 78
-ws["A3"] = f"Строк: {len(rows)} · подтверждено: {ok} · уточнить: {todo} (в т. ч. {sum(1 for r in rows if r.get('option') == 'ВСЕ')} ссылок на поиск Авито Саратов — цены снимать вручную)"
 ws["A3"].font = Font(italic=True, color="555555")
 
-headers = ["Лист", "№", "Раздел", "Позиция", "Ед.", "Опция", "Модель / вариант", "Цена найдена, ₽", "Цена в смете, ₽",
-           "Отклонение, %", "Магазин / источник", "Город", "Ссылка", "Подтверждение", "Дата проверки", "Статус", "Комментарий"]
+headers = ["Лист", "№", "Раздел", "Позиция", "Ед.", "Ед. цены", "Опция", "Модель / вариант", "Цена найдена, ₽", "Цена в смете, ₽",
+           "Отклонение, %", "Магазин / источник", "Город / база цены", "Ссылка", "Подтверждение", "Дата проверки", "Статус", "Комментарий"]
 HR = 5
 for c, h in enumerate(headers, 1):
     cell = ws.cell(row=HR, column=c, value=h)
@@ -111,6 +197,7 @@ ws.row_dimensions[HR].height = 30
 
 fill_ok = PatternFill("solid", fgColor="E8F3E8")
 fill_todo = PatternFill("solid", fgColor="FFF4D6")
+fill_snip = PatternFill("solid", fgColor="EDF2FA")
 fill_dev = PatternFill("solid", fgColor="FBE3E3")
 link_font = Font(color="1F5F8B", underline="single")
 
@@ -122,43 +209,70 @@ for sh in ("1_Ремонт", "2_Заезд"):
             if isinstance(r[0], (int, float)) and r[2]:
                 sections[(sh, int(r[0]))] = (r[1], r[3])
 
+def unit_key(s):
+    s = (s or "").lower().replace("₽", "").replace("/", " ").strip()
+    for k, pat in (("м²", r"м2|м²|кв"), ("п.м", r"п\.?\s?м|пог"), ("шт", r"шт"), ("компл", r"компл|комп")):
+        if re.search(pat, s):
+            return k
+    return ""
+
+
 r_i = HR
+stat_counter = {}
 for r in rows:
     r_i += 1
     sh, n = r.get("sheet", ""), int(num(r.get("n")) or 0)
     sec, unit = sections.get((sh, n), ("", ""))
     price = num(r.get("price"))
     smeta = num(r.get("smeta_price"))
-    dev = num(r.get("deviation_pct"))
-    if dev is None and price is not None and smeta:
+    pu = r.get("price_unit") or ""
+    r["_unit_mismatch"] = bool(price is not None and unit_key(pu) and unit_key(unit) and unit_key(pu) != unit_key(unit))
+    if r.get("option") == "ВСЕ":
+        status, comment = "уточнить", r.get("comment")
+    else:
+        status, comment = grade(r)
+    # отклонение показываем только для подтверждённых со страницы/прайса цен
+    dev = None
+    if status == "ок" and price is not None and smeta:
         dev = round((price - smeta) / smeta * 100, 1)
-    status = r.get("status") or ("ок" if price is not None else "уточнить")
-    vals = [sh, n, sec, r.get("item"), unit, r.get("option"), r.get("model"), price, smeta, dev, r.get("store"), r.get("city"),
-            r.get("url"), r.get("evidence"), r.get("checked_at") or f"{date.today():%Y-%m-%d}", status, r.get("comment")]
+    city = city_of(r.get("url") or "", r.get("city") or "") if r.get("option") != "ВСЕ" else "Саратов"
+    stat_counter[status] = stat_counter.get(status, 0) + 1
+    vals = [sh, n, sec, r.get("item"), unit, pu if r.get("option") != "ВСЕ" else "", r.get("option"), r.get("model"), price, smeta, dev, r.get("store"), city,
+            r.get("url"), r.get("evidence"), r.get("checked_at") or f"{date.today():%Y-%m-%d}", status, comment]
     for c, v in enumerate(vals, 1):
         cell = ws.cell(row=r_i, column=c, value=v)
         cell.alignment = Alignment(wrap_text=True, vertical="top")
     url = r.get("url") or ""
     if url.startswith("http"):
-        lc = ws.cell(row=r_i, column=13)
+        lc = ws.cell(row=r_i, column=14)
         lc.hyperlink = url
         lc.font = link_font
-    for c in (8, 9):
+    for c in (9, 10):
         ws.cell(row=r_i, column=c).number_format = "#,##0"
-    ws.cell(row=r_i, column=10).number_format = "0.0"
-    fill = fill_ok if status == "ок" else fill_todo
-    ws.cell(row=r_i, column=16).fill = fill
+    ws.cell(row=r_i, column=11).number_format = "0.0"
+    fill = fill_ok if status == "ок" else (fill_snip if status == "по сниппету" else fill_todo)
+    ws.cell(row=r_i, column=17).fill = fill
+    if r.get("_unit_mismatch"):
+        ws.cell(row=r_i, column=6).fill = fill_dev
     if dev is not None and abs(dev) > 30:
-        ws.cell(row=r_i, column=10).fill = fill_dev
+        ws.cell(row=r_i, column=11).fill = fill_dev
 
-widths = [10, 5, 14, 34, 7, 8, 40, 13, 13, 11, 24, 16, 40, 13, 12, 10, 40]
+widths = [10, 5, 14, 34, 7, 9, 8, 40, 13, 13, 11, 24, 22, 40, 13, 12, 12, 44]
 for i, w in enumerate(widths, 1):
     ws.column_dimensions[get_column_letter(i)].width = w
 ws.freeze_panes = ws.cell(row=HR + 1, column=5)
 ws.auto_filter.ref = f"A{HR}:{get_column_letter(len(headers))}{r_i}"
 
+ok = stat_counter.get("ок", 0)
+snip = stat_counter.get("по сниппету", 0)
+todo = stat_counter.get("уточнить", 0)
+avito_n = sum(1 for r in rows if r.get("option") == "ВСЕ")
+dead = sum(1 for r in rows if linkcheck.get(r.get("url") or "") in (404, 410))
+unchecked = sum(1 for r in rows if not is_avito(r) and linkcheck.get(r.get("url") or "") == 0)
+ws["A3"] = (f"Строк: {len(rows)} · «ок» (страница/прайс): {ok} · «по сниппету»: {snip} · «уточнить»: {todo} "
+            f"(в т. ч. {avito_n} ссылок на поиск Авито Саратов — цены снимать вручную; мёртвых ссылок магазинов: {dead}, не удалось проверить: {unchecked}). Ссылки проверены {date.today():%d.%m.%Y}.")
 wb.save(XLSX)
-print(f"✅ {XLSX}: лист «{SHEET}», {len(rows)} строк (ок {ok}, уточнить {todo})")
+print(f"✅ {XLSX}: лист «{SHEET}», {len(rows)} строк (ок {ok}, по сниппету {snip}, уточнить {todo}, мёртвых ссылок {dead})")
 if COPY:
     import shutil
     shutil.copy2(XLSX, COPY)
