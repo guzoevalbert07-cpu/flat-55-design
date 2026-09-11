@@ -231,7 +231,7 @@ footer ul { padding-left: 1.1em; margin: 0.4em 0; }
 .mix-total .v { font-size: clamp(1.5rem, 6vw, 2.1rem); font-weight: 800; letter-spacing: -0.01em; }
 .mix-total .s { font-size: 0.82rem; opacity: 0.85; margin-top: 2px; }
 .mix-total .muted { color: #fff; opacity: 0.7; }
-.btn-share { border: 0; background: var(--accent); color: #fff; border-radius: 10px; padding: 10px 14px; font: inherit; font-weight: 800; cursor: pointer; min-height: 42px; }
+.btn-share { border: 0; background: #fff; color: var(--ink); border-radius: 10px; padding: 10px 14px; font: inherit; font-weight: 800; cursor: pointer; min-height: 42px; }
 .mix-grid { display: grid; gap: 12px; grid-template-columns: 1fr; margin-top: 12px; }
 @media (min-width: 900px) { .mix-grid { grid-template-columns: 1fr 1fr; } }
 .mix-rows { display: grid; gap: 8px; }
