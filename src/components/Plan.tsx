@@ -5,11 +5,11 @@ import { OpenLarge, useLightbox } from './Lightbox';
 
 /**
  * План с расстановкой (ТЗ §4.3). Расположение помещений — по схеме планировки из дизайн-концепции
- * (input/plan.png): Спальня+лоджия · Детская · Кухня в верхнем ряду, прихожая с зоной зала под ними,
+ * и плану БТИ (фото из переписки с братом): лоджия слева от спальни, Спальня · Зал · Кухня в верхнем ряду, прихожая под ними,
  * санузлы внизу слева, вход справа. Масштаб условный: 1 м = 60 px. Координаты в метрах, начало — левый верхний угол.
  */
 const S = 60;
-const OX = 22;
+const OX = 22 + 0.9 * 60; // слева место под лоджию
 const OY = 22;
 const px = (m: number) => OX + m * S;
 const py = (m: number) => OY + m * S;
@@ -120,7 +120,7 @@ export function PlanSvg({ opt }: { opt: Option }) {
     <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="План квартиры 55 м² с расстановкой мебели">
       <title>План квартиры с расстановкой мебели — опция {opt.name}</title>
       {/* --- полы помещений --- */}
-      <rect x={px(0)} y={py(0)} width={3.0 * S} height={0.9 * S} fill="#eef2e6" />
+      <rect x={px(-0.9)} y={py(0.9)} width={0.9 * S} height={3.0 * S} fill="#eef2e6" />
       <rect x={px(0)} y={py(0.9)} width={3.0 * S} height={3.9 * S} fill={floor} opacity={0.55} />
       <rect x={px(3.0)} y={py(0)} width={3.3 * S} height={3.7 * S} fill={floor} opacity={0.55} />
       <rect x={px(6.3)} y={py(0)} width={3.2 * S} height={3.7 * S} fill={floor} opacity={0.55} />
@@ -202,8 +202,14 @@ export function PlanSvg({ opt }: { opt: Option }) {
       <Box x={0.05} y={4.3} w={0.42} h={0.42} fill={wood} label="тумба" fs={6} color="#fff" rx={3} />
       <Box x={2.15} y={4.3} w={0.42} h={0.42} fill={wood} label="тумба" fs={6} color="#fff" rx={3} />
       <Box x={2.4} y={1.0} w={0.6} h={2.0} fill={t.facade} label="шкаф" sub="200×60" fs={8} rx={2} />
-      <Box x={0.1} y={0.15} w={1.2} h={0.5} fill={wood} label="стол-кабинет" fs={7} color="#fff" rx={3} />
-      <Box x={1.5} y={0.15} w={1.4} h={0.35} fill={t.facade} label="полки / хранение" fs={7} rx={2} />
+      <Box x={-0.85} y={1.0} w={0.5} h={1.2} fill={wood} fs={7} color="#fff" rx={3} />
+      <text x={px(-0.6)} y={py(1.6)} textAnchor="middle" fontSize={6} fontWeight={700} fill="#fff" transform={`rotate(-90 ${px(-0.6)} ${py(1.6)})`}>
+        стол 120×50
+      </text>
+      <Box x={-0.85} y={2.4} w={0.5} h={1.4} fill={t.facade} fs={7} rx={2} />
+      <text x={px(-0.6)} y={py(3.1)} textAnchor="middle" fontSize={6} fontWeight={700} fill={INK} transform={`rotate(-90 ${px(-0.6)} ${py(3.1)})`}>
+        полки / хранение
+      </text>
 
       {/* --- прихожая у входа --- */}
       <Box x={6.9} y={6.95} w={1.9} h={0.45} fill={t.facade} label="шкаф 190×45" fs={7} rx={2} />
@@ -239,13 +245,13 @@ export function PlanSvg({ opt }: { opt: Option }) {
 
       {/* --- стены --- */}
       <path
-        d={`M ${px(0)} ${py(0)} H ${px(9.5)} V ${py(7.4)} H ${px(6.3)} V ${py(6.6)} H ${px(3.0)} V ${py(4.8)} H ${px(0)} Z`}
+        d={`M ${px(0)} ${py(0.9)} H ${px(3.0)} V ${py(0)} H ${px(9.5)} V ${py(7.4)} H ${px(6.3)} V ${py(6.6)} H ${px(3.0)} V ${py(4.8)} H ${px(0)} Z`}
         fill="none"
         stroke={INK}
         strokeWidth={7}
         strokeLinejoin="miter"
       />
-      <Wall x1={0} y1={0.9} x2={3.0} y2={0.9} />
+      <rect x={px(-0.9)} y={py(0.9)} width={0.9 * S} height={3.0 * S} fill="none" stroke={INK} strokeWidth={3} />
       <Wall x1={3.0} y1={0} x2={3.0} y2={4.8} />
       <Wall x1={6.3} y1={0} x2={6.3} y2={3.7} />
       <Wall x1={3.0} y1={3.7} x2={6.3} y2={3.7} />
@@ -259,8 +265,9 @@ export function PlanSvg({ opt }: { opt: Option }) {
       </text>
 
       {/* --- окна --- */}
-      <Window x1={0.6} y1={0} x2={2.4} y2={0} />
-      <Window x1={0.5} y1={0.9} x2={2.5} y2={0.9} />
+      <Window x1={0.7} y1={0.9} x2={2.3} y2={0.9} />
+      <line x1={px(0)} y1={py(1.3)} x2={px(0)} y2={py(2.6)} stroke={GLASS} strokeWidth={6} />
+      <line x1={px(-0.9)} y1={py(1.2)} x2={px(-0.9)} y2={py(3.6)} stroke={GLASS} strokeWidth={6} />
       <Window x1={3.9} y1={0} x2={5.4} y2={0} />
       <Window x1={7.2} y1={0} x2={8.6} y2={0} />
 
@@ -287,8 +294,11 @@ export function PlanSvg({ opt }: { opt: Option }) {
 
       {/* --- подписи помещений --- */}
       <RoomLabel x={1.5} y={1.55} name="Спальня" area="11.7 м²" />
-      <text x={px(1.5)} y={py(0.83)} textAnchor="middle" fontSize={8} fontWeight={700} fill={INK}>
-        Лоджия 2.7 м²
+      <text x={px(-0.45)} y={py(4.05)} textAnchor="middle" fontSize={7} fontWeight={700} fill={INK}>
+        Лоджия
+      </text>
+      <text x={px(-0.45)} y={py(4.2)} textAnchor="middle" fontSize={7} fill={INK} opacity={0.75}>
+        2.7 м²
       </text>
       <RoomLabel x={4.9} y={0.4} name="Зал" area="12.2 м² · бывш. гостиная" sub2="сейчас зал, потом может стать детской" fs={11} />
       <RoomLabel x={7.5} y={1.4} name="Кухня" area="11.8 м²" />
@@ -310,11 +320,11 @@ export function PlanSvg({ opt }: { opt: Option }) {
       <text x={px(7.9)} y={py(0) - 8} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
         окно
       </text>
-      <text x={px(1.5)} y={py(0) - 8} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
-        окно лоджии
+      <text x={px(1.5)} y={py(0.9) - 6} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
+        окно
       </text>
-      <text x={px(1.5)} y={py(0.9) + 13} fontSize={7} fill={GLASS_TXT} textAnchor="middle" fontWeight={700}>
-        окно / выход на лоджию
+      <text x={px(0.12)} y={py(2.95)} fontSize={6} fill={GLASS_TXT} fontWeight={700} transform={`rotate(-90 ${px(0.12)} ${py(2.95)})`}>
+        выход на лоджию
       </text>
 
       <defs>

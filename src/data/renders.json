@@ -1,0 +1,16 @@
+[
+ {
+  "option": "std",
+  "view": "wc",
+  "order": 3,
+  "title": "С/у 2.1 м² — унитаз, раковина, люк к колонке",
+  "src": "renders/std-wc.jpg",
+  "width": 752,
+  "height": 1376,
+  "kind": "kontext",
+  "frame": "f_010.jpg",
+  "prompt": "Finish this toilet room: keep the existing beige onyx marble tiles exactly; new white wall-hung toilet; gas water heater behind a tiled hatch; small 45 cm washbasin with black matte faucet and hygienic shower; black matte accessories",
+  "seed": 7,
+  "generatedAt": "2026-09-11"
+ }
+]

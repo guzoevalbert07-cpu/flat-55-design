@@ -6,7 +6,7 @@ import OptionBar from './components/OptionBar';
 import Concept from './components/Concept';
 import Plan from './components/Plan';
 import Elevations from './components/Elevations';
-import Photos from './components/Photos';
+import Renders from './components/Renders';
 import Budget from './components/Budget';
 import Shopping from './components/Shopping';
 import WorkOrder from './components/WorkOrder';
@@ -70,7 +70,7 @@ export default function App() {
         <Concept opt={opt} />
         <Plan opt={opt} estimate={estimate} />
         <Elevations opt={opt} />
-        <Photos opt={opt} />
+        <Renders opt={opt} />
         <Budget opt={opt} estimate={estimate} />
         <Mix estimate={estimate} current={key} mix={state.mix} onMix={setMix} />
         <Shopping opt={opt} estimate={estimate} />
