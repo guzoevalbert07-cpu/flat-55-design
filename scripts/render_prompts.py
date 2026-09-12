@@ -8,7 +8,17 @@ STYLE = {
     "prem": ("Премиум", "japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, "
              "quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls"),
 }
-SUFFIX = " Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark."
+
+# стиль без кухонных фасадов — для всех видов, кроме кухни (иначе модель тащит кухонные шкафы в комнаты)
+STYLE_ROOM = {
+    "eco": "modern Scandinavian basic style, IKEA-like, plain warm white wallpaper walls without pattern, light oak laminate floor, simple white laminate furniture, black matte handles and fittings, "
+           "white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors",
+    "std": "warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, "
+           "white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors",
+    "prem": "japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, "
+            "satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls",
+}
+SUFFIX = " Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark."
 KONTEXT_PREFIX = ("Edit this photo of an apartment under renovation. Keep the camera angle and the room geometry exactly. The existing beige marble-look porcelain floor tiles "
                   "and the existing wall tiles must stay exactly as they are — do not replace the tiled floor with wood. Remove construction clutter, tools, bags, bare wires and the person's shoe. "
                   "Turn it into a finished interior: ")
@@ -19,41 +29,54 @@ KONTEXT_STYLE = {
     "prem": "walls in sandy beige designer wallpaper, invisible-frame doors painted like the walls, satin brass fittings, fabric stretch ceiling with recessed light lines",
 }
 
-# (ключ, заголовок, тип, кадр, промпт-шаблон с {style})
+# Масштаб: FLUX по умолчанию рисует залы по 30 м² — в каждый промпт зашиты реальные размеры комнаты с плана БТИ, «узко/тесно», проходы 60–70 см,
+# камера из дверного проёма, объектив 35 мм (не широкоугольник). Ориентация кадра — PORTRAIT_VIEWS (узкие комнаты в портрете читаются меньше).
+SCALE = ("Real photo of a small room in a freshly renovated modern new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, "
+         "passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. ")
+PORTRAIT_VIEWS = {"living", "living2", "kids", "loggia", "doors"}
+
+# (ключ, заголовок, тип, кадр, промпт-шаблон с {style}); kontext = виды по видео, общие для опций (промпт — VIDEO_VIEWS)
 VIEWS_DEF = [
-    ("entrance", "Вход и прихожая у входа", "kontext", "f_002.jpg",
-     "the existing beige marble-look porcelain floor stays; add a finished hallway: entrance door on the left, a tall white built-in wardrobe 190 cm wide with a full-height mirror, a low shoe cabinet, a bench, warm ceiling lights, walls finished in {style}."),
-    ("corridor", "Прихожая — проход к спальне и санузлам", "kontext", "f_018.jpg",
-     "the marble-look tiled door reveal on the left is the toilet room entrance — add an interior door there; add a matching door to the bedroom further along, clean finished walls and stretch ceiling, {style}."),
-    ("wc", "С/у 2.1 м² — унитаз, раковина, люк к колонке", "kontext", "f_010.jpg",
-     "the glossy beige onyx marble tiles stay; {wc}; a small 45 cm white washbasin with a slim faucet on the right wall, a hygienic shower next to the toilet, a flush tiled access hatch hiding the gas water heater on the left wall, toilet paper holder, small mirror, warm light. {style}."),
-    ("shower", "Душевая 2.8 м² — подиум, стекло, смеситель", "kontext", "f_026.jpg",
-     "the marble tiles, the dark wood-look niche with three shelves and the tiled raised shower tray stay; {shower}; a rain shower head on a riser with a hand shower, a white towel rail on the right wall, warm light. {style}."),
-    ("bath_vanity", "Душевая — тумба, зеркало, полотенцесушитель", "kontext", "f_020.jpg",
-     "the marble tiles stay; add a wall-hung vanity 60 cm with a white basin and a slim faucet, a backlit round mirror above it, an electric towel rail, a small extractor grille, {vanity}. {style}."),
+    ("entrance", "Вход и прихожая у входа", "kontext", "f_002.jpg", ""),
+    ("corridor", "Коридор — двери санузлов, проём в зал, спальня в конце", "kontext", "f_018.jpg", ""),
+    ("wc", "С/у 2.1 м² — унитаз, раковина, люк к колонке", "kontext", "f_010.jpg", ""),
+    ("shower", "Душевая 2.8 м² — подиум, стекло, смеситель", "kontext", "f_026.jpg", ""),
+    ("bath_vanity", "Душевая — тумба, зеркало, полотенцесушитель", "kontext", "f_020.jpg", ""),
     ("kitchen", "Кухня 11.8 м² — гарнитур 2.9 + 2.4 м", "schnell", None,
-     "Kitchen 11.8 m2 in an apartment in Saratov: L-shaped kitchen with a 2.9 m run along the window wall and a 2.4 m run on the right wall, upper cabinets up to the ceiling, "
-     "the sink under the window, an induction hob with a slim hood, a tall oven column and a fridge column at the end near the doorway, {kitchen}, {style}."),
+     "Small kitchen only 3.6 m wide and 3.1 m deep, one window on the far wall. An L-shaped kitchen: a 2.9 m run along the window wall with the sink under the window "
+     "and an induction hob with a slim hood, and a 2.4 m run along the right wall ending with a tall fridge column closest to the camera; upper cabinets up to the ceiling; "
+     "{kitchen}. On the left, a small 120x80 dining table with four chairs squeezed against the left wall, leaving a narrow passage. {style}."),
     ("kitchen_detail", "Кухня крупно — фасады, столешница, фартук", "schnell", None,
-     "Close-up of a kitchen counter: {kitchen}, induction hob, a kettle and a wooden board, backsplash and handles in detail, {style}."),
+     "Close-up of the inner corner of a small L-shaped kitchen counter, only 60 cm deep, upper cabinets up to the ceiling: {kitchen}, induction hob with a slim hood, "
+     "a kettle and a wooden board, the backsplash and handles in detail; no island, no peninsula. {style}."),
     ("dining", "Обеденная зона у кухни с ТВ", "schnell", None,
-     "Open dining zone of a small apartment next to the kitchen: a 120x80 cm table with four chairs, a 40-inch TV on the wall, pendant lamp above the table, the kitchen visible behind, {style}."),
+     "Tight dining corner of a small 3.6 x 3.1 m kitchen: a 120x80 table with four chairs pushed against the left wall under a small 40-inch TV, a pendant lamp above the table, "
+     "the 2.9 m kitchen counter run right behind the chairs along the window wall, the chairs almost touch the counter; {style}."),
     ("living", "Зал 12.2 м² — диван и ТВ", "schnell", None,
-     "Living room 12.2 m2 (3.3 x 3.7 m) with a window: {sofa} placed along the left wall, {tv} on the opposite wall, a 160x230 rug, a slim shelving unit by the window, a double door 1.4 m wide, {style}."),
+     "Small living room only 2.9 m wide and 4.1 m long, the window on the far short wall. Only one sofa: {sofa} along the entire left wall (it nearly spans the wall), "
+     "{tv} on the right wall directly opposite the sofa, only 1.9 m between the sofa and the TV, a small 160x230 rug and a low coffee table squeezed between them, "
+     "a narrow 40 cm shelving unit in the far left corner by the window; only one sofa, no armchairs; seen from the wide double-door opening on the near short wall. {style}."),
     ("living2", "Зал — вид от ТВ к окну", "schnell", None,
-     "Living room 12.2 m2 seen from the TV wall: {sofa}, a coffee table, a floor lamp in the corner, a window with {curtains}, {style}."),
+     "Small living room only 2.9 m wide and 4.1 m long seen from the TV wall: only one sofa, {sofa}, along the left wall almost spanning it, a coffee table on a small rug, "
+     "the window with {curtains} on the far wall only 2.9 m wide, a floor lamp in the far corner; only one sofa, no armchairs, no second sofa. {style}."),
     ("bedroom", "Спальня 11.7 м² — кровать 160×200", "schnell", None,
-     "Bedroom 11.7 m2: {bed}, two nightstands with wall sconces, a window with {curtains}, {style}."),
+     "Small bedroom only 3.8 m wide and 3.0 m deep seen from the door: {bed} with its headboard against the left wall, two small nightstands with wall sconces, "
+     "the bed takes most of the floor, the window with {curtains} on the far wall, a glass balcony door on the right wall; passages around the bed only 70-90 cm. {style}."),
     ("bedroom2", "Спальня — шкаф 200 см и выход на лоджию", "schnell", None,
-     "Bedroom 11.7 m2 seen from the bed: {wardrobe} on the wall next to the door, a glass door to a small loggia on the left, {style}."),
+     "Small bedroom only 3.8 m wide and 3.0 m deep seen from the window side: {bed} with its headboard against the right wall, a 200 cm {wardrobe} on the far wall "
+     "next to the room door, a glass balcony door to a narrow loggia on the left wall; only 70 cm between the bed and the wardrobe. {style}."),
     ("loggia", "Лоджия 2.7 м² — кабинет", "schnell", None,
-     "A narrow insulated loggia 0.9 x 3 m turned into a tiny home office: a 120x50 cm desk along the window, a chair, wall shelves for storage, roller blinds, {style}."),
+     "Very narrow insulated glazed loggia only 1 m deep and 2.6 m long, seen along its length from the balcony door: a 120x50 desk along the glazing with one chair, "
+     "wall shelves at the far end, roller blinds on the glazing, the wall to the bedroom on the right; {style}."),
     ("walls_ceiling", "Стены, потолок и свет — деталь", "schnell", None,
-     "Empty freshly renovated room in an apartment: {walls_detail}, a door, laminate floor and skirting, the ceiling and its lighting clearly visible, {style}."),
+     "Close-up of the corner of a small freshly renovated, completely empty room: bare walls with nothing on them, no furniture, no cabinets, no shelves, no table; "
+     "{walls_detail}, an interior door with its casing on one side, laminate floor with skirting, the stretch ceiling and its lighting clearly visible. {style}."),
     ("kids", "Зал как детская — вариант «потом»", "schnell", None,
-     "Children's room 12.2 m2 for one child: an extendable single bed 80x190 along the left wall, a 120x60 desk under the window with an adjustable chair, a wardrobe 160 cm and open shelves on the right, {kids}, {style}."),
+     "Small children's room only 2.9 m wide and 4.1 m long, window on the far short wall: an extendable single bed 80x190 along the left wall, "
+     "a 120x60 desk under the window with an adjustable chair, a 160 cm wardrobe and open shelves along the right wall, {kids}; passages are narrow. {style}."),
     ("doors", "Двери и проём 1.4 м в зал", "schnell", None,
-     "Hallway of an apartment with a wide 1.4 m double door opening into a bright living room, {doors}, laminate floor, stretch ceiling, {style}."),
+     "Narrow corridor only 1.2 m wide of a small apartment, seen towards a 1.4 m wide double door opening into a small living room, {doors}, "
+     "the bedroom door at the end of the corridor, laminate floor and skirting, stretch ceiling; {style}."),
 ]
 
 OPT_DETAILS = {
@@ -74,7 +97,7 @@ OPT_DETAILS = {
         "kitchen": "matte cashmere-beige upper fronts to the ceiling and graphite lower fronts, a light stone-look 38 mm countertop with the same material as backsplash, black matte handles, a slim black track light above",
         "sofa": "a mustard velvet corner sofa 220 cm", "tv": "a 55-inch TV above a long beige TV panel with closed storage",
         "curtains": "blackout curtains and tulle on a hidden ceiling rail", "bed": "a bed 160x200 with a soft upholstered headboard and a lift-up base",
-        "wardrobe": "a sliding-door wardrobe 240 cm to the ceiling in the wall colour", "walls_detail": "greige textured wallpaper, white stretch ceiling with a shadow-gap profile and a black track light, 80 mm MDF skirting in the wall colour",
+        "wardrobe": "a sliding-door wardrobe 230 cm to the ceiling in the wall colour", "walls_detail": "greige textured wallpaper, white stretch ceiling with a shadow-gap profile and a black track light, 80 mm MDF skirting in the wall colour",
         "kids": "sage green painted wall with wooden slats behind the bed, cork board above the desk", "doors": "light oak eco-veneer doors with black handles",
     },
     "prem": {
@@ -94,9 +117,9 @@ OPT_DETAILS = {
 def build_prompt(opt, key, kind, tmpl):
     """Собрать промпт для опции и вида."""
     d = dict(OPT_DETAILS[opt])
-    d["style"] = KONTEXT_STYLE[opt] if kind == "kontext" else STYLE[opt][1]
+    d["style"] = KONTEXT_STYLE[opt] if kind == "kontext" else (STYLE[opt][1] if key in ("kitchen", "kitchen_detail", "dining") else STYLE_ROOM[opt])
     body = tmpl.format(**d)
-    return (KONTEXT_PREFIX + body) if kind == "kontext" else (body + SUFFIX)
+    return (KONTEXT_PREFIX + body) if kind == "kontext" else (SCALE + body + SUFFIX)
 
 # Виды по видео (вход, коридор, с/у, душевая, ванная) — на AI Horde рисуются text-to-image ПО ОПИСАНИЮ отделки с кадров:
 # чисто описательные фразы (не «отредактируй фото»), комната пустая — иначе FLUX дорисовывает людей и текст.

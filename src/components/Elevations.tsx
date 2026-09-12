@@ -277,47 +277,47 @@ function Living({ k, t }: { k: OptionKey; t: T }) {
 /* ------------------------------- СПАЛЬНЯ ------------------------------- */
 function Bedroom({ k, t }: { k: OptionKey; t: T }) {
   return (
-    <Frame w={3.0} k={k} t={t} walls={[{ w: 3.0, fill: t.walls, title: 'стена изголовья · 3.0 м' }]} track={false}>
+    <Frame w={3.8} k={k} t={t} walls={[{ w: 3.8, fill: t.walls, title: 'стена изголовья (глухая) · 3.8 м' }]} track={false}>
       {/* изголовье */}
-      {k === 'eco' && <Rect x={0.7} y={1.85} w={1.6} h={0.4} fill={t.wood} rx={2} />}
-      {k === 'std' && <Rect x={0.65} y={1.6} w={1.7} h={0.65} fill={t.textile} rx={10} />}
+      {k === 'eco' && <Rect x={1.1} y={1.85} w={1.6} h={0.4} fill={t.wood} rx={2} />}
+      {k === 'std' && <Rect x={1.05} y={1.6} w={1.7} h={0.65} fill={t.textile} rx={10} />}
       {k === 'prem' && (
         <g>
-          <Rect x={0.2} y={1.2} w={2.6} h={1.05} fill={t.facade2} rx={3} />
-          <rect x={X(0.2)} y={Y(1.2) - 3} width={2.6 * S} height={3} fill="#fff1bf" opacity={0.95} />
-          <rect x={X(0.2)} y={Y(1.2) - 16} width={2.6 * S} height={13} fill="#fff1bf" opacity={0.25} />
-          <Label x={1.5} y={1.4} text="изголовье во всю стену + парящая подсветка" fs={7} color="#fff" />
+          <Rect x={0.6} y={1.2} w={2.6} h={1.05} fill={t.facade2} rx={3} />
+          <rect x={X(0.6)} y={Y(1.2) - 3} width={2.6 * S} height={3} fill="#fff1bf" opacity={0.95} />
+          <rect x={X(0.6)} y={Y(1.2) - 16} width={2.6 * S} height={13} fill="#fff1bf" opacity={0.25} />
+          <Label x={1.9} y={1.4} text="изголовье во всю стену + парящая подсветка" fs={7} color="#fff" />
         </g>
       )}
       {/* кровать */}
-      <Rect x={0.7} y={2.25} w={1.6} h={0.45} fill={k === 'eco' ? '#fff' : t.textile} rx={4} />
-      <Rect x={0.72} y={2.2} w={1.56} h={0.16} fill="#faf8f3" stroke="rgba(0,0,0,0.25)" rx={4} />
-      <Label x={1.5} y={2.55} text="кровать 160×200" fs={9} color={k === 'eco' ? INK : '#fff'} bold />
+      <Rect x={1.1} y={2.25} w={1.6} h={0.45} fill={k === 'eco' ? '#fff' : t.textile} rx={4} />
+      <Rect x={1.12} y={2.2} w={1.56} h={0.16} fill="#faf8f3" stroke="rgba(0,0,0,0.25)" rx={4} />
+      <Label x={1.9} y={2.55} text="кровать 160×200" fs={9} color={k === 'eco' ? INK : '#fff'} bold />
       {/* тумбы */}
-      <Rect x={0.15} y={2.25} w={0.5} h={0.45} fill={t.wood} rx={2} />
-      <Rect x={2.35} y={2.25} w={0.5} h={0.45} fill={t.wood} rx={2} />
-      <Label x={0.4} y={2.5} text="тумба" fs={7} color="#fff" />
-      <Label x={2.6} y={2.5} text="тумба" fs={7} color="#fff" />
+      <Rect x={0.55} y={2.25} w={0.5} h={0.45} fill={t.wood} rx={2} />
+      <Rect x={2.75} y={2.25} w={0.5} h={0.45} fill={t.wood} rx={2} />
+      <Label x={0.8} y={2.5} text="тумба" fs={7} color="#fff" />
+      <Label x={3.0} y={2.5} text="тумба" fs={7} color="#fff" />
       {/* бра на 120–140 см */}
-      {[0.4, 2.6].map((x) => (
+      {[0.8, 3.0].map((x) => (
         <g key={x}>
           <rect x={X(x) - 3} y={Y(1.35)} width={6} height={18} fill={t.hardware} rx={1} />
           <path d={`M ${X(x) - 12} ${Y(1.35)} L ${X(x) + 12} ${Y(1.35)} L ${X(x) + 8} ${Y(1.2)} L ${X(x) - 8} ${Y(1.2)} Z`} fill="#f3ecd9" stroke={t.hardware} />
         </g>
       ))}
-      <Label x={0.4} y={1.1} text="бра" fs={7} />
-      <Label x={2.6} y={1.1} text="бра" fs={7} />
+      <Label x={0.8} y={1.1} text="бра" fs={7} />
+      <Label x={3.0} y={1.1} text="бра" fs={7} />
       {/* потолочный свет */}
       {k === 'std' && (
         <g>
-          <rect x={X(1.2)} y={Y(0)} width={0.6 * S} height={3} fill={t.hardware} />
-          <Label x={1.5} y={0.2} text="скрытый карниз / диммер" fs={7} op={0.8} />
+          <rect x={X(1.6)} y={Y(0)} width={0.6 * S} height={3} fill={t.hardware} />
+          <Label x={1.9} y={0.2} text="скрытый карниз / диммер" fs={7} op={0.8} />
         </g>
       )}
-      {k === 'prem' && <Label x={1.5} y={0.28} text="парящий потолок, световая линия" fs={7} op={0.8} />}
-      {k === 'eco' && <Label x={1.5} y={0.28} text="точечные GX53" fs={7} op={0.8} />}
-      <Dim x1={0.7} x2={2.3} y={2.05 + (k === 'eco' ? -0.35 : k === 'std' ? -0.6 : -1.0)} text="160" />
-      <Dim x1={0} x2={3.0} y={H + 0.18} text="3.0 м" />
+      {k === 'prem' && <Label x={1.9} y={0.28} text="парящий потолок, световая линия" fs={7} op={0.8} />}
+      {k === 'eco' && <Label x={1.9} y={0.28} text="точечные GX53" fs={7} op={0.8} />}
+      <Dim x1={1.1} x2={2.7} y={2.05 + (k === 'eco' ? -0.35 : k === 'std' ? -0.6 : -1.0)} text="160" />
+      <Dim x1={0} x2={3.8} y={H + 0.18} text="3.8 м" />
     </Frame>
   );
 }

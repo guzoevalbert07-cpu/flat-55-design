@@ -202,12 +202,15 @@ export function PlanSvg({ opt }: { opt: Option }) {
         <rect key={`b${x}`} x={px(x)} y={py(3.85)} width={0.35 * S} height={0.3 * S} fill={wood} opacity={0.6} rx={3} />
       ))}
 
-      {/* --- спальня: окно на левой стене, изголовье к правой (напротив окна), шкаф у глухой стены рядом с дверью --- */}
-      <Box x={1.6} y={2.7} w={2.0} h={1.6} fill={t.textile} label="кровать" sub="160×200" fs={9} color="#fff" rx={5} />
-      <rect x={px(3.4)} y={py(2.7)} width={0.2 * S} height={1.6 * S} fill="rgba(0,0,0,0.18)" rx={3} />
-      <Box x={3.15} y={2.37} w={0.42} h={0.3} fill={wood} label="тумба" fs={6} color="#fff" rx={3} />
-      <Box x={3.15} y={4.33} w={0.42} h={0.27} fill={wood} label="тумба" fs={6} color="#fff" rx={3} />
-      <Box x={0.5} y={4.7} w={2.0} h={0.6} fill={t.facade} label="шкаф 200×60" fs={8} rx={2} />
+      {/* --- спальня 3.77×3.0: окно на левой стене, изголовье к глухой (нижней) стене, проходы 0.9 / 0.67, шкаф 200×60 у стены с дверью --- */}
+      <Box x={0.9} y={3.33} w={1.6} h={2.0} fill={t.textile} label="кровать" sub="160×200" fs={9} color="#fff" rx={5} />
+      <rect x={px(0.9)} y={py(5.13)} width={1.6 * S} height={0.2 * S} fill="rgba(0,0,0,0.18)" rx={3} />
+      <Box x={0.45} y={4.9} w={0.4} h={0.4} fill={wood} label="тумба" fs={5.5} color="#fff" rx={3} />
+      <Box x={2.55} y={4.9} w={0.4} h={0.4} fill={wood} label="тумба" fs={5.5} color="#fff" rx={3} />
+      <Box x={3.17} y={2.45} w={0.6} h={2.0} fill={t.facade} fs={7} rx={2} />
+      <text x={px(3.47)} y={py(3.45)} textAnchor="middle" fontSize={7} fontWeight={700} fill={INK} transform={`rotate(-90 ${px(3.47)} ${py(3.45)})`}>
+        шкаф 200×60
+      </text>
       <text x={px(2.0)} y={py(2.55)} textAnchor="middle" fontSize={6} fill={GLASS_TXT} fontWeight={700}>
         окно + выход на лоджию
       </text>
@@ -305,7 +308,7 @@ export function PlanSvg({ opt }: { opt: Option }) {
       </text>
 
       {/* --- подписи помещений --- */}
-      <RoomLabel x={0.8} y={3.3} name="Спальня" area="11.7 м²" fs={11} />
+      <RoomLabel x={1.7} y={2.95} name="Спальня" area="11.7 м²" fs={11} />
       <text x={px(2.4)} y={py(2.12)} textAnchor="middle" fontSize={7} fontWeight={700} fill={INK}>
         Лоджия 2.7 м²
       </text>

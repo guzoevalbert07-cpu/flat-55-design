@@ -92,11 +92,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Kitchen 11.8 m2 in an apartment in Saratov: L-shaped kitchen with a 2.9 m run along the window wall and a 2.4 m run on the right wall, upper cabinets up to the ceiling, the sink under the window, an induction hob with a slim hood, a tall oven column and a fridge column at the end near the doorway, white flat laminate fronts, grey stone-look laminate countertop, white subway tile backsplash, black matte handles, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small kitchen only 3.6 m wide and 3.1 m deep, one window on the far wall. An L-shaped kitchen: a 2.9 m run along the window wall with the sink under the window and an induction hob with a slim hood, and a 2.4 m run along the right wall ending with a tall fridge column closest to the camera; upper cabinets up to the ceiling; white flat laminate fronts, grey stone-look laminate countertop, white subway tile backsplash, black matte handles. On the left, a small 120x80 dining table with four chairs squeezed against the left wall, leaving a narrow passage. Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 106,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -108,11 +108,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Close-up of a kitchen counter: white flat laminate fronts, grey stone-look laminate countertop, white subway tile backsplash, black matte handles, induction hob, a kettle and a wooden board, backsplash and handles in detail, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Close-up of the inner corner of a small L-shaped kitchen counter, only 60 cm deep, upper cabinets up to the ceiling: white flat laminate fronts, grey stone-look laminate countertop, white subway tile backsplash, black matte handles, induction hob with a slim hood, a kettle and a wooden board, the backsplash and handles in detail; no island, no peninsula. Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 107,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -124,11 +124,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Open dining zone of a small apartment next to the kitchen: a 120x80 cm table with four chairs, a 40-inch TV on the wall, pendant lamp above the table, the kitchen visible behind, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
-  "seed": 108,
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Tight dining corner of a small 3.6 x 3.1 m kitchen: a 120x80 table with four chairs pushed against the left wall under a small 40-inch TV, a pendant lamp above the table, the 2.9 m kitchen counter run right behind the chairs along the window wall, the chairs almost touch the counter; Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
+  "seed": 608,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -136,15 +136,15 @@
   "order": 9,
   "title": "Зал 12.2 м² — диван и ТВ",
   "src": "renders/eco-living.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Living room 12.2 m2 (3.3 x 3.7 m) with a window: a straight grey hopsack sofa 220 cm placed along the left wall, a 50-inch TV on a bracket above a white open shelving unit on the opposite wall, a 160x230 rug, a slim shelving unit by the window, a double door 1.4 m wide, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
-  "seed": 109,
+  "prompt": "Real photo of a small room in a freshly renovated modern new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small living room only 2.9 m wide and 4.1 m long, the window on the far short wall. Only one sofa: a straight grey hopsack sofa 220 cm along the entire left wall (it nearly spans the wall), a 50-inch TV on a bracket above a white open shelving unit on the right wall directly opposite the sofa, only 1.9 m between the sofa and the TV, a small 160x230 rug and a low coffee table squeezed between them, a narrow 40 cm shelving unit in the far left corner by the window; only one sofa, no armchairs; seen from the wide double-door opening on the near short wall. modern Scandinavian basic style, IKEA-like, plain warm white wallpaper walls without pattern, light oak laminate floor, simple white laminate furniture, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
+  "seed": 2109,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -152,15 +152,15 @@
   "order": 10,
   "title": "Зал — вид от ТВ к окну",
   "src": "renders/eco-living2.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Living room 12.2 m2 seen from the TV wall: a straight grey hopsack sofa 220 cm, a coffee table, a floor lamp in the corner, a window with a white roller blind and a light tulle, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small living room only 2.9 m wide and 4.1 m long seen from the TV wall: only one sofa, a straight grey hopsack sofa 220 cm, along the left wall almost spanning it, a coffee table on a small rug, the window with a white roller blind and a light tulle on the far wall only 2.9 m wide, a floor lamp in the far corner; only one sofa, no armchairs, no second sofa. Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 110,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -172,11 +172,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Bedroom 11.7 m2: a white laminate bed 160x200 with a low headboard, two nightstands with wall sconces, a window with a white roller blind and a light tulle, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small bedroom only 3.8 m wide and 3.0 m deep seen from the door: a white laminate bed 160x200 with a low headboard with its headboard against the left wall, two small nightstands with wall sconces, the bed takes most of the floor, the window with a white roller blind and a light tulle on the far wall, a glass balcony door on the right wall; passages around the bed only 70-90 cm. Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 111,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -188,11 +188,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Bedroom 11.7 m2 seen from the bed: a white two-door hinged wardrobe 200 cm wide on the wall next to the door, a glass door to a small loggia on the left, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
-  "seed": 112,
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small bedroom only 3.8 m wide and 3.0 m deep seen from the window side: a white laminate bed 160x200 with a low headboard with its headboard against the right wall, a 200 cm a white two-door hinged wardrobe 200 cm wide on the far wall next to the room door, a glass balcony door to a narrow loggia on the left wall; only 70 cm between the bed and the wardrobe. Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
+  "seed": 612,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -200,15 +200,15 @@
   "order": 13,
   "title": "Лоджия 2.7 м² — кабинет",
   "src": "renders/eco-loggia.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "A narrow insulated loggia 0.9 x 3 m turned into a tiny home office: a 120x50 cm desk along the window, a chair, wall shelves for storage, roller blinds, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Very narrow insulated glazed loggia only 1 m deep and 2.6 m long, seen along its length from the balcony door: a 120x50 desk along the glazing with one chair, wall shelves at the far end, roller blinds on the glazing, the wall to the bedroom on the right; Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 113,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -220,11 +220,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Empty freshly renovated room in an apartment: warm white plain wallpaper, white matte stretch ceiling with GX53 spots, white PVC skirting, a door, laminate floor and skirting, the ceiling and its lighting clearly visible, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
-  "seed": 114,
+  "prompt": "Real photo of a small room in a freshly renovated modern new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Close-up of the corner of a small freshly renovated, completely empty room: bare walls with nothing on them, no furniture, no cabinets, no shelves, no table; warm white plain wallpaper, white matte stretch ceiling with GX53 spots, white PVC skirting, an interior door with its casing on one side, laminate floor with skirting, the stretch ceiling and its lighting clearly visible. modern Scandinavian basic style, IKEA-like, plain warm white wallpaper walls without pattern, light oak laminate floor, simple white laminate furniture, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
+  "seed": 2114,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -232,15 +232,15 @@
   "order": 15,
   "title": "Зал как детская — вариант «потом»",
   "src": "renders/eco-kids.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Children's room 12.2 m2 for one child: an extendable single bed 80x190 along the left wall, a 120x60 desk under the window with an adjustable chair, a wardrobe 160 cm and open shelves on the right, light walls, a white cube shelving unit, colorful bedding, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small children's room only 2.9 m wide and 4.1 m long, window on the far short wall: an extendable single bed 80x190 along the left wall, a 120x60 desk under the window with an adjustable chair, a 160 cm wardrobe and open shelves along the right wall, light walls, a white cube shelving unit, colorful bedding; passages are narrow. Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 115,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "eco",
@@ -248,15 +248,15 @@
   "order": 16,
   "title": "Двери и проём 1.4 м в зал",
   "src": "renders/eco-doors.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Hallway of an apartment with a wide 1.4 m double door opening into a bright living room, white laminated flat doors with black handles, laminate floor, stretch ceiling, Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture and white kitchen fronts, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors, simple black track-free lighting. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Narrow corridor only 1.2 m wide of a small apartment, seen towards a 1.4 m wide double door opening into a small living room, white laminated flat doors with black handles, the bedroom door at the end of the corridor, laminate floor and skirting, stretch ceiling; Scandinavian basic style: warm white plain wallpaper walls, light oak laminate floor, white laminate furniture, black matte handles and fittings, white matte stretch ceiling with small GX53 spot lights, white laminated flat interior doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 116,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -351,11 +351,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Kitchen 11.8 m2 in an apartment in Saratov: L-shaped kitchen with a 2.9 m run along the window wall and a 2.4 m run on the right wall, upper cabinets up to the ceiling, the sink under the window, an induction hob with a slim hood, a tall oven column and a fridge column at the end near the doorway, matte cashmere-beige upper fronts to the ceiling and graphite lower fronts, a light stone-look 38 mm countertop with the same material as backsplash, black matte handles, a slim black track light above, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
-  "seed": 107,
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small kitchen only 3.6 m wide and 3.1 m deep, one window on the far wall. An L-shaped kitchen: a 2.9 m run along the window wall with the sink under the window and an induction hob with a slim hood, and a 2.4 m run along the right wall ending with a tall fridge column closest to the camera; upper cabinets up to the ceiling; matte cashmere-beige upper fronts to the ceiling and graphite lower fronts, a light stone-look 38 mm countertop with the same material as backsplash, black matte handles, a slim black track light above. On the left, a small 120x80 dining table with four chairs squeezed against the left wall, leaving a narrow passage. warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
+  "seed": 106,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -367,11 +367,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Close-up of a kitchen counter: matte cashmere-beige upper fronts to the ceiling and graphite lower fronts, a light stone-look 38 mm countertop with the same material as backsplash, black matte handles, a slim black track light above, induction hob, a kettle and a wooden board, backsplash and handles in detail, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Close-up of the inner corner of a small L-shaped kitchen counter, only 60 cm deep, upper cabinets up to the ceiling: matte cashmere-beige upper fronts to the ceiling and graphite lower fronts, a light stone-look 38 mm countertop with the same material as backsplash, black matte handles, a slim black track light above, induction hob with a slim hood, a kettle and a wooden board, the backsplash and handles in detail; no island, no peninsula. warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 107,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -383,11 +383,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Open dining zone of a small apartment next to the kitchen: a 120x80 cm table with four chairs, a 40-inch TV on the wall, pendant lamp above the table, the kitchen visible behind, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Tight dining corner of a small 3.6 x 3.1 m kitchen: a 120x80 table with four chairs pushed against the left wall under a small 40-inch TV, a pendant lamp above the table, the 2.9 m kitchen counter run right behind the chairs along the window wall, the chairs almost touch the counter; warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 108,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -395,15 +395,15 @@
   "order": 9,
   "title": "Зал 12.2 м² — диван и ТВ",
   "src": "renders/std-living.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Living room 12.2 m2 (3.3 x 3.7 m) with a window: a mustard velvet corner sofa 220 cm placed along the left wall, a 55-inch TV above a long beige TV panel with closed storage on the opposite wall, a 160x230 rug, a slim shelving unit by the window, a double door 1.4 m wide, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small living room only 2.9 m wide and 4.1 m long, the window on the far short wall. Only one sofa: a mustard velvet corner sofa 220 cm along the entire left wall (it nearly spans the wall), a 55-inch TV above a long beige TV panel with closed storage on the right wall directly opposite the sofa, only 1.9 m between the sofa and the TV, a small 160x230 rug and a low coffee table squeezed between them, a narrow 40 cm shelving unit in the far left corner by the window; only one sofa, no armchairs; seen from the wide double-door opening on the near short wall. warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 109,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -411,15 +411,15 @@
   "order": 10,
   "title": "Зал — вид от ТВ к окну",
   "src": "renders/std-living2.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Living room 12.2 m2 seen from the TV wall: a mustard velvet corner sofa 220 cm, a coffee table, a floor lamp in the corner, a window with blackout curtains and tulle on a hidden ceiling rail, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small living room only 2.9 m wide and 4.1 m long seen from the TV wall: only one sofa, a mustard velvet corner sofa 220 cm, along the left wall almost spanning it, a coffee table on a small rug, the window with blackout curtains and tulle on a hidden ceiling rail on the far wall only 2.9 m wide, a floor lamp in the far corner; only one sofa, no armchairs, no second sofa. warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 110,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -431,11 +431,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Bedroom 11.7 m2: a bed 160x200 with a soft upholstered headboard and a lift-up base, two nightstands with wall sconces, a window with blackout curtains and tulle on a hidden ceiling rail, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small bedroom only 3.8 m wide and 3.0 m deep seen from the door: a bed 160x200 with a soft upholstered headboard and a lift-up base with its headboard against the right wall, the bed takes most of the floor, two small nightstands with wall sconces, the window with blackout curtains and tulle on a hidden ceiling rail on the far wall at the foot of the bed, a 200 cm a sliding-door wardrobe 240 cm to the ceiling in the wall colour along the left wall near the camera; passages around the bed only 60-70 cm. warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 111,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -447,11 +447,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Bedroom 11.7 m2 seen from the bed: a sliding-door wardrobe 240 cm to the ceiling in the wall colour on the wall next to the door, a glass door to a small loggia on the left, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small bedroom only 3.8 m wide and 3.0 m deep seen from the window side: a bed 160x200 with a soft upholstered headboard and a lift-up base with its headboard against the right wall, a 200 cm a sliding-door wardrobe 230 cm to the ceiling in the wall colour on the far wall next to the room door, a glass balcony door to a narrow loggia on the left wall; only 70 cm between the bed and the wardrobe. warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 112,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -459,15 +459,15 @@
   "order": 13,
   "title": "Лоджия 2.7 м² — кабинет",
   "src": "renders/std-loggia.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "A narrow insulated loggia 0.9 x 3 m turned into a tiny home office: a 120x50 cm desk along the window, a chair, wall shelves for storage, roller blinds, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Very narrow insulated glazed loggia only 1 m deep and 2.6 m long, seen along its length from the balcony door: a 120x50 desk along the glazing with one chair, wall shelves at the far end, roller blinds on the glazing, the wall to the bedroom on the right; warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 113,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -479,11 +479,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Detail of a room corner in an apartment: greige textured wallpaper, white stretch ceiling with a shadow-gap profile and a black track light, 80 mm MDF skirting in the wall colour, the ceiling and lighting shown clearly, a door, laminate floor and skirting, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Close-up of the corner of a small freshly renovated empty room with no furniture at all: greige textured wallpaper, white stretch ceiling with a shadow-gap profile and a black track light, 80 mm MDF skirting in the wall colour, an interior door with its casing on one side, laminate floor with skirting, the stretch ceiling and its lighting clearly visible; no kitchen, no cabinets, no table. warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 114,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -491,15 +491,15 @@
   "order": 15,
   "title": "Зал как детская — вариант «потом»",
   "src": "renders/std-kids.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Children's room 12.2 m2 for one child: an extendable single bed 80x190 along the left wall, a 120x60 desk under the window with an adjustable chair, a wardrobe 160 cm and open shelves on the right, sage green painted wall with wooden slats behind the bed, cork board above the desk, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small children's room only 2.9 m wide and 4.1 m long, window on the far short wall: an extendable single bed 80x190 along the left wall, a 120x60 desk under the window with an adjustable chair, a 160 cm wardrobe and open shelves along the right wall, sage green painted wall with wooden slats behind the bed, cork board above the desk; passages are narrow. warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 115,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "std",
@@ -507,15 +507,15 @@
   "order": 16,
   "title": "Двери и проём 1.4 м в зал",
   "src": "renders/std-doors.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Hallway of an apartment with a wide 1.4 m double door opening into a bright living room, light oak eco-veneer doors with black handles, laminate floor, stretch ceiling, warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, matte cashmere-beige upper cabinet fronts and graphite lower cabinets, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Narrow corridor only 1.2 m wide of a small apartment, seen towards a 1.4 m wide double door opening into a small living room, light oak eco-veneer doors with black handles, the bedroom door at the end of the corridor, laminate floor and skirting, stretch ceiling; warm minimalism: greige textured wallpaper walls, natural oak laminate floor with bevels, sage green accent, black matte fittings, white stretch ceiling with shadow-gap profile and a slim black track light, hidden curtain rail, light oak eco-veneer doors. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 116,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -610,11 +610,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Kitchen 11.8 m2 in an apartment in Saratov: L-shaped kitchen with a 2.9 m run along the window wall and a 2.4 m run on the right wall, upper cabinets up to the ceiling, the sink under the window, an induction hob with a slim hood, a tall oven column and a fridge column at the end near the doorway, ivory enamel upper fronts to the ceiling and walnut veneer lower fronts, a white quartz stone countertop continuing as the backsplash, brass handles, a magnetic track light, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small kitchen only 3.6 m wide and 3.1 m deep, one window on the far wall. An L-shaped kitchen: a 2.9 m run along the window wall with the sink under the window and an induction hob with a slim hood, and a 2.4 m run along the right wall ending with a tall fridge column closest to the camera; upper cabinets up to the ceiling; ivory enamel upper fronts to the ceiling and walnut veneer lower fronts, a white quartz stone countertop continuing as the backsplash, brass handles, a magnetic track light. On the left, a small 120x80 dining table with four chairs squeezed against the left wall, leaving a narrow passage. japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 106,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -626,11 +626,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Close-up of a kitchen counter: ivory enamel upper fronts to the ceiling and walnut veneer lower fronts, a white quartz stone countertop continuing as the backsplash, brass handles, a magnetic track light, induction hob, a kettle and a wooden board, backsplash and handles in detail, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Close-up of the inner corner of a small L-shaped kitchen counter, only 60 cm deep, upper cabinets up to the ceiling: ivory enamel upper fronts to the ceiling and walnut veneer lower fronts, a white quartz stone countertop continuing as the backsplash, brass handles, a magnetic track light, induction hob with a slim hood, a kettle and a wooden board, the backsplash and handles in detail; no island, no peninsula. japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 107,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -642,11 +642,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Open dining zone of a small apartment next to the kitchen: a 120x80 cm table with four chairs, a 40-inch TV on the wall, pendant lamp above the table, the kitchen visible behind, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Tight dining corner of a small 3.6 x 3.1 m kitchen: a 120x80 table with four chairs pushed against the left wall under a small 40-inch TV, a pendant lamp above the table, the 2.9 m kitchen counter run right behind the chairs along the window wall, the chairs almost touch the counter; japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 108,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -654,15 +654,15 @@
   "order": 9,
   "title": "Зал 12.2 м² — диван и ТВ",
   "src": "renders/prem-living.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Living room 12.2 m2 (3.3 x 3.7 m) with a window: a modular linen sofa 220 cm placed along the left wall, a 65-inch OLED TV in a shallow niche with hidden LED backlight above a custom walnut console on the opposite wall, a 160x230 rug, a slim shelving unit by the window, a double door 1.4 m wide, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
-  "seed": 109,
+  "prompt": "Real photo of a small room in a freshly renovated modern new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small living room only 2.9 m wide and 4.1 m long, the window on the far short wall. Only one sofa: a modular linen sofa 220 cm along the entire left wall (it nearly spans the wall), a 65-inch OLED TV in a shallow niche with hidden LED backlight above a custom walnut console on the right wall directly opposite the sofa, only 1.9 m between the sofa and the TV, a small 160x230 rug and a low coffee table squeezed between them, a narrow 40 cm shelving unit in the far left corner by the window; only one sofa, no armchairs; seen from the wide double-door opening on the near short wall. japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
+  "seed": 1109,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -670,15 +670,15 @@
   "order": 10,
   "title": "Зал — вид от ТВ к окну",
   "src": "renders/prem-living2.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Living room 12.2 m2 seen from the TV wall: a modular linen sofa 220 cm, a coffee table, a floor lamp in the corner, a window with linen curtains on a hidden ceiling rail, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small living room only 2.9 m wide and 4.1 m long seen from the TV wall: only one sofa, a modular linen sofa 220 cm, along the left wall almost spanning it, a coffee table on a small rug, the window with linen curtains on a hidden ceiling rail on the far wall only 2.9 m wide, a floor lamp in the far corner; only one sofa, no armchairs, no second sofa. japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 110,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -690,11 +690,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Bedroom 11.7 m2: a custom bed 160x200 with a full-wall upholstered headboard and floating LED backlight, two nightstands with wall sconces, a window with linen curtains on a hidden ceiling rail, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small bedroom only 3.8 m wide and 3.0 m deep seen from the door: a custom bed 160x200 with a full-wall upholstered headboard and floating LED backlight with its headboard against the left wall, two small nightstands with wall sconces, the bed takes most of the floor, the window with linen curtains on a hidden ceiling rail on the far wall, a glass balcony door on the right wall; passages around the bed only 70-90 cm. japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 111,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -706,11 +706,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Bedroom 11.7 m2 seen from the bed: a built-in floor-to-ceiling wardrobe with fronts in the wall colour on the wall next to the door, a glass door to a small loggia on the left, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small bedroom only 3.8 m wide and 3.0 m deep seen from the window side: a custom bed 160x200 with a full-wall upholstered headboard and floating LED backlight with its headboard against the right wall, a 200 cm a built-in floor-to-ceiling wardrobe with fronts in the wall colour on the far wall next to the room door, a glass balcony door to a narrow loggia on the left wall; only 70 cm between the bed and the wardrobe. japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 112,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -718,15 +718,15 @@
   "order": 13,
   "title": "Лоджия 2.7 м² — кабинет",
   "src": "renders/prem-loggia.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "A narrow insulated loggia 0.9 x 3 m turned into a tiny home office: a 120x50 cm desk along the window, a chair, wall shelves for storage, roller blinds, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Very narrow insulated glazed loggia only 1 m deep and 2.6 m long, seen along its length from the balcony door: a 120x50 desk along the glazing with one chair, wall shelves at the far end, roller blinds on the glazing, the wall to the bedroom on the right; japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 113,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -738,11 +738,11 @@
   "height": 768,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Detail of a room corner in an apartment: sandy designer wallpaper next to a microcement accent wall, fabric stretch ceiling with recessed light lines and a magnetic track, hidden aluminium skirting, the ceiling and lighting shown clearly, a door, laminate floor and skirting, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Close-up of the corner of a small freshly renovated empty room with no furniture at all: sandy designer wallpaper next to a microcement accent wall, fabric stretch ceiling with recessed light lines and a magnetic track, hidden aluminium skirting, an interior door with its casing on one side, laminate floor with skirting, the stretch ceiling and its lighting clearly visible; no kitchen, no cabinets, no table. japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 114,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -750,15 +750,15 @@
   "order": 15,
   "title": "Зал как детская — вариант «потом»",
   "src": "renders/prem-kids.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Children's room 12.2 m2 for one child: an extendable single bed 80x190 along the left wall, a 120x60 desk under the window with an adjustable chair, a wardrobe 160 cm and open shelves on the right, a magnetic-marker wall, a track light with dimmer, a wool rug, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Small children's room only 2.9 m wide and 4.1 m long, window on the far short wall: an extendable single bed 80x190 along the left wall, a 120x60 desk under the window with an adjustable chair, a 160 cm wardrobe and open shelves along the right wall, a magnetic-marker wall, a track light with dimmer, a wool rug; passages are narrow. japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 115,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  },
  {
   "option": "prem",
@@ -766,14 +766,14 @@
   "order": 16,
   "title": "Двери и проём 1.4 м в зал",
   "src": "renders/prem-doors.jpg",
-  "width": 1024,
-  "height": 768,
+  "width": 768,
+  "height": 1024,
   "kind": "schnell",
   "frame": null,
-  "prompt": "Hallway of an apartment with a wide 1.4 m double door opening into a bright living room, invisible-frame doors painted like the walls with brass handles, laminate floor, stretch ceiling, japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, ivory enamel cabinet fronts with walnut veneer, quartz stone countertop, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic interior photograph, 24mm lens, soft natural daylight, realistic materials, tidy and finished, no people, no text, no watermark.",
+  "prompt": "Real photo of a modest small room in a typical Russian new-build 55 m2 two-room apartment, ceiling 2.7 m; the room is tight, furniture almost touches the walls, passages are only 60-70 cm wide; shot from the doorway with a 35 mm lens, natural perspective, no wide-angle distortion, not a showroom. Narrow corridor only 1.2 m wide of a small apartment, seen towards a 1.4 m wide double door opening into a small living room, invisible-frame doors painted like the walls with brass handles, the bedroom door at the end of the corridor, laminate floor and skirting, stretch ceiling; japandi / modern classic: sandy beige designer wallpaper, one microcement accent wall, rustic oak wide-plank SPC floor, walnut veneer furniture, satin brass fittings and handles, fabric stretch ceiling with recessed light lines and a magnetic track, invisible-frame doors painted like the walls. Photorealistic photo, 35 mm lens, soft natural daylight, realistic materials, tidy and finished, empty room, no people, no text, no watermark.",
   "seed": 116,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11"
+  "generatedAt": "2026-09-12"
  }
 ]
