@@ -106,12 +106,12 @@ VIDEO_HALL = {
     "prem": "walls in sandy beige designer wallpaper, invisible-frame doors painted like the walls with satin brass handles, fabric stretch ceiling with recessed light lines",
 }
 VIDEO_VIEWS = {
-    "entrance": "Empty, unoccupied entrance hall of a small newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. "
-                "On the left the entrance door, next to it a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench. {hall}. "
-                "Straight ahead a wide double-door opening into a bright living room.",
-    "corridor": "Empty, unoccupied narrow corridor of a small newly renovated apartment, nobody inside, plain smooth walls. "
-                "Floor of beige marble-look porcelain tiles. On the left a door to a toilet room, its reveal lined with the same marble-look tile; further along a door to the bedroom; "
-                "at the end a door to the shower room. {hall}.",
+    "entrance": "Empty, unoccupied small entrance hall 1.5 m wide and 2.4 m deep of a newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. "
+                "The entrance door is on the right wall; along the left wall a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench next to the door. {hall}. "
+                "Ahead the hall opens without any wall into a bright kitchen with a dining table (the partition was removed).",
+    "corridor": "Empty, unoccupied narrow corridor 1.2 m wide of a newly renovated apartment, nobody inside, plain smooth walls. "
+                "Floor of beige marble-look porcelain tiles. On the left side two doors close to each other, to the shower room and to the toilet room, their reveals lined with the same marble-look tile; "
+                "on the right side a wide 1.4 m double-door opening into a bright living room; at the far end the bedroom door. {hall}.",
     "wc": "Empty, unoccupied tiny toilet room 2.1 m2 in a newly renovated apartment, nobody inside. Walls fully clad in glossy beige onyx-look marble tiles, floor in the same tile. "
           "{wc} against the back wall, a small 45 cm white washbasin with a slim {metal} faucet on the right wall, a hygienic hand shower next to the toilet, "
           "a flush tiled access hatch on the left wall, a {metal} toilet paper holder, a small mirror, warm ceiling light, white stretch ceiling.",

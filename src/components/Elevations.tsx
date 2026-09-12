@@ -211,15 +211,15 @@ function Kitchen({ k, t }: { k: OptionKey; t: T }) {
 function Living({ k, t }: { k: OptionKey; t: T }) {
   const tvW = k === 'eco' ? 1.1 : k === 'std' ? 1.23 : 1.45;
   const tvH = tvW * 0.5625;
-  const tvX = 1.85 - tvW / 2;
+  const tvX = 2.05 - tvW / 2;
   const tvY = 1.55 - tvH / 2;
   return (
-    <Frame w={3.7} k={k} t={t} walls={[{ w: 3.7, fill: t.accent, title: k === 'prem' ? 'стена с ТВ напротив дивана · 3.7 м (микроцемент / панели)' : 'стена с ТВ напротив дивана · 3.7 м (акцентные обои)' }]} track={false}>
+    <Frame w={4.1} k={k} t={t} walls={[{ w: 4.1, fill: t.accent, title: k === 'prem' ? 'стена с ТВ напротив дивана · 4.1 м (микроцемент / панели)' : 'стена с ТВ напротив дивана · 4.1 м (акцентные обои)' }]} track={false}>
       {/* ниша с подсветкой (Премиум) */}
       {k === 'prem' && <Rect x={tvX - 0.04} y={tvY - 0.2} w={tvW + 0.08} h={tvH + 0.72} fill="rgba(255,241,191,0.35)" stroke="rgba(0,0,0,0.25)" rx={3} />}
       {/* ТВ */}
       <Rect x={tvX} y={tvY} w={tvW} h={tvH} fill="#111" stroke="#333" rx={2} />
-      <Label x={1.85} y={tvY + tvH / 2 + 0.03} text={k === 'eco' ? 'ТВ 50"' : k === 'std' ? 'ТВ 55"' : 'ТВ 65" OLED'} fs={9} color="#fff" bold />
+      <Label x={2.05} y={tvY + tvH / 2 + 0.03} text={k === 'eco' ? 'ТВ 50"' : k === 'std' ? 'ТВ 55"' : 'ТВ 65" OLED'} fs={9} color="#fff" bold />
       {/* тумба / панель / консоль */}
       {k === 'eco' && (
         <g>
@@ -227,49 +227,49 @@ function Living({ k, t }: { k: OptionKey; t: T }) {
           {[0.33, 0.66].map((p) => (
             <line key={p} x1={X(tvX - 0.1 + (tvW + 0.2) * p)} y1={Y(2.25)} x2={X(tvX - 0.1 + (tvW + 0.2) * p)} y2={Y(H)} stroke="rgba(0,0,0,0.3)" />
           ))}
-          <Label x={1.85} y={2.5} text="стеллаж Hoff" fs={7} />
+          <Label x={2.05} y={2.5} text="стеллаж Hoff" fs={7} />
         </g>
       )}
       {k === 'std' && (
         <g>
           <Rect x={tvX - 0.25} y={2.2} w={tvW + 0.5} h={0.4} fill={t.facade} />
-          <line x1={X(1.85)} y1={Y(2.2)} x2={X(1.85)} y2={Y(2.6)} stroke="rgba(0,0,0,0.3)" />
-          <Label x={1.85} y={2.45} text="ТВ-панель с закрытым хранением" fs={7} />
+          <line x1={X(2.05)} y1={Y(2.2)} x2={X(2.05)} y2={Y(2.6)} stroke="rgba(0,0,0,0.3)" />
+          <Label x={2.05} y={2.45} text="ТВ-панель с закрытым хранением" fs={7} />
         </g>
       )}
       {k === 'prem' && (
         <g>
           <Rect x={tvX - 0.15} y={2.25} w={tvW + 0.3} h={0.3} fill={t.facade2} />
           <Rect x={tvX - 0.15} y={2.55} w={tvW + 0.3} h={0.03} fill="rgba(255,241,191,0.9)" stroke="none" />
-          <Label x={1.85} y={2.45} text="консоль на заказ, орех" fs={7} color="#fff" />
+          <Label x={2.05} y={2.45} text="консоль на заказ, орех" fs={7} color="#fff" />
         </g>
       )}
       {/* стеллаж у окна (слева) */}
       <Rect x={0.15} y={0.06} w={0.6} h={H - 0.06} fill={k === 'eco' ? '#fff' : t.facade} />
       {[0.7, 1.35, 2.0].map((y) => (
-        <line key={y} x1={X(0.15)} y1={Y(y)} x2={X(0.75)} y2={Y(y)} stroke="rgba(0,0,0,0.3)" />
+        <line key={y} x1={X(0.15)} y1={Y(y)} x2={X(0.95)} y2={Y(y)} stroke="rgba(0,0,0,0.3)" />
       ))}
       <Label x={0.45} y={0.45} text="стеллаж" fs={7} />
       {/* торшер / бра */}
       {k !== 'prem' ? (
         <g>
-          <line x1={X(3.3)} y1={Y(1.1)} x2={X(3.3)} y2={Y(H)} stroke={t.hardware} strokeWidth={2} />
-          <path d={`M ${X(3.2)} ${Y(1.1)} L ${X(3.4)} ${Y(1.1)} L ${X(3.36)} ${Y(0.9)} L ${X(3.24)} ${Y(0.9)} Z`} fill="#f3ecd9" stroke={t.hardware} />
+          <line x1={X(3.7)} y1={Y(1.1)} x2={X(3.7)} y2={Y(H)} stroke={t.hardware} strokeWidth={2} />
+          <path d={`M ${X(3.6)} ${Y(1.1)} L ${X(3.8)} ${Y(1.1)} L ${X(3.76)} ${Y(0.9)} L ${X(3.64)} ${Y(0.9)} Z`} fill="#f3ecd9" stroke={t.hardware} />
         </g>
       ) : (
         <g>
-          <line x1={X(3.3)} y1={Y(1.05)} x2={X(3.3)} y2={Y(H)} stroke={t.hardware} strokeWidth={2} />
-          <circle cx={X(3.3)} cy={Y(0.95)} r={9} fill="#fff1bf" stroke={t.hardware} />
+          <line x1={X(3.7)} y1={Y(1.05)} x2={X(3.7)} y2={Y(H)} stroke={t.hardware} strokeWidth={2} />
+          <circle cx={X(3.7)} cy={Y(0.95)} r={9} fill="#fff1bf" stroke={t.hardware} />
         </g>
       )}
-      <Label x={3.3} y={0.8} text="торшер" fs={6} />
+      <Label x={3.7} y={0.8} text="торшер" fs={6} />
       {/* диван спиной к зрителю и ковёр */}
-      <rect x={X(0.75)} y={Y(2.62)} width={2.2 * S} height={22} fill={t.accent} opacity={0.55} rx={3} />
-      <Rect x={0.8} y={1.95} w={2.1} h={0.75} fill={t.textile} stroke="rgba(0,0,0,0.35)" rx={8} op={0.95} />
-      <Rect x={0.8} y={1.95} w={2.1} h={0.12} fill="rgba(0,0,0,0.15)" stroke="none" rx={6} />
-      <Label x={1.85} y={2.4} text={k === 'eco' ? 'диван 220 см, рогожка' : k === 'std' ? 'диван 220 см, велюр горчица' : 'модульный диван, лён'} fs={8} color="#fff" bold />
-      <Label x={1.85} y={2.55} text="дистанция до ТВ ≈ 2.3 м" fs={7} color="#fff" />
-      <Dim x1={0} x2={3.7} y={H + 0.18} text="3.7 м" />
+      <rect x={X(0.95)} y={Y(2.62)} width={2.2 * S} height={22} fill={t.accent} opacity={0.55} rx={3} />
+      <Rect x={1.0} y={1.95} w={2.1} h={0.75} fill={t.textile} stroke="rgba(0,0,0,0.35)" rx={8} op={0.95} />
+      <Rect x={1.0} y={1.95} w={2.1} h={0.12} fill="rgba(0,0,0,0.15)" stroke="none" rx={6} />
+      <Label x={2.05} y={2.4} text={k === 'eco' ? 'диван 220 см, рогожка' : k === 'std' ? 'диван 220 см, велюр горчица' : 'модульный диван, лён'} fs={8} color="#fff" bold />
+      <Label x={2.05} y={2.55} text="дистанция до ТВ ≈ 1.9 м" fs={7} color="#fff" />
+      <Dim x1={0} x2={4.1} y={H + 0.18} text="4.1 м" />
     </Frame>
   );
 }
@@ -331,8 +331,8 @@ function Kids({ k, t }: { k: OptionKey; t: T }) {
       k={k}
       t={t}
       walls={[
-        { w: 3.7, fill: accentFill, title: k === 'prem' ? 'стена кровати · 3.7 м · магнитно-маркерная' : k === 'std' ? 'стена кровати · 3.7 м · рейки, краска «шалфей»' : 'стена кровати · 3.7 м · светлые обои (акцент краской — не в смете Эконом)' },
-        { w: 3.3, fill: t.walls, title: 'стена окна · 3.3 м' },
+        { w: 4.1, fill: accentFill, title: k === 'prem' ? 'стена кровати · 4.1 м · магнитно-маркерная' : k === 'std' ? 'стена кровати · 4.1 м · рейки, краска «шалфей»' : 'стена кровати · 4.1 м · светлые обои (акцент краской — не в смете Эконом)' },
+        { w: 2.9, fill: t.walls, title: 'стена окна · 2.9 м' },
       ]}
     >
       {/* рейки (Стандарт) */}
@@ -351,31 +351,31 @@ function Kids({ k, t }: { k: OptionKey; t: T }) {
       <rect x={X(0.25)} y={Y(1.35)} width={6} height={14} fill={t.hardware} rx={1} />
       <Label x={0.28} y={1.28} text="ночник" fs={7} color={k === 'prem' ? '#fff' : INK} />
       {/* окно и стол у окна */}
-      <Rect x={4.35} y={0.4} w={1.5} h={1.4} fill="#dbe9f3" stroke="#8a8a86" sw={2} rx={1} />
-      <line x1={X(5.1)} y1={Y(0.4)} x2={X(5.1)} y2={Y(1.8)} stroke="#8a8a86" strokeWidth={2} />
-      <Rect x={4.5} y={1.95} w={1.2} h={0.05} fill={t.wood} rx={1} />
-      <line x1={X(4.55)} y1={Y(2.0)} x2={X(4.55)} y2={Y(H)} stroke={t.hardware} strokeWidth={3} />
-      <line x1={X(5.65)} y1={Y(2.0)} x2={X(5.65)} y2={Y(H)} stroke={t.hardware} strokeWidth={3} />
-      <Label x={5.1} y={2.35} text="стол 120×60 у окна" fs={8} bold />
-      <Label x={5.1} y={2.5} text={k === 'eco' ? 'стул регулируемый' : 'растущий стол, ортопедический стул'} fs={7} op={0.8} />
+      <Rect x={4.75} y={0.4} w={1.5} h={1.4} fill="#dbe9f3" stroke="#8a8a86" sw={2} rx={1} />
+      <line x1={X(5.5)} y1={Y(0.4)} x2={X(5.5)} y2={Y(1.8)} stroke="#8a8a86" strokeWidth={2} />
+      <Rect x={4.9} y={1.95} w={1.2} h={0.05} fill={t.wood} rx={1} />
+      <line x1={X(4.95)} y1={Y(2.0)} x2={X(4.95)} y2={Y(H)} stroke={t.hardware} strokeWidth={3} />
+      <line x1={X(6.05)} y1={Y(2.0)} x2={X(6.05)} y2={Y(H)} stroke={t.hardware} strokeWidth={3} />
+      <Label x={5.5} y={2.35} text="стол 120×60 у окна" fs={8} bold />
+      <Label x={5.5} y={2.5} text={k === 'eco' ? 'стул регулируемый' : 'растущий стол, ортопедический стул'} fs={7} op={0.8} />
       {/* лампа настольная */}
-      <line x1={X(5.6)} y1={Y(1.95)} x2={X(5.6)} y2={Y(1.7)} stroke={t.hardware} strokeWidth={2} />
-      <path d={`M ${X(5.5)} ${Y(1.7)} L ${X(5.7)} ${Y(1.7)} L ${X(5.66)} ${Y(1.58)} L ${X(5.54)} ${Y(1.58)} Z`} fill="#f3ecd9" stroke={t.hardware} />
+      <line x1={X(6.0)} y1={Y(1.95)} x2={X(6.0)} y2={Y(1.7)} stroke={t.hardware} strokeWidth={2} />
+      <path d={`M ${X(5.9)} ${Y(1.7)} L ${X(6.1)} ${Y(1.7)} L ${X(6.06)} ${Y(1.58)} L ${X(5.94)} ${Y(1.58)} Z`} fill="#f3ecd9" stroke={t.hardware} />
       {/* стеллаж 50×140 */}
-      <Rect x={6.35} y={1.3} w={0.5} h={1.4} fill={k === 'eco' ? '#fff' : t.facade} />
+      <Rect x={6.45} y={1.3} w={0.5} h={1.4} fill={k === 'eco' ? '#fff' : t.facade} />
       {[1.65, 2.0, 2.35].map((y) => (
-        <line key={y} x1={X(6.35)} y1={Y(y)} x2={X(6.85)} y2={Y(y)} stroke="rgba(0,0,0,0.3)" />
+        <line key={y} x1={X(6.45)} y1={Y(y)} x2={X(6.95)} y2={Y(y)} stroke="rgba(0,0,0,0.3)" />
       ))}
-      <Label x={6.6} y={1.2} text="полки 50×140" fs={7} />
+      <Label x={6.7} y={1.2} text="полки 50×140" fs={7} />
       {/* шкаф 160×60 — обозначение на стене окна слева */}
-      <Rect x={3.75} y={0.06} w={0.55} h={H - 0.06} fill={t.facade} />
-      <Label x={4.02} y={1.3} text="шкаф" fs={7} />
-      <Label x={4.02} y={1.42} text="160×60" fs={6} />
-      <Label x={4.02} y={1.54} text="(торец)" fs={6} op={0.7} />
+      <Rect x={4.15} y={0.06} w={0.55} h={H - 0.06} fill={t.facade} />
+      <Label x={4.42} y={1.3} text="шкаф" fs={7} />
+      <Label x={4.42} y={1.42} text="160×60" fs={6} />
+      <Label x={4.42} y={1.54} text="(торец)" fs={6} op={0.7} />
       {k === 'prem' && <Label x={1.85} y={0.5} text="магнитно-маркерная стена, трек-свет с диммером" fs={7} color="#fff" />}
       {k === 'std' && <Label x={1.85} y={0.5} text="пробковая доска над столом" fs={7} color="#fff" />}
-      <Dim x1={0} x2={3.7} y={H + 0.18} text="3.7 м" />
-      <Dim x1={3.7} x2={7.0} y={H + 0.18} text="3.3 м" />
+      <Dim x1={0} x2={4.1} y={H + 0.18} text="4.1 м" />
+      <Dim x1={4.1} x2={7.0} y={H + 0.18} text="2.9 м" />
     </Frame>
   );
 }

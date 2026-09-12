@@ -9,11 +9,11 @@
   "height": 1024,
   "kind": "kontext",
   "frame": "f_002.jpg",
-  "prompt": "Empty, unoccupied entrance hall of a small newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. On the left the entrance door, next to it a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Straight ahead a wide double-door opening into a bright living room. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
-  "seed": 101,
+  "prompt": "Empty, unoccupied small entrance hall 1.5 m wide and 2.4 m deep of a newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. The entrance door is on the right wall; along the left wall a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench next to the door. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Ahead the hall opens without any wall into a bright kitchen with a dining table (the partition was removed). Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
+  "seed": 601,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11",
+  "generatedAt": "2026-09-12",
   "shared": true
  },
  {
@@ -268,11 +268,11 @@
   "height": 1024,
   "kind": "kontext",
   "frame": "f_002.jpg",
-  "prompt": "Empty, unoccupied entrance hall of a small newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. On the left the entrance door, next to it a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Straight ahead a wide double-door opening into a bright living room. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
-  "seed": 101,
+  "prompt": "Empty, unoccupied small entrance hall 1.5 m wide and 2.4 m deep of a newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. The entrance door is on the right wall; along the left wall a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench next to the door. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Ahead the hall opens without any wall into a bright kitchen with a dining table (the partition was removed). Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
+  "seed": 601,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11",
+  "generatedAt": "2026-09-12",
   "shared": true
  },
  {
@@ -527,11 +527,11 @@
   "height": 1024,
   "kind": "kontext",
   "frame": "f_002.jpg",
-  "prompt": "Empty, unoccupied entrance hall of a small newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. On the left the entrance door, next to it a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Straight ahead a wide double-door opening into a bright living room. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
-  "seed": 101,
+  "prompt": "Empty, unoccupied small entrance hall 1.5 m wide and 2.4 m deep of a newly renovated apartment, nobody inside. Floor of beige marble-look porcelain tiles. The entrance door is on the right wall; along the left wall a tall white built-in wardrobe 190 cm wide with a full-height mirror door, a low shoe cabinet with a small bench next to the door. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Ahead the hall opens without any wall into a bright kitchen with a dining table (the partition was removed). Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
+  "seed": 601,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11",
+  "generatedAt": "2026-09-12",
   "shared": true
  },
  {
