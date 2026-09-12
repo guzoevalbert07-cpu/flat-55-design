@@ -26,11 +26,11 @@
   "height": 1024,
   "kind": "kontext",
   "frame": "f_018.jpg",
-  "prompt": "Empty, unoccupied narrow corridor of a small newly renovated apartment, nobody inside, plain smooth walls. Floor of beige marble-look porcelain tiles. On the left a door to a toilet room, its reveal lined with the same marble-look tile; further along a door to the bedroom; at the end a door to the shower room. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
-  "seed": 1002,
+  "prompt": "Empty, unoccupied narrow corridor 1.2 m wide of a newly renovated apartment, nobody inside, plain smooth walls. Floor of beige marble-look porcelain tiles. On the left side two doors close to each other, to the shower room and to the toilet room, their reveals lined with the same marble-look tile; on the right side a wide 1.4 m double-door opening into a bright living room; at the far end the bedroom door. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
+  "seed": 2502,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11",
+  "generatedAt": "2026-09-12",
   "shared": true
  },
  {
@@ -285,11 +285,11 @@
   "height": 1024,
   "kind": "kontext",
   "frame": "f_018.jpg",
-  "prompt": "Empty, unoccupied narrow corridor of a small newly renovated apartment, nobody inside, plain smooth walls. Floor of beige marble-look porcelain tiles. On the left a door to a toilet room, its reveal lined with the same marble-look tile; further along a door to the bedroom; at the end a door to the shower room. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
-  "seed": 1002,
+  "prompt": "Empty, unoccupied narrow corridor 1.2 m wide of a newly renovated apartment, nobody inside, plain smooth walls. Floor of beige marble-look porcelain tiles. On the left side two doors close to each other, to the shower room and to the toilet room, their reveals lined with the same marble-look tile; on the right side a wide 1.4 m double-door opening into a bright living room; at the far end the bedroom door. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
+  "seed": 2502,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11",
+  "generatedAt": "2026-09-12",
   "shared": true
  },
  {
@@ -544,11 +544,11 @@
   "height": 1024,
   "kind": "kontext",
   "frame": "f_018.jpg",
-  "prompt": "Empty, unoccupied narrow corridor of a small newly renovated apartment, nobody inside, plain smooth walls. Floor of beige marble-look porcelain tiles. On the left a door to a toilet room, its reveal lined with the same marble-look tile; further along a door to the bedroom; at the end a door to the shower room. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
-  "seed": 1002,
+  "prompt": "Empty, unoccupied narrow corridor 1.2 m wide of a newly renovated apartment, nobody inside, plain smooth walls. Floor of beige marble-look porcelain tiles. On the left side two doors close to each other, to the shower room and to the toilet room, their reveals lined with the same marble-look tile; on the right side a wide 1.4 m double-door opening into a bright living room; at the far end the bedroom door. walls in greige textured wallpaper, light oak eco-veneer doors with black matte handles, white stretch ceiling with a shadow-gap profile and a slim black track light. Photorealistic interior photograph, 24mm lens, soft warm light, realistic materials, tidy and finished, empty room, no people, no text.",
+  "seed": 2502,
   "model": "Flux.1-Schnell fp8 (Compact)",
   "engine": "aihorde",
-  "generatedAt": "2026-09-11",
+  "generatedAt": "2026-09-12",
   "shared": true
  },
  {
